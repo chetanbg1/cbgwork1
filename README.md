@@ -608,6 +608,48 @@ public static void printNumber(int n){
 //OOPs
 // this kewaord = tells us which object call the fuction or varible --refers to current object
 //Constructor argument / no - argument / default   
+//copy constructor -->passing constructor in the argument of other constructor 
+
+//Polymorphism
+//method overloading --> complile time polymorphism
+//method overriding -->  runTime Polymorphism
+
+//Inheritance
+//once class can inherite properties of other class
+//single level
+//multilevel
+//hirarchial inheritance one class extended by many classes
+//hybrid 
+// multiple inheritance is not supported in java
+
+//Encapsulation -->combining data and method / data hiding
+//package -- > all related classes we put it in package
+//access modifiers
+//public  --> any one can access across all the classes and packages
+//default --> can access within the package
+//protected --> can access in same package plus other packages having subclasses
+//privtae -->access only with in class
+
+//Abstraction -->only importent things user can see/ hide all unneccessary things from user
+//Abstract class -->just a concept --only method declaration no defination
+//now we can have abstract or normal methods
+//we can not create the object of abstact class
+//can have constructors and static methods--> constructor chaining
+//can have final method which will force subclass not to change the body of method
+
+
+//Interface  --> pure abstraction
+//no constructor
+//no method implementations
+//all fields bydefault public, static and final
+//all methods are public and abstract
+//class that implements an interface must implement all the methods declared in the interface
+//support the functionality of multiple inheritance
+
+//static --> common property of class accessible to all
+//properties , method, block , nested class
+//memory allocate only once
+
 
 
 
