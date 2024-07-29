@@ -380,7 +380,7 @@ for(int i =n;i>=1;i--){
 //relation between input size and running time(operation)
 
 //Arrays
-
+//continuous memory allocation with fixed size
 //2D Arrays
 //type[][] arrayName = new type[rows][cols];
 //int [][] nums = new int[3][5];
