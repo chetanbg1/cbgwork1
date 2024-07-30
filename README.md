@@ -652,4 +652,67 @@ public static void printNumber(int n){
 
 
 
+//ArrayList
+//ArrayList<Integer> list = new ArrayList<>();
+//can store element in non continuous way with no fix size
+//can store only objects
+//gets created in heap memory
+//method - add(), set(),get(),remove(),size(),sort()->(Collection.sort(arrayList))
+
+
+//Collection Framework
+//Iterable Interface --->Collection Interface --> List Interface
+//                                            --> Set Interface
+//                                            --> Queue Interface
+//methods --> add, size, remove, iterate, allAll, removeAll, clear
+//List Interface --> ArrayList Class
+//               --> LinkedList Class
+//               --> Vector Class  (same as LinkedList threadsafe) --> Stack
+
+//Queue interface --> PriorityQueue class
+//                --> LinkedList class
+//                --> Deque Interface --> ArrayQueue class
+
+//Set interface --> HashSet class
+//              --> LinkedHashSet class
+//              --> SortedSet -->TreeSet class
+
+//Map Interface --> key-value pair
+//              --> HashMap
+//              --> LinkedHashMap
+//              --> HashTable
+//              --> SortedMap -->TreeMap
+
+//DSA
+//LinkList -->
+//variable size
+//non contiguous memory
+//insert in O(1)
+//Search in O(n)
+//structure --> node --> data + next node address
+//Types -->Singular  , Double,  Circular
+
+//Stack
+//last in first out
+// push(), pop(), peek()  -->O(1)
+
+
+//queue
+//first in first out
+//enque(), dequeue(), peek()/front -->O(1)
+
+//tree / binary tree
+//hirarchical data structure
+//preOrder --> root - left - right
+//inOrder --> left - root - right
+
+//Binary Search Tree
+//left subtree Nodes < root
+//right subtree nodes > root
+// left and right subtree are also BST if there is no duplicates
+//inorder traverdsal of BST is always sorted 
+//skewed tree -- all nodes on either left side or right side
+
+
+
 
