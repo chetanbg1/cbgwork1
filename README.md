@@ -714,5 +714,100 @@ public static void printNumber(int n){
 //skewed tree -- all nodes on either left side or right side
 
 
+//HashSet
+//set --> not duplicate allowed / unordered
+//insert - O(1)
+//search - O(1)
+//delete - O(1)
+HashSet<Integer> set = new HashSet<>();
+//insert
+set.add(1);
+set.add(2);
+set.add(3);
+set.add(1);  // will not be stores - duplicate
+//search
+set.constants(1);
+//delete
+set.remove(1);
+//print all
+System.out.println(set);
+
+//Iterator
+java.util.Iterator;   //hasNext() , next()
+Iterator it = set.iterator();
+while(it.hasNext){
+    System.out.println(it.next());
+}
+
+
+//HashMap --> key-value pair
+
+HashMap<String , Integer> map = new HashMap<>();
+//insert
+map.put("india", 120); 
+map.put("china", 110); 
+map.put("usa", 100); 
+
+//print
+System.out.println(map);
+map.put("china", 115); //--> china value will be updated
+
+//search
+map.containsKey("china");
+
+//get
+map.get("china");
+
+//iteration
+for(Map.Entry<String , Integer> e : map.entrySet()){
+    System.out.println(e.getKey() + " " + e.getValue());
+}
+
+Set<String> keys = map.keySet();
+for(String key : keys){
+    System.out.println(key +" "+ map.get(key));
+}
+
+//delete
+map.remove("china");
+
+//Trie 
+//prefix , digital search, retrievel tree
+
+
+//Graphs
+//vertex -- node / data
+//edges -- connection between nodes  --> gives direction
+//uni-directional  --
+//Bi-directional / Unidirectional 
+
+//edges Weight - 
+//Weighted - 
+//un-Weighted -
+
+//types
+//eg - undirected - weighted graph ...
+
+//storing graph
+//Adjecency List
+// -- list of Lists 
+//Adjecency Matrix
+//--space o(v2) neighbore O(v)
+//Edge list
+//--Edges = {{0,2},{1,2},{1,3},{2,3}}
+//2D Matrix(implicit graph)
+//
+
+//graph traversals
+//BFS
+//DFS
+
+//topological sorted
+//directed acyclic graph is a directed graph with no cycles
+//topological sorting used for only DAGs
+//it is a linear order of vertices such that every directed edge u->v, the vertex u comes before v in the order
+
+
+
 
 
