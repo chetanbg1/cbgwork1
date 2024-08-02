@@ -808,6 +808,43 @@ map.remove("china");
 //it is a linear order of vertices such that every directed edge u->v, the vertex u comes before v in the order
 
 
+//Cycle in graph
+//undirected graph --> can detect cycle using dfs , bfs, disjoint set union(dsu)
+//directed graph --> dfs, bfs , topological sort(kahn's), graph colouring 
+
+//Dijkstra's Algorithm
+//shortest distance from the source to all vertices
+//relaxation
+//do not work for negative weight cycle
+
+//Bellman Ford algorithm
+//weight having -ve values
+
+
+//Minimum Spannig Tree  -- undirected + connected + weighted + no-cycle
+//MST or minimum weight spanning tree is a subset of the edges of a connected, edge-weighted undirected
+// graph that connects all the vertices together, without any cycles and with the minimum possible 
+//total edge weight
+
+//Prim's algorithm --
+//MST Set
+
+//Strongly connected Component
+// SSC is a component in which we can reach every vertex of the component from every other vertex
+
+//Kosaraju's Algorithm
+// get all nodes in stack(topological sort)
+//transepose the graph
+//do DFS according to stack nodes on the transpose graph
+
+//Bridge in graph  --undirected graph mostly
+//bridge is an edge whose deletion increases the graphs number of connected components
+//Tarjan's algorithm
+
+
+//Articulation point --remove vertex graph disconnects 
+//A vertex in an undirected connected graph is an articulation point (or cut vertex) if removing it
+//(and edges through it) disconnects the graph.
 
 
 
