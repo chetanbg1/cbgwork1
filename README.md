@@ -683,6 +683,263 @@ public static void printNumber(int n){
 //              --> HashTable
 //              --> SortedMap -->TreeMap
 
+//Lambda Expression
+//why lambda --> enable function programing
+//               redable and concise code
+//               easier to use APIs and libraries
+//               Enable support for parallel processing
+
+//functional programing --> 
+//in OOPs every thing is an object
+//all code blocks are associated with classes and objects / we can not have function in isolation 
+//lambda allows to assign method to varible
+
+
+greetingFunction = public void perform(){  // assigning method to varible
+    System.out.println("hello word");
+}
+greetingFunction = void perform(){ //removed public(access modifier) as function is not part of class 
+    System.out.println("hello word");
+}
+greetingFunction = void (){ //no need of name as it will be refered by the variable name  = greetingFunction
+    System.out.println("hello word");
+}
+greetingFunction =  (){ //no need of return type java compiler will figure out by looking at the code
+    System.out.println("hello word");
+}
+greetingFunction = () -> { // add arrow -> /syntax of lambda expresion
+    System.out.println("hello word");
+}
+greetingFunction =()-> System.out.println("hello word");//no need of parenthesis {} if one line of code /inline function
+
+doubleNUmberFucntion = (int a) -> return 2*a; 
+doubleNUmberFucntion = (int a) ->  2*a; // we can also remove return
+doubleNUmberFucntion = a ->  2*a;//remove paranthesis if there is only one argument
+addFunction = (int a , int b) -> a+b;
+
+//in order to declair lambda function create interface
+//interface method defines the return type of lambda function
+//lambda expression signature should match the method signature of interface method
+
+// we are implementing the interface without creating a class 
+// we are using method / function to implement the interface
+// lambda expresion is other way / shortcut to create anonymous inner class in java  / not exactly same
+
+interface MyLambda{  //this interface is going to be the return type of greetingFunction variable
+    void function();
+}
+MyLambda greetingFunction =()-> System.out.println("hello word");
+
+//functional interface - have only one method
+interface AddLambda{
+    int add(int a, int b);
+}
+AddLambda addFunction = (int a , int b) -> a+b;
+
+AddLambda addFunction = (a,b) -> a+b; //we can remove the arguments type complier will pick it from interface
+
+//TypeInterference
+interface StringLength{
+    int getLength(String s)
+}
+StringLength slambda = s -> s.length();
+System.out.println(slambda.getLength("hello world"));
+
+//function interface
+// interface having one abstract method
+// we use annotation @FunctionalInterface to mark interface as functional interface
+
+List<Person> people = Arrays.asList(
+            new Person(String"firstName", String "lastName" ,int age),  
+            new Person("charls", "Dickens" ,60)
+            new Person("lewis", "carroll" ,42)
+            new Person("thomas", "bronte" ,51)  
+             new Person("matthew", "arnold" ,39));
+
+//sort the list by last name
+Collections.sort(people, (p1,p2) -> p1.getLastName().compareTo(p2.getLastName()));
+
+//print all people from list last name start with letter "C"
+printAll = (people , p -> p.getLastName().startsWith("c"));
+ 
+
+//print all
+
+printConditionally (people , p -> true,  p ->System.out.println(p) );
+//print conditionally
+public void printConditionally(List<Person> people , Predicate<Person> condition,Consumer<Person> consumer){
+    for(Person p : people){
+        if(condition.tets(p)) // condition which return boolean
+        consumer.accept(p);
+    }
+}
+
+//java.util.functions  -- look into  it 
+
+//exception inlambdas
+lambda (a , b) -> {
+    try{
+        //function 
+       System.out.println(5 / 0);
+    }catch(Exception e){
+        System.out.println(e.getMessage());
+    }
+}
+
+//method references
+public class MethodReference {
+	public static void printMessage() {
+		System.out.println("hello");
+	}
+	public static void main(String[] args) {
+		//Thread t = new Thread(()-> printMessage()); //we are calling a method with no args/params
+		Thread t = new Thread(MethodReference::printMessage);//method reference expression same as lambda expresstion
+		t.start();
+	}
+}
+
+//foreach
+people.forEach(p -> System.out.println(p));
+people.forEach(System.out::println);
+
+
+
+//stream
+//A sequence of elements supporting sequential and parallel aggregate operation.
+
+public class Stream {
+
+	public static void main(String[] args) {
+		List<Integer> list = Arrays.asList(5,50,75,40,25, 10, 15, 35, 20);
+
+//		 filter --> used to filter the data from Stream.
+//		 creates a new stream,
+//		 it takes a predicate as an argument which returns boolean value
+//		 it is intermediate operation
+
+		List<Integer> filteredList = list.stream().filter(i -> i % 2 == 0).toList();
+            System.out.println(filteredList);
+        //people list is above in lambda
+        List<Person> FilerPeople = people.strem().filter(p -> p.getLastname().startWith("C"))
+                                                 .forEach(p -> System.out.println(p.getFirstName()));
+		
+
+//		 Map
+//		 is used to transform each element of stream and return new stream
+//		 map takes function as an argument, the return type is based on the type of data
+//		 it is intermediate operation
+
+		List<Integer> mapededList = list.stream().map(i -> i * 2).toList();
+		System.out.println(mapededList);
+		
+		// filter out passed students and give grace of 5 marks
+		List<Integer> passedList = list.stream().filter(i -> i>35).map(i -> i+5).toList();
+		System.out.println(passedList);
+		
+		//count -> to count the number of elements in stream return long value
+		//find the number of failed student
+		Long elementCount = list.stream().filter(i -> i <35).count();
+		System.out.println(elementCount);
+		
+		//sort 
+		//to sort the order of elements in the stream
+		//sorted according to natural order
+		List<Integer> sortedList = list.stream().sorted().toList();
+		System.out.println(sortedList);
+		
+		//if want to sort in descending order
+		// then we use comparator
+		//comparator is functional interface having compare(obj1,obj2) method
+		// if return -ve obj1 is greater than obj2
+		// if return +ve obj2 is greater than obj1
+		// 0 then objects are equal
+		//(a,b) -> (a<b) ? 1 :(a>b) ? -1 :0
+		
+		List<Integer> sortedListDes = list.stream()
+										//.sorted((a,b)->(a<b)?1:(a>b)?-1:0).toList();
+										//.sorted((a,b)-> b.compareTo(a)).toList();
+				.sorted((a,b)-> -b.compareTo(a)).toList();
+		System.out.println(sortedListDes);
+		
+		//comparable is interface having method compareTo(obj1) 
+		//method have only one argument
+		
+		
+		//sort on the basis of length of string
+		
+		List<String> list1 = Arrays.asList("a","aaa","aa","aaaa");
+		
+		Comparator<String> c= (a,b)-> {
+			int l1 = a.length();
+			int l2 = b.length();
+//			if(l1<l2) return -1;
+//			else if (l1>l2) return 1;
+//			else return 0;
+			return Integer.compare(l1, l2);
+		};
+		//List<String> sortAccordingToLength = list1.stream().sorted(c).toList();
+//		List<String> sortAccordingToLength = list1.stream()
+//				.sorted((a,b)-> Integer.compare(a.length(), b.length())).toList();
+		List<String> sortAccordingToLength = list1.stream()
+				.sorted(Comparator.comparing(String::length)).toList();
+		System.out.println(sortAccordingToLength);
+		
+		
+		//min() max()
+		//both method takes the comparator as an argument
+		//and based on comparator result it will return the value
+		//min will return first element of the result
+		//max will return last element of the result
+		
+		String minElement = list1.stream()
+				.min(c).get();
+		System.out.println(minElement);
+		
+		String maxElement = list1.stream()
+				.max(c).get();
+		System.out.println(maxElement);
+		
+		
+		//forEach
+		//to perform an action for each element of the stream
+		//it is terminal operation
+		
+		list.stream().forEach(i -> System.out.println(i));
+		list.stream().forEach(System.out::println);
+		list.forEach(System.out::println);
+		
+		//convert stream of objects into arrays
+		//toArray()
+		//it returns an array containing elements of the stream
+		//it is terminal operation
+		
+		Integer [] arr = list.stream().toArray(Integer[]:: new);
+		for(int a :arr) {
+		System.out.print(a+" ");
+		}
+		
+		//convert array to stream
+		//Arrays.stream(arr)  or Stream.of(arr);
+		
+		//Stream.of(args)
+		//argument should be any type either arrays or any group of elements
+		
+		
+		Integer [] array = {10,13,14,16,24};
+		Arrays.stream(array).filter(i -> i%2==0).forEach(System.out::println); //method reference
+		
+		//Stream<?> item = Strem.of(1,4,34,"a","asd");
+		//item.map(i -> i+":vv").forEach(System.out::println);
+		
+		//skip()
+		//findFirst()
+        .count()
+		
+		
+ 	}
+
+}
+
 //DSA
 //LinkList -->
 //variable size
