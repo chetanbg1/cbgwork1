@@ -940,6 +940,178 @@ public class Stream {
 
 }
 
+//MultiTreading 
+//multitasking allows several activites to accur concurrently on the computer
+//process-base multitasking -->
+// allow processes (i.e programs) to run concurently
+//thread-base multitasking -->
+//allow part of the same program to run concurrently on the computer
+//two threads share the same address space , os switching between threads is less expensive than between processes
+//cost of communication is also low in thread
+
+//why multiTreading
+//in a single threaded env, only one task at a time can be performed
+//CPU cycles are weasted .eg when waiting for user inout
+//multitasking allows idle CPU time jto be put to good use
+
+//Thread
+//is an independent sequential path of execution with in a program
+//many threads can run concurrently
+// threads in program exist in common memory sapce, so shares the same data and code
+
+//Main thread
+//when a stand alone apllication us run. a user thread is automatically created to execute the main() method of 
+// the application-- called main thread
+//program ends when main() thread finishes executing 
+//all other threads are child threads
+
+//the run time env distinguished between user threads and daemon threads
+//user thread given a preference over a deamon
+//when user thread finish executing program ends whether deamon is finished or not
+
+//creation
+java.lang.Thread class
+java.lang.Runnable interface
+
+//Synchronisation
+//thread share the same memory space i.e they can share same resources/objects
+//however, there are critical situations where it is desirable that only one thread at a time has access to shared
+//resources
+
+
+Object lock = new Object();
+public boolean push(int data){
+    //Synchronized block
+    Synchronized(lock){  //until lock is relese by perticuler thread other will not get the access to resources
+        if(isFull){
+            reutrn false;
+        }
+        ++top;
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){}
+        array[top] = data;
+        return true;
+
+    }
+}
+//or we can make method synchronized
+public synchronized int pop(){
+    Synchronized(lock){
+        if(isEmpty){
+            reutrn -1;
+        }
+        int top = array[top];
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){}
+        top--;
+        return top;
+
+    }
+}
+
+//while the thread is inside a synchronized method of an object, 
+//all other thread wish to execute the same synchronized methos have to wait
+//thread must have the object lock
+
+//Volatile keyword
+// directly update the resouce in main memory instead of cache
+
+//producer consumer
+
+public class BlockingQueue {
+	
+	private Queue<Integer> q;
+	private int capaciry;
+	
+	public BlockingQueue(int cap) {
+		this.q = new LinkedList<>();
+		this.capaciry = cap;
+	}
+	
+	public boolean add(int item) {
+		synchronized (q) {
+			//while over if loop if there are more than 1 threads are in waiting state
+			while(q.size() == capaciry) {
+				try {
+					q.wait(); //waiting for remove() to notify
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				//return false;
+			}
+			q.add(item);
+			 // notify all(particularly remove method) that item has been added 
+			//so they can start the exexution
+			q.notifyAll(); // notify all(particularly remove method) that item has been added 
+			return true;
+		}
+	}
+	public int remove() {
+		synchronized (q) {
+			while(q.size() ==0) {//if no items in queue remove operation has to wait
+				try {
+					q.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				//return -1;
+			}
+			int item = q.poll();
+			//notifies to add method that it has some space to add item 
+			q.notifyAll();
+			return item;
+		}
+	}
+}
+
+//Thread state
+
+// new --> ready-->running --> dead
+//                    |
+//                     -> non runable state (sleeping /waiting / blocked) -> again goes to ready ->running ->dead
+
+//thread joining  .join()
+//thread priority  setPriority()  / getPriority();
+
+//deadLock
+// thread waiting for other thread to relinquish the lock -- both remain waiting forever
+
+String lock1 = "aaa";
+String lock2 = "bbb";
+
+Thread thread1 = new Thread(()->{
+    synchronized(lock1){
+
+    }
+});
+
+Thread t1 = new Thread( ()->{
+    synchronized(lock1){
+        try{
+            Thread.sleep(1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        synchronized(lock2){
+            System.out.println("lock acquired");
+        }
+    }
+}   , "thread1");
+Thread t2 = new Thread( ()->{
+    synchronized(lock2){
+        try{
+            Thread.sleep(1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        synchronized(lock1){
+            System.out.println("lock acquired");
+        }
+    }
+} , "thread2");
+
 //DSA
 //LinkList -->
 //variable size
