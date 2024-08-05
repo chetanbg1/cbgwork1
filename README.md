@@ -1270,6 +1270,9 @@ map.remove("china");
 //bridge is an edge whose deletion increases the graphs number of connected components
 //Tarjan's algorithm
 
+//Articulation point --remove vertex graph disconnects 
+//A vertex in an undirected connected graph is an articulation point (or cut vertex) if removing it
+//(and edges through it) disconnects the graph.
 
 
 
@@ -1810,10 +1813,74 @@ select * from view1;
 
 
 
+##
+MongoDB
+MongoDB
+database  - 
+collection  -- >  same as table in sql but donts have fixed structure
+document  -->  dont have fixed schema , one document can be different than other document in same collection
+field 
 
-//Articulation point --remove vertex graph disconnects 
-//A vertex in an undirected connected graph is an articulation point (or cut vertex) if removing it
-//(and edges through it) disconnects the graph.
+
+to open in a local terminal - mongosh
+
+commands -
+
+show dbs
+
+use database 
+
+insertOne - 
+db.inventory.insertOne(
+   { item: "canvas", qty: 100, tags: ["cotton"], size: { h: 28, w: 35.5, uom: "cm" } }
+)
+
+insertmany - 
+db.inventory.insertMany([
+   { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+   { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
+   { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+   { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+   { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+]);
+
+db.inventory.find()  --> fetch all
+db.inventory.find( {} )
+
+db.inventory.find( { status: "D" } )
+
+db.inventory.find( { status: { $in: [ "A", "D" ] } } )
+
+db.inventory.find( { status: "A", qty: { $lt: 30 } } )  -- and
+
+db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } ) --or 
+
+db.inventory.find( {
+     status: "A",
+     $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+} )  and + or
 
 
+update --
+
+db.inventory.updateOne(
+   { item: "paper" },
+   {
+     $set: { "size.uom": "cm", status: "P" },
+     $currentDate: { lastModified: true }
+   }
+)
+
+db.inventory.updateMany(
+   { "qty": { $lt: 50 } },
+   {
+     $set: { "size.uom": "in", status: "P" },
+     $currentDate: { lastModified: true }
+   }
+)
+
+db.inventory.replaceOne(
+   { item: "paper" },
+   { item: "paper", instock: [ { warehouse: "A", qty: 60 }, { warehouse: "B", qty: 40 } ] }
+)
 
