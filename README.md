@@ -1271,6 +1271,546 @@ map.remove("china");
 //Tarjan's algorithm
 
 
+
+
+## SQL
+--
+
+Subset of SQL
+
+DDL - Data Defination Language
+- consist of the commands that can be used to define the database schema
+- create , alter, rename, truncate, drop 
+
+DQL - Data Query Language 
+- select 
+
+DML - Data Manipulation Language
+- consists of the commands that deals with the Manipulation of data present in database
+- insert, update, delete 
+
+DCL - Data Control Language
+- includes commands which deals with rigths, permission and other controls of the database
+  eg - user permissions
+
+TCL - Transaction Control Language
+- includes the commands which deals with the transaction of database
+
+
+DBMS - Database Management system
+- is software application that interacts with the user, applications and database itself to capture
+ and analyse data the data stored in the database can be modified, retrieved and deleted,
+can be of any type like strings, numbers, images etc
+
+SQL and MySQL 
+sql - is a standard language Structure Query Language based on the english language
+      it is a core of relational database which is used for accessing and managing database
+
+MySQL - open source relational database management system that work on many platforms.
+        provide multi-user access to support many storage engine and backup by oracle
+
+
+SQL - query language that allows you to issue a single query or execute a single insert / update / delete
+
+PL/SQL - Procedural language / SQL which allows you to right full program (loops/ variables) 
+         to accomplish operations such as select/insert/update/delete
+
+Data Integrity - defines accuracy of the data
+                 consistency of the data
+                 integrity constrains to enforce business rules on data
+
+Table - collection of data in an organised manner in the form of rows and columns
+field - number of columns in database
+
+Char - char is used for strings of fixed length.
+    eg char(10) - can store 10 characters and will not be able to store a string of any other length
+
+VarChar2 - used for character strings of variable length.
+           eg varchar(10) can store any length i.e 6,8,2 in this variable
+
+Primary Key - a set of attributes that can be used to uniquely identify every tuple is a primary key.
+             if there are 3-4 candidate keys present in a relationship, one can be chosen as primary key
+
+Unique Key - uniquely identifies the single row in the table
+             multiple values allowed per table
+             null values are allowed
+             duplicate values are not allowed
+
+Foreign key - maintains referential integrity by enforcing a link between the data in two table.
+              foreign key in child table references the primary key in the parent table.
+              foreign key constrain prevents actions that would destriy the link between the child and parent tables.
+
+Index - performance tuning method, allows faster retrieval of records from the table 
+        create an entry for each value
+
+Unique Index - index does not allow the field to have duplicate values if the column is unique indexed
+               if a primary key is defined, a unique index can be applied automatically
+
+Clustered Index - used for easy retrieval of data from database ans is faster
+                  reorder the physical order of table and search on the basis of key value
+                  alters the way records are stored in database as it sorts out rows by the column which is set to be clustered Index
+                  one table can have only one clustered Index
+
+Non Clustered Index - used for easy retrieval of data from database ans is slower
+                      does not alter the way it was stored but it create seperate object within a table which point back to
+                      the original table rows after searching 
+                      one table can have many non-clustered Index
+
+
+Constrains - are used to specify the limit on the data type of the table 
+             it can be specified while creating or altering the table statement
+    eg - 
+        NOT NULL -ensure that a null value can not be stored in column
+        UNIQUE - makes sure that all the values in table are unique 
+        CHECK - ensure all the values in column satisfy a specific condition
+        DEFAULT - consists of a set of default values for a column when no value is specified
+        INDEX - used to create and retrieve data from the database vrey quickly
+
+    levels of constrains - column level 
+                           Table level
+
+delete --> delete command use to delete a row in a table
+           we can rollback the data after using delete command
+           it is a DML command Data Manipulation Language
+           slower than truncate statement
+
+Drop --> removes the table and it con not be rolled back from the database  //table
+
+truncate --> used to delete all the rows from a table //rows of table
+             can not rollback the data
+             it is a DDL command Data Defination Language
+             it is faster
+
+joins - a join clouse is used to combine rows from two or more tables, based on a related column between them.
+ it is used to merge two tables or retrieve data from them
+
+join types
+Inner join - returns those records which have matching values in both tables
+
+Full join - returns all those records which either have a match in the left or right table.
+
+Left join - returns records from the left table, and also those records which satisfy the condition from right table
+
+Right join - returns records from the right table, and also those records which satisfy the condition from left table
+
+Cross join - produces the cross product or cartesian product of two tables
+
+Natural join - based on all columns having the same name and data types in both  the tables
+
+Common records from two tables - 
+    select column1, cloumn2  .. from table_names where condition ...
+      intersect
+       select column1 , column2 .. from table_name where condition ..
+    eg select studentID from student Intersect select studentID from Exam 
+
+Manipulation functions in SQL - 
+    lower  - return string in lowercase
+    lower('string');
+    upper - return string in uppercase
+    upper('string')
+    initcap - first letter in upper and rest in lower case
+    InitCap('string')
+
+Set operators - 
+    left query 
+    right query - 
+    result - 
+
+    union  - combine unique rows
+
+    interset - return only common rows
+
+    minus - will get only those rows which are not included on right query 
+
+SubQuery - is a query inside query where query is defined to retrieve data or information back from database
+           subqueries always executed first and the result of subquery is passed on to the main query
+           eg = select lastname, fisrtname from employees where addressCode in(
+            select addressCode from office where country ="india"
+           )
+
+Alias - name can be given to any table or a column. 
+        the alias name can be referred in where clause to identify a perticular table or a column
+        eg - select emp.empID, dept.result from employee emp, department as dept where 
+        wmp.wmpID = dept.deptID
+
+
+Aggregate Function - 
+        use to evaluate the methemarical calculation and retrun a single value.
+        these calculations are done from the columns in a table.
+        eg - max() , count() 
+
+Scalar Function  -return a single value based on the input value.
+        eg UCASE() , NOW()
+
+Alternate records from Table - 
+    to display the even number 
+    select studentID from (select rowNo, studentId from student) where mod(rowNo,2) = 0;
+
+    to display odd number 
+    select studentID from (select rowNo, studentId from student) where mod(rowNo,2) = 1;
+
+Operators used in pattern matching - 
+    % - it matches zero or more characters 
+    select * from student where studentName like '%a';
+
+    _ - it matches exactly one character 
+    select * from student where studentName like 'ABC_'
+
+unique record from table -  Distinct keyword 
+    select Distinct studentID from student;
+
+first 5 chars from string - 
+        subString - 
+        select subString(studentName ,1,5) as studentName from student ;
+
+        Right()
+        select right(studentName , 5) as studentName from student ;
+
+count the number of records in table
+
+select * from table;
+select count(*) from table;
+select rows from sysindexes where id = object_id(table1) indid < 2;
+
+Entity - a person, place ,or a thing in the real world about which data can be stored in a database.
+         table store data that represent one type of Entity
+         eg bank database has customer table
+
+Relationships- relation or links between the entities that have somthing to do with each other.
+               eg - customer name has relation with account number
+
+ACID properties
+A - Atomicity 
+
+C - Consistency
+
+I - Isolation
+
+D - Durability 
+
+Trigger 
+are a special type of stored procedures that are defined to execute automatically
+ in place or after data modification it allows you to execute a batch of code when an insert,
+  update or any other query is executed against a specific table
+
+Before insert - activated before data is inserted into the table
+After Insert - activated after insert
+Before update - 
+after upadte - 
+before delete - 
+after delete - 
+
+Operators available in SQL - 
+Arithmetic -
+Bitwise - 
+Comparison - 
+Compound - 
+Logical - 
+
+Null value - represents a value which is unavilable ,unknown, assigned or not applicable 
+             whereas a zero is number and blank space is character
+
+
+View - is a virtual table which consist of a subset of data contained in a table.
+       since view are not present, it takes less space to store. view can have data from one or more tables
+       combined and it depends on the relationship 
+       view refers to a logical snapshot based on a table or another view 
+
+    used for - restricing access to data
+               making complex queries simple
+               ensuring data independence
+               providing different views of same data 
+
+Denormalization - refers to a technique which is used to access data from higher to lower forms of database
+                  increase the performance of the entire infrastructure as it introduces redundancy into a table
+                  Adds the redundant data into a table by incorporating database queries that combine data 
+                  various table into a single table 
+
+Normalization  - is the process of organizing the data to avoid duplication and redendency
+    advantages - better database organization
+                 more table with smaller rows
+                 efficient data access
+                 greater flexibility for queries 
+                 quickly find the information
+                 easier to implement sequrity
+                 allows easy modification
+                 reduction of redundant and duplicate data
+                 more compact database
+                 ensure consistent data after modification
+
+Types of Normalization -
+1 NF - each table cell should have a single value , all records must be unique
+
+2 NF - database should be 1 NF and should also have single column primary key 
+
+3 NF - should be 2 NF and must have any transitive functional dependencies.
+
+BCNF - if database 3 NF, there would be some scenarios where anamalies would be present, if you have more than 
+       one candidate key. then BCNF comes into role, where you divide your tables furthre so that there would be
+       only ine candidate key present
+
+Group functions 
+group functions work on the set of rows and retruns one result per group 
+
+Avg  - 
+count 
+max
+min 
+sum 
+variance
+
+
+Relationships - relation or links are between entities that have something to do with each other.
+    One to one 
+    One to many
+    Many to One 
+    self- referencing relationship
+
+Null values can be inserted in following ways - 
+    implicitly by omitting column list
+    Explicitly by specifying null keyword in the value clause  
+
+Between  -> used to display rows based on a range of values in a row
+            eg - select * from student where rollNo between 10 and 50;
+
+In -> used to check for values contained in a specific set of values
+      eg - select * from student where rollNo in (8,15,25);
+
+SQL function - are used for 
+    to perform some calculation on data
+    to convert the data type
+    to modify individual data items
+    to maintain the output
+    to format dates and numbers
+
+Merge functions - allows conditional update or insertion of data into a table
+                  it performs an update if a row exists or an insert if row does not exists
+
+Recursive stored procedure - refers to a stored procedure which calls by itself 
+                  until it reaches some boundary condition 
+                  helps the programmers to use the same set of code n number of times.
+
+Clause in SQL - helps to limit the result set by providig a condition to the query.
+                a clause helps to filter the rows from the entire set of records 
+                eg where , having clause
+            
+Having clause - can be only use with select statement 
+                usually used in a Group By clause 
+
+Where clause - where clause is applied to each row before they are part of the Group By Function in a query.
+
+Auto-increment - allows user to create unique number to get generated whenever a new record is inserted in table
+                 the key is usually required whenever primary key is used
+
+Datawarehouse - refers to a central repository of data where the data is assembled from multiple sources 
+                those data are consolidated , transformed and made available for the mining as well as online processing
+                warehouse data also have a subset of data called data marts 
+
+Stuff function - used to overwrite the existing character ot insert a string into another string
+                 Stuff(string_expression, start, length, replacement_characters)
+
+replace function - this function is used to replace the existing characters of all the accurrences. 
+                 replace(string_expression, search_String, replacement_string)
+      
+
+
+Stored Procedure 
+    - a function which consist of many SQL statements to access the database system
+      several SQL statements are consolidated into a stored procedure 
+      and are executed whenever and whenever required  
+      saves time and avoid writing code again and again 
+
+    advantages - used as modular programming which means create once
+                 can call for several times whenever it is required 
+                 support faster execution 
+                 reduce network traffic and provide better security to the data 
+
+    disAdvantages - it can be executed only in the database and utilizes more memory in database server 
+
+    collation is defined as a set of rules that determines how data can be stored as well as compared
+    character data is stored using the rules that define the correct character sequence along with operations for 
+    specifying case-sensitivity ,character width etc. 
+
+    Collation types- case sensitivity, kana sensitivity, width sensitivity, accent sensitivity 
+
+
+#Query
+
+genrate date 
+GATEDATE();
+select gatedate();
+SELECT CURRENT_TIMESTAMP 
+
+sql query to find employee with name 'A' 
+select * from employee where EmpName like 'A%' ;
+
+3rd highest
+select top 1 salary from (select top 3 salary from employee_table order by salary Desc) as emp order by 
+                salary ASC;
+
+
+CHAR  --  string(0-255), can store characters of fixed length
+VARCHAR --  string(0-255), can store characters up to given length 
+BLOB -- string(0-65535), acn store binary large object 
+INT -- integer (-2,147,483,648 to 2,147,483,647)
+TYNYINT -- integer (-128 to  127)
+BIGINT -- Integer (-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)
+BIT -- can store x-bit values. x can range from 1 to 64
+FLOAT -- decimal number - with precision to 23 digits
+DOUBLE -- decimal number - with 24 to 53
+BOOLEAN -- boolean value 0 or 1
+DATE -- date in format of YYYY-MM-DD ranging from 1000-01-01 to 9999-12-31
+YEAR -- year in 4 didgits format ranging from 1901 to 2155
+
+Queries  -
+create database db_name;
+create database if not exists db_name;
+
+Drop database db_name;
+Drop database if exists db_name;
+
+show databases; 
+
+use db_name;
+
+create table table_name (col_n1 dataType constraint , col_n2 dataType, col_n3 dataType);
+
+show tables;
+
+insert into table_name (col1_name, col2_name, col3_name ..) values(col1_val1, col2_val1), (col1_val2,col2_val2);
+
+create database college;
+
+use college;
+
+create table student(
+	id int primary key, name varchar(50) unique, age int not null
+);
+
+insert into student values(1,"chetan",30);
+insert into student values(2,"aakka",25);
+
+select * from student;
+
+select col_1, col_2 from student; 
+
+select * from student where marks > 90;
+
+using operators in where 
+arithmetic  --> + ,-, * , / %
+select * from student where marks+10 > 100;
+
+comparison operators --> =, !=, >, >=, <, <=
+
+Logical operators --> AND, OR, NOT, IN, BETWEEN,ALL ,LIKE, ANY 
+select * from student where marks > 80 AND city ="pune";
+select * from student where marks between  80 AND 90;  -- select in given range
+select * from student where city in ("delhi", "mumbai");
+select * from student where city not in ("delhi", "mumbai");
+
+Bitwise operators --> & , | 
+
+select * from student where marks+10 > 100; 
+
+select * from student where marks >75 limit 3;  -- > only first 3 records 
+
+
+Order by 
+
+select * from student order by city ASC;
+select * from student order by city DESC limit 3;
+
+
+Aggregate - perform a calculation on a set of values, and return a single value.
+
+select max(marks) from student
+select avg(marks) from student 
+
+
+Group By - group rows that have the same values into summary rows
+           it collects data from multiple records and groups the result by one or more column
+           generally we use group by with some aggregation function 
+
+select city , count(name) from student group by city;
+
+Having clause --
+similar to where ie applies some condition on rows
+used when we want to apply any condition after grouping 
+select count(name) , city from student group by city having max(marks) > 90;
+
+general order -->
+select columns
+from table_name 
+where condition 
+group by column 
+having condition 
+order by column asc ; 
+
+update 
+update table_name set cal_1 = val1 , col_2 = val2 where condition.. ;
+
+update student set grade = "O" where grade = "A"; 
+
+delete --> delete from existing rows 
+delete from table_name where condition ..
+
+delete from student where marks < 33;
+
+ALTER TABLE dept ADD deptId int;
+
+Foreign Key -- > 
+create table dept(
+	id int primary key, name varchar(50)
+);
+
+create table teacher(
+	id int primary key, name varchar(50), deptId int, foreign key(deptID) references dept(id)
+);
+create table teacher(
+	id int primary key, name varchar(50), deptId int, 
+    foreign key(deptID) references dept(id) on update cascade on delete cascade
+);
+
+
+Alter --> changes the schema
+
+ALTER TABLE student ADD age int;
+
+ALTER TABLE student DROP age;
+
+ALTER TABLE student RENAME TO new_student;
+
+ALTER TABLE student CHANGE id student_id int;
+
+ALTER TABLE student MODIFY marks DOUBLE ;
+
+Truncate table studnet;   
+
+
+Joins 
+select * from emp inner join salary on emp.id = salary.id;
+select * from emp as e left join salary as s on e.id = s.id; 
+select * from emp right join salary on emp.id = salary.id;
+full join 
+select * from emp as e left join salary as s on e.id = s.id 
+Union 
+select * from emp right join salary on emp.id = salary.id;
+
+self join 
+select a.name as manager_name, b.name from emp as a join emp as b on a.id = b.managerId;
+
+subquery 
+select * from student where marks > (select avg(marks) from student);
+
+Views 
+create view view1 as select id , name from student;
+select * from view1;
+
+
+
+
+
+
 //Articulation point --remove vertex graph disconnects 
 //A vertex in an undirected connected graph is an articulation point (or cut vertex) if removing it
 //(and edges through it) disconnects the graph.
