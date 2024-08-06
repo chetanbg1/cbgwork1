@@ -1810,18 +1810,70 @@ create view view1 as select id , name from student;
 select * from view1;
 
 
-
+SQL 
+data is represented in tables
+predifined schema
+vertically scalable
+support automic operations
+support join operations
 
 
 ##
 MongoDB
+is NoSQL (not only query) database that stores large volumes of data inthe form of documents .this offers the developers teh flexibility to work with evolving data models.
+alternative NOSQL DBs - Cassandra, Amazon DynamoDB, redis, Apache Hbase , neo4j
+
+the schema of a database describes the structure of the data to be stored , schema is defined by tables, fields, and relation between them 
+mongoDb facilitates flexibility  into schema design thereby organizing storage of data as key value pairs into lightweight json document 
+
 MongoDB
+data is represented in documents
+Dynamic schema
+horizontal and vertically scalable
+no proper support for transaction
+does not support join
+
 database  - 
 collection  -- >  same as table in sql but donts have fixed structure
 document  -->  dont have fixed schema , one document can be different than other document in same collection
 field 
 
+mongodb replication   -
+duplicating same data across multiple server
 
+shrading - distributing data across multiple database 
+Shard key - is used by MongoDb to distribute the documnet of a collection across shards
+
+Aggregation in MongoDB - 
+acts on group of values from multiple documents, perform operations on teh grouped values and retrun a single computed result
+aggresion pipeline - 
+map reduce operation - is data processing paradigm for condensing large volumes of data into useful aggregated results
+single purpose aggregation - 
+
+match 
+group 
+sort
+
+$SUM
+$AVG
+$MIN
+$MAX
+$PUSH
+
+_id  - auto created unique value 
+
+
+BAckup and Restoring in MongoDB 
+- Mongoimport
+- Mongoexport
+- MongoDump
+- MongoRestore
+
+DataBase Profiler - is used to collect information regarding the queries which are executed on an individual database instance.
+
+
+regex --
+db.collection.find({$regex:/pattern/})
 to open in a local terminal - mongosh
 
 commands -
@@ -1883,4 +1935,6 @@ db.inventory.replaceOne(
    { item: "paper" },
    { item: "paper", instock: [ { warehouse: "A", qty: 60 }, { warehouse: "B", qty: 40 } ] }
 )
+
+
 
