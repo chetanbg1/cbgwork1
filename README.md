@@ -53,6 +53,9 @@ we use Wrapper classes for primitive data type
  	increase complexity
   	JVM does the implicit memory allocation, to avoide the direct access to memory by user 
 
+Pass by value - we dont pass the original memory address, value is copied at another memory location and that is passed so original value can not be modified  --java is pass by value 
+Pass by reference - actually sending the memory object / pointer of the varible to a function , if someone modifies that varible in function we may lost the original variable 
+		    changing the real address of the variable 
 //Non-primitive data type
 //Array
 //String
@@ -112,7 +115,30 @@ public final void wait()
 public final void wait(long timeout)
 public final void wait(long timeout, int nanos)
 
+how to make class immutable 
+	declare class final
+ 	make all fields private 
+  	do not provide setter's
+   	make all mutable fields final
+    	initialize fields via constructor performing a deep copy
+     	perform cloning of objects in the getter method to return a copy rather than retruning the actual object reference 
 
+Singletone
+--
+	singleton class is class whose only one instance can be created at any given time, in one jvm 
+
+ 	public class Animal{
+  		private static Animal single_instance = null;  //create private static instance of same class 
+    			private Animal(){    //make constructor private
+     
+			}
+   		public static Animal getInstance(){
+     			if(single_instance == null){		//if null
+				single_instance = new Animal(); // create new 
+			}
+   			return single_instance;        //else return the instance it self 
+		}
+	}
 patterns
 --
 //solid rectangle
@@ -639,16 +665,20 @@ public static void printNumber(int n){
 //time complexity worst = o(n^2)  average = O(nlogn)
 //worst case occurs when pivot is always the smallest or largest element
 
-//OOPs
+OOPs
+--
 // this kewaord = tells us which object call the fuction or varible --refers to current object
 //Constructor argument / no - argument / default   
 //copy constructor -->passing constructor in the argument of other constructor 
 
-//Polymorphism
+Polymorphism
+--
 //method overloading --> complile time polymorphism
 //method overriding -->  runTime Polymorphism
+Covarient return type means return type may vary during overriding 
 
-//Inheritance
+Inheritance
+--
 //once class can inherite properties of other class
 //single level
 //multilevel
@@ -656,15 +686,24 @@ public static void printNumber(int n){
 //hybrid 
 // multiple inheritance is not supported in java
 
-//Encapsulation -->combining data and method / data hiding
+Association
+--
+Has-A realtion 
+Aggregation - weak association  - one object can exist without other object,  eg Car has - A driver
+Composition - strong association - one object can not exist without other object  eg Car has - a engine 
+
+Encapsulation -->combining data and method / data hiding
+--
 //package -- > all related classes we put it in package
-//access modifiers
+access modifiers
 //public  --> any one can access across all the classes and packages
 //default --> can access within the package
 //protected --> can access in same package plus other packages having subclasses
 //privtae -->access only with in class
+what if the method in child class is more restricted than parent  -- > compile time error , can not reduce the visibility of the method 
 
-//Abstraction -->only importent things user can see/ hide all unneccessary things from user
+Abstraction -->only importent things user can see/ hide all unneccessary things from user
+--
 //Abstract class -->just a concept --only method declaration no defination
 //now we can have abstract or normal methods
 //we can not create the object of abstact class
@@ -680,8 +719,33 @@ Interface  --> pure abstraction
 //all methods are public and abstract
 //class that implements an interface must implement all the methods declared in the interface
 //support the functionality of multiple inheritance
+
 marker interface - interface having no data members and functions , empty interface 
 	eg - serializable , clonable 
+to sort the custom object we need 
+Comparable - Comparable<generic object> has one mehod --> public int compareTo(Employee o){   // can sort only integer value
+								return this.id -o.id;    //compare given object id with current object id 
+											 // will return 0 if both are same
+	    										 // 1 if 
+											 // -1 if 						
+      									 }
+Comparaotr - public static comparator<Employee> nameComp = new Comparator<Employee>();
+			public int compare(Employee e1, Employee e2){
+   				return e.getName().compareTo(e2.getName());
+			}
+shallow comparision (e1 == e2) --> compare the memory addresses of e1 and e2 --> comapre the references 
+deep comparision (e1.equals(e2)) --> compare the internal details --> actual values inside the object
+		public boolean equals(Object o){
+  			if(o == null){
+     				return false;
+			}
+   			if(o == this){
+      				return true;
+			}
+   			Employee e = (Employee) o ; //typecast
+      			return (this.getId() == e.getId());
+		}
+  if two objects are saame  according to Equals(Object o) then the hashcode are same 
 
 static --> common property of class accessible to all
 --
@@ -703,29 +767,85 @@ ArrayList
 
 Collection Framework
 --
+java.util.Collection is root of collection framework except Map interface
+
 //Iterable Interface --->Collection Interface --> List Interface
 //                                            --> Set Interface
 //                                            --> Queue Interface
 //methods --> add, size, remove, iterate, allAll, removeAll, clear
 //List Interface --> ArrayList Class
+			dynamic resizing 50% of original size
+   			not synchronized
 //               --> LinkedList Class
+			implements list and deque interface
+   			maintain insertion order
+      			does not support accessing elements ramdomly
+	 		use listIterator to iterate list 
 //               --> Vector Class  (same as LinkedList threadsafe) --> Stack
+			is synchronized
+   			maintain insertion order
+      			thread safe
+	 		increase size by doubling the array size
+
+	contains ordered elements
+ 	may include duplicates
+  	support index base search, random access 
+   	elemets can be easily inserted irrespective of the position 
 
 //Queue interface --> PriorityQueue class
+			priority associated with each element
+   			high priority elements served before a low priority irrespective of insertion order
 //                --> LinkedList class
 //                --> Deque Interface --> ArrayQueue class
-
+			elements can be added and remove from both the ends
 //Set interface --> HashSet class
+			implicitly implements the hashtable
+   			contain only unique elements
+      			only one null is allowes
+	 		unorder set
 //              --> LinkedHashSet class
-//              --> SortedSet -->TreeSet class
-
+			orereed verion of hashset - maintain doubly-linnked list accross all elements
+   			preserves the insertion order
+//              --> SortedSet(interface) -->TreeSet class
+			all elements of sorted set implements the comparable interface
+   			sorted in ascending order
+      			tree-set - uses tree for storage - self balancing tree -red - black 
+	 			   sorted and ascending order 
+      
+	does not define the order 
+ 	not support the index base search
+  	do not conatin duplicates
+   
 //Map Interface --> key-value pair
 //              --> HashMap
+			non synchronize 
+   			allows only one null key but multiple null values
 //              --> LinkedHashMap
 //              --> HashTable
+			synchronized
+   			does not allow any null key or value
 //              --> SortedMap -->TreeMap
+			entries are maintained in ascending key order
+   			tree map - implicitly implements the red-black tree , can not store null key 
+	does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
+	can only conatin a unique key
+ 	can have duplicate values
 
-//Lambda Expression
+HashMap
+works on hasing principle, where hash function is used to link key and values in hashMap, the hashcode method will give us the index that is the bucket location where we can strore value 
+and to retrieve object we use key get(key) 
+if two keys return same hash index collision occurs - then linked list is formed at that location 
+in case of collision to search correct value from linked list we use equals() method
+
+fail fast - iterator throws ConcurrentModificationException when one thread is iterating over a collection and other thread structuralyy modify collection either by adding, removing or modifiing the object on underlying collection
+	    immediaately throw exception 
+fail safe - does not throw the exception if collection is modified while one thread is iterating over it because they word on clone of collection instead of original collection 
+Blocking queue - thread safe queue to put or take elements 
+		 multiple threads can work simultaniously 
+   		 if a thread tries to take elemet form queue and there is none left, the thread can be block untile there is an element to take 
+ 
+Lambda Expression
+--
 //why lambda --> enable function programing
 //               redable and concise code
 //               easier to use APIs and libraries
