@@ -1334,6 +1334,14 @@ Thread t2 = new Thread( ()->{
     }
 } , "thread2");
 
+Design Pattern
+--
+
+Creational pattern - 
+Behavioural pattern
+Structural pattern
+J2EE pattern - 
+
 DSA
 --
 //LinkList -->
