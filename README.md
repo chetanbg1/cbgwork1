@@ -26,6 +26,10 @@ class FirstClass{
 //JRE java runtime environment  = JVM + libraries 
 //JVM java virtual machine
 
+JIT just in time compiler
+	java source code --> JDK (javac.exe) --> byte code -->JRE(interpreter + JIT compiler) --> machine code
+ 	JIT is used to optimise the performace of java code at run time - its helps code to fastly compile 
+	
 
 //varible value keeps changing if we change  ,reference to the address of memery where we store the data
 // constants value do not change
@@ -41,6 +45,13 @@ class FirstClass{
 //long  = 8 byte
 //double =8  byte
 //float =4 byte
+java is not completly 100% object - oriented language due to premitive data types
+we use Wrapper classes for primitive data type
+
+-- pointers not allowed in java
+	they are unsafe
+ 	increase complexity
+  	JVM does the implicit memory allocation, to avoide the direct access to memory by user 
 
 //Non-primitive data type
 //Array
@@ -85,7 +96,25 @@ do{
     System.out.println("cbg the great");
 }while(i<10);
 
-//patterns
+object class
+--
+is parent class to all the classes in java 
+java.lang.Object 
+protected Object clone();  --> throws cloneNotFoundException , create and retruns a copy of this object
+public boolean equals(Object obj) --> indicates whether some objects are equal to this one
+protected void finalize() --> throws throawble called by garbage collector on an object when there is no more reference to object
+public final Class getClass() --> returns the runtime class of an object 
+public int hashCode() --> return hashCode value of object 
+public String toString() --> returns string representation of object 
+public final void notify()
+public final void notifyAll()
+public final void wait()
+public final void wait(long timeout)
+public final void wait(long timeout, int nanos)
+
+
+patterns
+--
 //solid rectangle
 // *****
 // *****
@@ -385,7 +414,12 @@ for(int i =n;i>=1;i--){
 //type[][] arrayName = new type[rows][cols];
 //int [][] nums = new int[3][5];
 
-//Strings
+Strings
+--
+
+string pool requires string to be immutable otherwise shared reference can be changes from anywhere
+security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure ans safe 
+
 //String.class
 //length();
 //charAt(index);
@@ -638,21 +672,28 @@ public static void printNumber(int n){
 //can have final method which will force subclass not to change the body of method
 
 
-//Interface  --> pure abstraction
+Interface  --> pure abstraction
+--
 //no constructor
 //no method implementations
 //all fields bydefault public, static and final
 //all methods are public and abstract
 //class that implements an interface must implement all the methods declared in the interface
 //support the functionality of multiple inheritance
+marker interface - interface having no data members and functions , empty interface 
+	eg - serializable , clonable 
 
-//static --> common property of class accessible to all
+static --> common property of class accessible to all
+--
 //properties , method, block , nested class
 //memory allocate only once
+we can not override private and static methods in java 
+
+finally block always execute in java except "System.exit()" called or system crashes 
 
 
-
-//ArrayList
+ArrayList
+--
 //ArrayList<Integer> list = new ArrayList<>();
 //can store element in non continuous way with no fix size
 //can store only objects
@@ -660,7 +701,8 @@ public static void printNumber(int n){
 //method - add(), set(),get(),remove(),size(),sort()->(Collection.sort(arrayList))
 
 
-//Collection Framework
+Collection Framework
+--
 //Iterable Interface --->Collection Interface --> List Interface
 //                                            --> Set Interface
 //                                            --> Queue Interface
