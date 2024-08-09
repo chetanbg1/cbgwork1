@@ -665,6 +665,35 @@ public static void printNumber(int n){
 //time complexity worst = o(n^2)  average = O(nlogn)
 //worst case occurs when pivot is always the smallest or largest element
 
+Exception Handling 
+--
+abnormal condition which can disrupt the normal flow of program, if not handled properly program can terminate abruptly 
+try - enclose the set of statements which can throw exception , heance required to be monitored. can not use try block alone, must be followed by catch or finally 
+Catch - when exception occurs block catches the exception and work accordingly to handle it or to throw it as required
+Finally - this block get executed always regardless of exception occurence , hence clean up is done 
+
+Throwable  --> Exception -->checked exception / compile time   --> eg - sql exception , classnnotfound
+			 --> unchecked exception / runtime exception --> eg - nullpointer, number format , indexoutofbound 
+    	   --> Error --> stack overflow 
+			 out of memory 
+    			 virtual machine error 
+Throw - use to throw exception
+	checked exception can not be propagated using throw only
+ 	used with in method
+  	can not throw multiple exception
+Throws - used to declare exception
+	 checked exception can be propagated with throws
+  	 used in method signature
+    	 can declare multiple exceptions
+when exception is thrown by main() method , java runtime terminates the program and prints the exception message and teh stack trace is shown in-system console 
+unreachable catch block -when we keep super class first and sub classes later like Exception first and then nullpointer ..in multi catch block 
+
+
+Final - keyword used to  apply restrictions on the class, method and variables
+	the final class can not be inherited, final method can not be override, final variable can not be changed
+finally - keyword used with try catch block to provide statement that will always get executed if some exception arises, used to close resources
+Finalize - used to perform clean up processing just before the object is garbage collected 
+
 OOPs
 --
 // this kewaord = tells us which object call the fuction or varible --refers to current object
@@ -746,6 +775,31 @@ deep comparision (e1.equals(e2)) --> compare the internal details --> actual val
       			return (this.getId() == e.getId());
 		}
   if two objects are saame  according to Equals(Object o) then the hashcode are same 
+
+default methods - is a way of adding new methods to the interfaces without affecting the implementing classes
+		  so no error arises due to unimplemeted methods fo interface 
+    		  default method have dummy implemetation
+		  implementing classes if ok with dummy implementation then use dummy impl, if not can override and provide their own implementation 
+    		  while overriding we use public access modifiers in implementing classes
+		  we can face the diamand problem due to default method while inheriting the interface, to avoid this we call method by interface name 
+    
+static methods are introduce in interface in java 8 so we can call these methods with just interface name. no need to create class and then its objects , as we can not create the objects of interface 
+
+Predicate 
+	predefine functional interface 
+ 	only one abstract method is--> public boolean test(T t);  --> always return boolean value 
+Functional 
+	apply(T t)  --> takes 1 input and gives 1 output
+ 	andThen , compose --> chaining
+Consumer 
+ 	never return anything
+  	public void accept(T t)
+   	andThen --> chaining
+Supplier 
+	it will just supply required objects and will not take any input 
+ 	public R get()
+ 	no chaining 
+BiFunction, BiPredicate, BiConsumer --> when there are two argumennts
 
 static --> common property of class accessible to all
 --
@@ -892,7 +946,7 @@ interface MyLambda{  //this interface is going to be the return type of greeting
 }
 MyLambda greetingFunction =()-> System.out.println("hello word");
 
-//functional interface - have only one method
+//functional interface - have only one abstract method
 interface AddLambda{
     int add(int a, int b);
 }
@@ -966,9 +1020,14 @@ people.forEach(System.out::println);
 
 
 
-//stream
+stream
+--
 //A sequence of elements supporting sequential and parallel aggregate operation.
+if we want to process the bulk objects of collection then we use stream
+it is special iterator class that allows processing collection of objects in functional manner 
+java io streams are related to files 
 
+Stream s = collectionObject.stream();
 public class Stream {
 
 	public static void main(String[] args) {
@@ -979,7 +1038,7 @@ public class Stream {
 //		 it takes a predicate as an argument which returns boolean value
 //		 it is intermediate operation
 
-		List<Integer> filteredList = list.stream().filter(i -> i % 2 == 0).toList();
+		List<Integer> filteredList = list.stream().filter(i -> i % 2 == 0).toList(); / collect(Collectors.asList());
             System.out.println(filteredList);
         //people list is above in lambda
         List<Person> FilerPeople = people.strem().filter(p -> p.getLastname().startWith("C"))
@@ -1018,8 +1077,8 @@ public class Stream {
 		//(a,b) -> (a<b) ? 1 :(a>b) ? -1 :0
 		
 		List<Integer> sortedListDes = list.stream()
-										//.sorted((a,b)->(a<b)?1:(a>b)?-1:0).toList();
-										//.sorted((a,b)-> b.compareTo(a)).toList();
+				//.sorted((a,b)->(a<b)?1:(a>b)?-1:0).toList();
+				//.sorted((a,b)-> b.compareTo(a)).toList();
 				.sorted((a,b)-> -b.compareTo(a)).toList();
 		System.out.println(sortedListDes);
 		
@@ -1102,7 +1161,8 @@ public class Stream {
 
 }
 
-//MultiTreading 
+MultiTreading 
+--
 //multitasking allows several activites to accur concurrently on the computer
 //process-base multitasking -->
 // allow processes (i.e programs) to run concurently
@@ -1114,7 +1174,7 @@ public class Stream {
 //why multiTreading
 //in a single threaded env, only one task at a time can be performed
 //CPU cycles are weasted .eg when waiting for user inout
-//multitasking allows idle CPU time jto be put to good use
+//multitasking allows idle CPU time to be put to good use
 
 //Thread
 //is an independent sequential path of execution with in a program
@@ -1274,7 +1334,8 @@ Thread t2 = new Thread( ()->{
     }
 } , "thread2");
 
-//DSA
+DSA
+--
 //LinkList -->
 //variable size
 //non contiguous memory
