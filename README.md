@@ -1208,6 +1208,9 @@ when user thread finish executing program ends whether deamon is finished or not
 java.lang.Thread class
 java.lang.Runnable interface
 
+
+t.start() a new thread will be  created which is responsible for the execution of run() method 
+t.run() no new thread will be created it will be executed same as normal method 
 //Synchronisation
 //thread share the same memory space i.e they can share same resources/objects
 //however, there are critical situations where it is desirable that only one thread at a time has access to shared resources
@@ -1517,7 +1520,14 @@ map.remove("china");
 //A vertex in an undirected connected graph is an articulation point (or cut vertex) if removing it
 //(and edges through it) disconnects the graph.
 
-
+Questions 
+diff between arraylist and linked list
+arrayList - used dynamic array as internal data structure
+		manipulation is slow but searching is fast
+  		can act as only list
+linked list - uses the doubly linked list 
+		manipulation is fast but searching is slow 
+  		can as as list as well as queue
 
 ## SQL
 --
