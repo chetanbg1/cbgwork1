@@ -1,4 +1,4 @@
-package com.gfarm.leetcode.array;
+package com.gfarm.leetcode.number;
 
 import java.util.Arrays;
 
