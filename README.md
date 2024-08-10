@@ -1173,20 +1173,22 @@ public class Stream {
 
 MultiTreading 
 --
-//multitasking allows several activites to accur concurrently on the computer
-//process-base multitasking -->
-// allow processes (i.e programs) to run concurently
-//thread-base multitasking -->
-//allow part of the same program to run concurrently on the computer
-//two threads share the same address space , os switching between threads is less expensive than between processes
-//cost of communication is also low in thread
+multitasking allows several activites to accur concurrently on the computer
+
+process-base multitasking -->
+allow processes (i.e programs) to run concurently where each task / process is independent 
+
+thread-base multitasking -->
+allow part of the same program to run concurrently on the computer
+two threads share the same address space , os switching between threads is less expensive than between processes
+cost of communication is also low in thread
 
 //why multiTreading
 //in a single threaded env, only one task at a time can be performed
 //CPU cycles are weasted .eg when waiting for user inout
 //multitasking allows idle CPU time to be put to good use
 
-//Thread
+Thread - light weight process with in the process
 //is an independent sequential path of execution with in a program
 //many threads can run concurrently
 // threads in program exist in common memory sapce, so shares the same data and code
@@ -1194,12 +1196,13 @@ MultiTreading
 //Main thread
 //when a stand alone apllication us run. a user thread is automatically created to execute the main() method of 
 // the application-- called main thread
-//program ends when main() thread finishes executing 
+//program ends when main() thread finishes executing   --> Thread.currentThread().getName();
 //all other threads are child threads
 
-//the run time env distinguished between user threads and daemon threads
-//user thread given a preference over a deamon
-//when user thread finish executing program ends whether deamon is finished or not
+the run time env distinguished between user threads and daemon threads
+user thread created by developer / jvm create the demon thread eg GC
+user thread given a preference over a deamon
+when user thread finish executing program ends whether deamon is finished or not
 
 //creation
 java.lang.Thread class
@@ -1207,8 +1210,7 @@ java.lang.Runnable interface
 
 //Synchronisation
 //thread share the same memory space i.e they can share same resources/objects
-//however, there are critical situations where it is desirable that only one thread at a time has access to shared
-//resources
+//however, there are critical situations where it is desirable that only one thread at a time has access to shared resources
 
 
 Object lock = new Object();
