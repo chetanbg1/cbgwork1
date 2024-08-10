@@ -809,6 +809,16 @@ we can not override private and static methods in java
 
 finally block always execute in java except "System.exit()" called or system crashes 
 
+Garbage collection 
+--
+is an automatic process of looking at heap memory, identifying which objects are in use and which are not, and delete the unused objects 
+unused object is no longer refered by any part of program
+advantage is it remove the burden of manual memory allocation or deallocation from us 
+garbage collection is done in heap memory 
+object is alway stored in heap memory and stack memory contains the reference to it
+JVM controls the garbage collection , when it realizes that the memory is running low
+we can request the garbage collection from java program but there is no guarantee that this requets will be taken care by JVM   --> System.gc()
+garbage collector is demon / background thread , demon thread runbehind application ,started by JVM
 
 ArrayList
 --
