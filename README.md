@@ -1612,6 +1612,25 @@ if synchronized map is there why concurrent hash map was introduce -
 
 	  ConcurrentHashMap is thread-safe therefore multiple threads can operate on a single object without any problem. In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level. By 		default, it allows 16 thread to read and write from the Map without any synchronization. In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updating in the object, the thread must lock 		the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence, at a time16 update operations can be performed by threads.
 
+
+	PermGen											MetaSpace
+It is removed from java 8.							It is introduced in Java 8.
+PermGen always has a fixed maximum size.					Metaspace by default auto increases its size depending on the underlying OS.
+Contiguous Java Heap Memory.							Native Memory(provided by underlying OS).
+Inefficient garbage collection.							Efficient garbage collection.
+
+JVM memory stucture - 
+	JVM defines various run-time data area which are used during execution of a program. Some of the areas are created by the JVM whereas some are created by the threads that are used in a program. However, the memory area created 	by JVM is destroyed only when the JVM exits. The data areas of thread are created during instantiation and destroyed when the thread exits. JVM Memory Structure is divided into multiple memory area like heap area, stack area, 	method area, PC Registers etc
+
+Young Generation(Nursery):
+	All the new objects are allocated in this memory. Whenever this memory gets filled, the garbage collection is performed. This is called as Minor Garbage Collection.
+Old Generation:
+	All the long lived objects which have survived many rounds of minor garbage collection is stored in this area. Whenever this memory gets filled, the garbage collection is performed. This is called as Major Garbage Collection.
+PermGen Memory:
+	This is a special space in java heap which is separated from the main memory where all the static content is stored in this section. Apart from that, this memory also stores the application metadata required by the JVM. 		Metadata is a data which is used to describe the data. Here, garbage collection also happens like any other part of the memory. String pool was also part of this memory before Java 7. Method Area is a part of space in the 		PermGen and it is used to store the class structure and the code for methods and constructors. The biggest disadvantage of PermGen is that it contains a limited size which leads to an OutOfMemoryError. The default size of 		PermGen memory is 64 MB on 32-bit JVM and 82 MB on the 64-bit version. Due to this, JVM had to change the size of this memory by frequently performing Garbage collection which is a costly operation. Java also allows to manually 	change the size of the PermGen memory. However, the PermGen space cannot be made to auto increase. So, it is difficult to tune it. And also, the garbage collector is not efficient enough to clean the memory. 
+MetaSpace	
+	Due to the above problems, PermGen has been completely removed in Java 8. In the place of PermGen, a new feature called Meta Space has been introduced. MetaSpace grows automatically by default. Here, the garbage collection is 	automatically triggered when the class metadata usage reaches its maximum metaspace size. 
+
 ## SQL
 --
 
