@@ -901,6 +901,8 @@ and to retrieve object we use key get(key)
 if two keys return same hash index collision occurs - then linked list is formed at that location 
 in case of collision to search correct value from linked list we use equals() method
 
+weakhashmap - 
+	WeakHashMap is an implementation of the Map interface. WeakHashMap is almost the same as HashMap except in the case of WeakHashMap if the object is specified as the key doesn’t contain any references- it is eligible for garbage 	collection even though it is associated with WeakHashMap. i.e Garbage Collector dominates over WeakHashMap.
 fail fast - iterator throws ConcurrentModificationException when one thread is iterating over a collection and other thread structuralyy modify collection either by adding, removing or modifiing the object on underlying collection
 	    immediaately throw exception 
 fail safe - does not throw the exception if collection is modified while one thread is iterating over it because they word on clone of collection instead of original collection 
@@ -1377,7 +1379,8 @@ J2EE pattern -
 
 DSA
 --
-//LinkList -->
+LinkList -->
+--
 //variable size
 //non contiguous memory
 //insert in O(1)
@@ -1385,21 +1388,25 @@ DSA
 //structure --> node --> data + next node address
 //Types -->Singular  , Double,  Circular
 
-//Stack
+Stack
+--
 //last in first out
 // push(), pop(), peek()  -->O(1)
 
 
-//queue
+queue
+--
 //first in first out
 //enque(), dequeue(), peek()/front -->O(1)
 
-//tree / binary tree
+tree / binary tree
+--
 //hirarchical data structure
 //preOrder --> root - left - right
 //inOrder --> left - root - right
 
-//Binary Search Tree
+Binary Search Tree
+--
 //left subtree Nodes < root
 //right subtree nodes > root
 // left and right subtree are also BST if there is no duplicates
@@ -1407,7 +1414,8 @@ DSA
 //skewed tree -- all nodes on either left side or right side
 
 
-//HashSet
+HashSet
+--
 //set --> not duplicate allowed / unordered
 //insert - O(1)
 //search - O(1)
@@ -1433,8 +1441,8 @@ while(it.hasNext){
 }
 
 
-//HashMap --> key-value pair
-
+HashMap --> key-value pair
+--
 HashMap<String , Integer> map = new HashMap<>();
 //insert
 map.put("india", 120); 
@@ -1468,7 +1476,8 @@ map.remove("china");
 //prefix , digital search, retrievel tree
 
 
-//Graphs
+Graphs
+--
 //vertex -- node / data
 //edges -- connection between nodes  --> gives direction
 //uni-directional  --
@@ -1539,6 +1548,32 @@ map.remove("china");
 //(and edges through it) disconnects the graph.
 
 Questions 
+--
+latest inhancement in hashmap 
+	 for collision  linked list is used which is O(n)   to increase performance now balanced tree is used log(n) when a perticular threshold is reached the linked list is converted into balaced tree 
+optional claas- 
+	Every Java Programmer is familiar with NullPointerException. It can crash your code. And it is very hard to avoid it without using too many null checks. So, to overcome this, Java 8 has introduced a new class Optional in 		java.util package. It can help in writing a neat code without using too many null checks. By using Optional, we can specify alternate values to return or alternate code to run. This makes the code more readable because the 		facts which were hidden are now visible to the developer.
+	
+import java.util.Optional;
+
+// Driver Class
+public class OptionalDemo {
+      // Main Method
+    public static void main(String[] args)
+    {
+        String[] words = new String[10];
+        
+          Optional<String> checkNull = Optional.ofNullable(words[5]);
+        
+          if (checkNull.isPresent()) {
+            String word = words[5].toLowerCase();
+            System.out.print(word);
+        }
+        else
+            System.out.println("word is null");
+    }
+}
+
 diff between arraylist and linked list
 arrayList - used dynamic array as internal data structure
 		manipulation is slow but searching is fast
@@ -1551,12 +1586,32 @@ Diff between hashmap and hashtable
 hashmap - not synchonize so not thread safe , much fater , one null key and multiple null values
 hashtable -shyncronize so thread safe , slow campare to hashmap , does not allow any null key or any null value 
 
+MAP and Flat MAP
+	In Java, the Stream interface has a map() and flatmap() methods and both have intermediate stream operation and return another stream as method output. Both of the functions map() and flatMap are used for transformation and 	mapping operations. map() function produces one output for one input value, whereas flatMap() function produces an arbitrary no of values as output (ie zero or more than zero) for each input value.
+ 	flatMap() --> performs the opertion on list of list 
+	                                        map()	                                     	      flatMap()
+	The function passed to map() operation returns a single value for a single input.		The function you pass to flatmap() operation returns an arbitrary number of values as the output.
+	One-to-one mapping occurs in map().								One-to-many mapping occurs in flatMap().
+	Only perform the mapping.									Perform mapping as well as flattening.
+	Produce a stream of value.									Produce a stream of stream value.
+	map() is used only for transformation.								flatMap() is used both for transformation and mapping.
+
 fail fast and fail safe 
 Concurrent Modification: Concurrent Modification in programming means to modify an object concurrently when another task is already running over it. For example, in Java to modify a collection when another thread is iterating over it. Some Iterator implementations (including those of all the general purpose collection implementations provided by the JRE) may choose to throw ConcurrentModificationException if this behavior is detected.
 
 Fail Fast And Fail Safe Iterators in Java
 Iterators in java are used to iterate over the Collection objects.Fail-Fast iterators immediately throw ConcurrentModificationException if there is structural modification of the collection. Structural modification means adding, removing any element from collection while a thread is iterating over that collection. Iterator on ArrayList, HashMap classes are some examples of fail-fast Iterator.
 Fail-Safe iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. This is because, they operate on the clone of the collection, not on the original collection and that’s why they are called fail-safe iterators. Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator.
+
+if synchronized map is there why concurrent hash map was introduce - 
+
+	 Java HashMap is a non-synchronized collection class. If we need to perform thread-safe operations on it then we must need to synchronize it explicitly. The synchronizedMap() method of java.util.Collections class is used to 	synchronize it. It returns a synchronized (thread-safe) map backed by the specified map. 
+  
+	The ConcurrentHashMap and SynchronizedHashMap both are the Collection classes which are thread-safe and can be used in multithreaded and concurrent java application. But there are few differences that exists between them.
+ 	concurrent hash map came in picture due to performance issue in synchronize hash map it works on principle of locak stripping so any number of threads can read and write where as in synchronized has map others thread has to 	wait for executing treads opertion to end 
+
+	  ConcurrentHashMap is thread-safe therefore multiple threads can operate on a single object without any problem. In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level. By 		default, it allows 16 thread to read and write from the Map without any synchronization. In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updating in the object, the thread must lock 		the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence, at a time16 update operations can be performed by threads.
+
 ## SQL
 --
 
