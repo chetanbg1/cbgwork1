@@ -1193,6 +1193,24 @@ Thread - light weight process with in the process
 //many threads can run concurrently
 // threads in program exist in common memory sapce, so shares the same data and code
 
+
+Java Synchronization is used to make sure by some synchronization method that only one thread can access the resource at a given point in time. 
+
+Our systems are working in a multithreading environment that becomes an important part for OS to provide better utilization of resources. The process of running two or more parts of the program simultaneously is known as Multithreading. A program is a set of instructions in which multiple processes are running and within a process, multiple threads are working. Threads are nothing but lightweight processes.
+
+1. Process Synchronization in Java
+Process Synchronization is a technique used to coordinate the execution of multiple processes. It ensures that the shared resources are safe and in order.
+
+2. Thread Synchronization in Java
+Thread Synchronization is used to coordinate and ordering of the execution of the threads in a multi-threaded program. There are two types of thread synchronization are mentioned below:
+
+Mutual Exclusive
+	Mutual Exclusive helps keep threads from interfering with one another while sharing data. There are three types of Mutual Exclusive mentioned below:
+	Synchronized method.
+	Synchronized block.
+	Static synchronization.
+	Cooperation (Inter-thread communication in Java)
+
 //Main thread
 //when a stand alone apllication us run. a user thread is automatically created to execute the main() method of 
 // the application-- called main thread
@@ -1529,6 +1547,16 @@ linked list - uses the doubly linked list
 		manipulation is fast but searching is slow 
   		can as as list as well as queue
 
+Diff between hashmap and hashtable
+hashmap - not synchonize so not thread safe , much fater , one null key and multiple null values
+hashtable -shyncronize so thread safe , slow campare to hashmap , does not allow any null key or any null value 
+
+fail fast and fail safe 
+Concurrent Modification: Concurrent Modification in programming means to modify an object concurrently when another task is already running over it. For example, in Java to modify a collection when another thread is iterating over it. Some Iterator implementations (including those of all the general purpose collection implementations provided by the JRE) may choose to throw ConcurrentModificationException if this behavior is detected.
+
+Fail Fast And Fail Safe Iterators in Java
+Iterators in java are used to iterate over the Collection objects.Fail-Fast iterators immediately throw ConcurrentModificationException if there is structural modification of the collection. Structural modification means adding, removing any element from collection while a thread is iterating over that collection. Iterator on ArrayList, HashMap classes are some examples of fail-fast Iterator.
+Fail-Safe iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. This is because, they operate on the clone of the collection, not on the original collection and that’s why they are called fail-safe iterators. Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator.
 ## SQL
 --
 
