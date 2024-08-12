@@ -25,7 +25,29 @@ class FirstClass{
 //JDK
 //JRE java runtime environment  = JVM + libraries 
 //JVM java virtual machine
+	it is a platform
+	runtime environment in whicj java byteCode(.class files) can be executed 
+ 	java's plateform independence mostly consist of JVM 
+  	JVM is aware of OS thats why JVM is plateform dependent 
+   	it provides environment based on operating system to run .class file 
+ 	.java --> compiler --> .class  --> 
+  				 jvm --> classLoader --> 3 types of class loader
+       						is partr of JVM that dynamically loads the java classes into the JVM
+       						-> bootstrape classloader -- lib/rt.jar --> conatins existing .java classes given by java people
+	     					-> extension classloader -- jre/lib/ext --> loads the class from JDK extensions 
+	   					-> application classloader -- our own code class path 
+       						byteCode verifier --> 
+							JVM memory(main memory) --> 5 parts 
+       								class /method area -> class structure
+	       							heap -> objects
+	       							stcak -> object reference
+	       							PC register  -> conatins which perticular instruction is running in jvm
+	       							native memory -> rearly used as stack contains all the native maehtods 
 
+	       						--> Execution Engine -->
+	      								JIT --> if code is large interpreter will take more time, to increase efficiency JIT is introduced, it read the chunck of code not line by line 
+	  								Interpreter --> interprite the .class file  line by line - > convert it into machine code 
+									Garbage Collector --> clears the memory 
 JIT just in time compiler
 	java source code --> JDK (javac.exe) --> byte code -->JRE(interpreter + JIT compiler) --> machine code
  	JIT is used to optimise the performace of java code at run time - its helps code to fastly compile 
