@@ -1671,6 +1671,27 @@ PermGen Memory:
 MetaSpace	
 	Due to the above problems, PermGen has been completely removed in Java 8. In the place of PermGen, a new feature called Meta Space has been introduced. MetaSpace grows automatically by default. Here, the garbage collection is 	automatically triggered when the class metadata usage reaches its maximum metaspace size. 
 
+How subString work in java or how substring creates memory liek in java
+	String is hava is sequence of charactors, represented by array of charactors 
+ 	char value [] = array of charactors
+  	int count - total charactors
+  	int offset - starting point, that is index =0
+ 	when we create substring out of string new string is created as string is immutable , and the value[] array will be shared between the two strings that is original and substring 
+  	even though we make original string null to be garbage collected, it will not free the space in memory as substring is using that memory in value[]
+
+  	to prevent this memory leak - in java 1.6 the intern() method is introduces, it peek up the substring and put it in string pool as string pool only takes the space required 
+   		so original string space is freeed after garbage collected 
+   	String substr = originalString.subString(0,2).intern()
+    	from JDK 7 - subString will create its own array instead of pointing it to original string array
+
+Load factor in hashmap 
+	initial capacity - number of buckets cerated initially 
+ 	load factor - is criteria to decide when we have to increase the size of hashmap when it is about to full 
+
+  Capacity - denotes how many entries HashMap can stored , bucket size
+  size - number of key-value pairs ,  real object / nodes
+
+  
 ## SQL
 --
 
