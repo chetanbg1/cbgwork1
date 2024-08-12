@@ -710,6 +710,9 @@ Throws - used to declare exception
 when exception is thrown by main() method , java runtime terminates the program and prints the exception message and teh stack trace is shown in-system console 
 unreachable catch block -when we keep super class first and sub classes later like Exception first and then nullpointer ..in multi catch block 
 
+Exception Propagation 
+	an exception is thrown from the top of the stack and if it is not cought, it drops the stack to the previous mehtod, if not cought there, the exception again drops down to the previous method and so on unit it get cought
+ 	or reach the bottom of the call stack 
 
 Final - keyword used to  apply restrictions on the class, method and variables
 	the final class can not be inherited, final method can not be override, final variable can not be changed
@@ -931,6 +934,18 @@ fail safe - does not throw the exception if collection is modified while one thr
 Blocking queue - thread safe queue to put or take elements 
 		 multiple threads can work simultaniously 
    		 if a thread tries to take elemet form queue and there is none left, the thread can be block untile there is an element to take 
+
+Concurrent Collection
+	why - traditional collection are not thread safe, only few calsses like Vector, HashTable are threadsafe
+ 	      collections provide some methods like synchronizedList, synchronizedMap, synchronizedSet those provide thread safty but the problrm is they capture lock on complete collection even for reading that decrease performance
+	      if one thread iterates and other tries to  modify structureal changes then concurrentModificationException is thrown 
+	so the concurrent cillections claaes do not throw this exception 
+		ConcurrentHashMap -> in ConcurrentHashMap lock is acquired on bucket level so at a time multiple thread can capture locak on diff diff buckets  -> concurrencyLevel -> it create 16 buckets on collection so 16 threads can works on collection 
+  			simultaneously 
+  		CopyOnWriteArrayList
+    		CopyOnWriteArraySet
+ 	
+       
  
 Lambda Expression
 --
@@ -1399,7 +1414,7 @@ Behavioural pattern
 Structural pattern
 J2EE pattern - 
 
-DSA
+## - DSA
 --
 LinkList -->
 --
@@ -1465,6 +1480,9 @@ while(it.hasNext){
 
 HashMap --> key-value pair
 --
+	works on the principle of hashing 
+	hashing means using fuction or algorithm to map object data to some integer value, hashCode() method return the hashcode. hence it is neccessary to write the hashCode() method properly for better performance
+ 	
 HashMap<String , Integer> map = new HashMap<>();
 //insert
 map.put("india", 120); 
@@ -1722,7 +1740,11 @@ Foreign key - maintains referential integrity by enforcing a link between the da
 
 Index - performance tuning method, allows faster retrieval of records from the table 
         create an entry for each value
-
+	indexes are database objects which help in retrieving records quickly and more efficiently
+ 	query syntax- 
+ 		create index INdex_name on table_name(col1,col2);
+		drop index index_name on table_name;
+  
 Unique Index - index does not allow the field to have duplicate values if the column is unique indexed
                if a primary key is defined, a unique index can be applied automatically
 
@@ -2043,6 +2065,7 @@ DATE -- date in format of YYYY-MM-DD ranging from 1000-01-01 to 9999-12-31
 YEAR -- year in 4 didgits format ranging from 1901 to 2155
 
 Queries  -
+--
 create database db_name;
 create database if not exists db_name;
 
@@ -2187,6 +2210,14 @@ create view view1 as select id , name from student;
 select * from view1;
 
 
+find the third hightesrt salary
+select MAX (salary) from empoyee ; --> gives the max salary
+select MAX (salary) from empoyee where salary < (select MAX (salary) from empoyee) ; --> will give the 2nd highest salary 
+select MAX (salary) from empoyee where salary < (select MAX (salary) from empoyee where salary < select MAX (salary) from empoyee) ; --> will give the 3rd highest salary 
+
+select * from employee order by DESC limit 0(starting index),1(how many rows) ;  --> get the highest  as index is 0 and rows given are only one
+select salary from salary order by salary desc limit 2,1;  --> gives 3rd highest
+
 SQL 
 data is represented in tables
 predifined schema
@@ -2197,6 +2228,7 @@ support join operations
 
 ##
 MongoDB
+--
 is NoSQL (not only query) database that stores large volumes of data inthe form of documents .this offers the developers teh flexibility to work with evolving data models.
 alternative NOSQL DBs - Cassandra, Amazon DynamoDB, redis, Apache Hbase , neo4j
 
