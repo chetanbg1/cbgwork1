@@ -596,8 +596,58 @@ if(operation==0){
     System.out.println(newNumber);
 }
 
+Serialization and Deserialization
+--
+	Serialization -
+	is conversion of java objects into a stream (sequence) of bytes, which we can then store to a database and transfer over the network
+ 	class that are eligible for serialization need to implement a special marker interface Serializable 
+  	byte stream is platform independent. this means we can convert it into aobjet and run on any envirnment 
+   	conditions to be serialize -
+    		inplement serializable interface
+      		all of the fields in class must be serializable, if not, it must be mark as transient or static 
+		static fields are not serializable -as they belong to class
 
-//Sorting
+		// serialization of employee object
+  
+    		Employee e = new employee();
+      			e.setId(1);
+	 		e.setName("cbg");
+
+    		FileOutputStream fileOutputStream = new FileOutputStream("D:\\serializationDemo\\cbg.ser");
+      		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+		objectOutputStream.writeObject(e);
+  		fileOutputStream.close();
+    		objectOutputStream.close();
+
+      Deserialization
+      convert the byte stream into object we previously serialized
+
+ 	FileInputStream fileInputStream = new FileInputStream("D:\\serializationDemo\\cbg.ser");
+      		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+		Employee e = (Employee) objectInputStream.readObject();
+  		System.out.println(e.getName());
+  		fileInputStream.close();
+    		ObjectInputStream.close();
+
+	deserialize vulnerability 
+ 		malicious user tries to insert a modified serialized object into the system 
+
+      Serial Version UID
+      	the JVM associates a version (long) number with each serializable class
+        we use serialVersionUID attribute to remember version of a serializable class to verify that a loaded class and the serialized object are compatible 
+
+ 	Externalization
+  	 is used whenever you need to customize the serialization mechanism 
+    	 JVM does the default serialization, it does not protect the sensitive information such as password and credentials 
+      	 externalization give full control to the programmer in reading and writing the objects during serialization 
+
+ 		implements Externalization 
+   		override two methods 
+     			writeExternal(ObjectOutput out) --> add only those fields which needs to be serialize
+			readExternal(ObjectInput in) --> same as above
+
+Sorting
+--
 //bubble sort
 //biggest element goes to the end after each iteration
 //in every itheration we are swapping pair wise
@@ -663,7 +713,8 @@ public static void insertionSort(int [] arr) {
 }
 
 
-//Recursion
+Recursion
+--
 //function that calls itself until base condition reached
 //recursive calls stored in stack
 for(int i =0;i<5;i++){
@@ -784,13 +835,18 @@ Interface  --> pure abstraction
 
 marker interface - interface having no data members and functions , empty interface 
 	eg - serializable , clonable 
+
+
 to sort the custom object we need 
 Comparable - Comparable<generic object> has one mehod --> public int compareTo(Employee o){   // can sort only integer value
-								return this.id -o.id;    //compare given object id with current object id 
-											 // will return 0 if both are same
-	    										 // 1 if 
-											 // -1 if 						
+								return this.id -o.id;    						
       									 }
+
+//compare given object id with current object id 
+// will return 0 if both are same
+// 1 if 1st parameter is > 2nd parameter
+// -1 if 1st parameter is  < 2nd parameter
+
 Comparaotr - public static comparator<Employee> nameComp = new Comparator<Employee>();
 			public int compare(Employee e1, Employee e2){
    				return e.getName().compareTo(e2.getName());
@@ -1705,13 +1761,40 @@ public class OptionalDemo {
     }
 }
 
+
+		Array 															ArrayList
+	static insize 														dynamic in size
+ 	int arr[] = new int[10];												ArrayList<Integer> arrList = new ArrayList<>();
+  	fixed length dataStucture												variable length Collection class
+   	can store both primitive type and objects 										can not store primitive type, only stores objects
+    	fast as comparfe to arraylist as have fixed size 									add() and get() operations almost same perfomance
+     																resize() - increase size by 50% of originl size
+	mandatory to provide size of array while initialization 								can create arrayList with out specifing size
+ 	uses for loop to iterate												uses iterator
+  	.length - variable 													.size() - method
+   	can be multi-dimensional 												always single-dimentional 
+    	elements stored in adjecent memory 											objects are incapable of being contained in contiguous locations
+     	ger=nerics are not compatible 												allows the use of generics 
+
+
+		ArrayList 														Vector
+	 not synchronized 													synchronized
+	 not thread safe													thread safe
+	 fast as non synchronized												slow due to synchronization
+ 	 increase capacity by 50% of current array size										increase capacity by 100%
+   	 uses iterator interface												iterator interface or enumeration interface 
+	
+    
 diff between arraylist and linked list
-arrayList - used dynamic array as internal data structure
-		manipulation is slow but searching is fast
-  		can act as only list
-linked list - uses the doubly linked list 
-		manipulation is fast but searching is slow 
-  		can as as list as well as queue
+		arrayList -													linked list
+	used dynamic array as internal data structure								 	uses the doubly linked list
+	manipulation is slow but searching is fast									manipulation is fast but searching is slow 
+	can act as only list												can as as list as well as queue
+ 	faster in storing and accessing data as internally uses array which has random access				slower than arrayList in storing and accessing requires node by node traversal
+  	can not traverse in reverse order										can be traverse in reverse direction
+   
+		
+  		
 
 Diff between hashmap and hashtable
 hashmap - not synchonize so not thread safe , much fater , one null key and multiple null values
