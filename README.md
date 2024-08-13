@@ -646,6 +646,12 @@ Serialization and Deserialization
      			writeExternal(ObjectOutput out) --> add only those fields which needs to be serialize
 			readExternal(ObjectInput in) --> same as above
 
+   Transient variable - 
+   	is a variable modifier used in serialization
+    	if we dont want to save value of perticular variable in a file, then we use transient keyword
+     	JVM come accross the transient keyword - it ignores the original value of the variable and save default value of that variable data type
+      
+
 Sorting
 --
 //bubble sort
@@ -786,8 +792,18 @@ OOPs
 
 Polymorphism
 --
-//method overloading --> complile time polymorphism
-//method overriding -->  runTime Polymorphism
+method overloading --> complile time polymorphism
+	the name of method is same but they should have different number or type of parameters or order of parameters
+ 	the return type is not the part of method overloading ,so just changing the return type will not overload method in java  -compile time error 
+  	
+method overriding -->  runTime Polymorphism
+	a method can only be override in sud-class, ot in same class
+ 	Visibility - override method can not reduce the access of overridden method meaning - if method is public we can not make it protected or private while overriding 
+  	Accessibility - overridiing method can increase the access of overridden method - if method is protected we can make it protected or public while overriding 
+   	private, static , final method can not be overridden 
+    	if super-class does not declare an exception then sub-class can only declare unchecked exception but not the checked exceptions
+     	
+
 Covarient return type means return type may vary during overriding 
 
 Inheritance
@@ -946,8 +962,12 @@ java.util.Collection is root of collection framework except Map interface
    	elemets can be easily inserted irrespective of the position 
 
 //Queue interface --> PriorityQueue class
+			same as queue or stack data structure 
 			priority associated with each element
    			high priority elements served before a low priority irrespective of insertion order
+      			the priority queue is based on the priority heap
+			
+    
 //                --> LinkedList class
 //                --> Deque Interface --> ArrayQueue class
 			elements can be added and remove from both the ends
@@ -983,6 +1003,9 @@ java.util.Collection is root of collection framework except Map interface
 	does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
 	can only conatin a unique key
  	can have duplicate values
+
+how to make list read only ? 
+	readOnlyArrayList = Collections.unmodifiableList(ArrayList);
 
 HashMap
 works on hasing principle, where hash function is used to link key and values in hashMap, the hashcode method will give us the index that is the bucket location where we can strore value 
@@ -1792,9 +1815,25 @@ diff between arraylist and linked list
 	can act as only list												can as as list as well as queue
  	faster in storing and accessing data as internally uses array which has random access				slower than arrayList in storing and accessing requires node by node traversal
   	can not traverse in reverse order										can be traverse in reverse direction
-   
+   	better for search operation as can access randomly 								for add and delete operation
+    
 		
-  		
+  		checked exceptions 												unchecked exceptions
+  	checked by java compiler 											not checked by java compiler so called run time
+   	occure at compile time 												occure at runtime
+    	can be handled at the time of compilation									can not be handle at the time of compilation
+     	must be handled in a try-catch block or be thrown by invoking method						exception handling semantics are not required
+
+	
+						hashMap						TreeMap						LinkedHashMap
+
+     Order				random						sorted order according to natural(asc) ordering		sorted order according to the insertion order
+     time complexity 			O(1)						O(log n)						O(1)
+     Null key 				allowed						not allowed 						allowed
+     datastrucute support		hash table and linkedList			Red Black Tree						Hashtable abd doubly linked list
+     key requirment 			equals() and hashCode() methods			along with equals(), hashcode() the			equals() and hashCode() methods
+     					needs to be overridden				comparator is implemented for sorting			needs to be overridden
+     usage				normal processing, faster retrieval		for sorting and navigable features 			when insertion order needs to be maintain 
 
 Diff between hashmap and hashtable
 hashmap - not synchonize so not thread safe , much fater , one null key and multiple null values
@@ -1865,7 +1904,34 @@ Load factor in hashmap
   Capacity - denotes how many entries HashMap can stored , bucket size
   size - number of key-value pairs ,  real object / nodes
 
-  
+Java Reflection API - 
+	at run time we have an object, no if we want to know details of the class then use Reflection.
+ 	it is a process of analyzing and modifying all the capabilities of a class at runtime, reflection API in java is used to manipulate class and its members which include fields, methods, constructor etc.
+  	it can manipulate private member of the class too
+   	java.lang.reflection 
+    advantage 
+    	can use it to manipulate code at runtime
+     	easy to introspect class and objects
+      	way to access and modify the fields, methods, annotations of class and objects 
+      	debugging and testing 
+   disadvantage
+   	performance overhead 
+    	not thread safe -
+     	exposure of internals - break the abstraction 
+
+what is object Lock?
+	in multithreaded environment two or more threads can access the shared resources simultaneously which can lead to inconsistent behaviour of the system 
+ 	java uses the concept of lock to restrict concurrent access of shared resources 
+
+   objetc level lock -can be used when you want non-static method or non static block of the code should be accessed by only one thread
+   class level locaks - used when we want to prevent multiple thread to enter the synchronized block in any of all avalible instance on runtime 
+
+object reference be cast to an nterface reference
+	Animal a = new Dog();
+
+  	if we implement an interface and provide body to its methids from class,
+   	we can hold object of that class using the reference variable of interface.
+
 ## SQL
 --
 
