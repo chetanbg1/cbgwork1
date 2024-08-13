@@ -467,7 +467,14 @@ Strings
 
 string pool requires string to be immutable otherwise shared reference can be changes from anywhere
 security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure ans safe 
+security --> strings in java can be used to access data sources like files, database or objects found across the network also stores password and username -whichh can not be modified once created
 
+Strign s1 = "abcd"; --> create a sting in string constant pool
+	string constant pool is memory space allocated in the heap memory to store the string literals / no duplicate strings 
+ 	it provide the facility to reuse the object 
+String s2 = new String("abcd); --> create object in heap + object in string constant pool  == tow objects will be created 
+
+intern() --> this method id used to put the string in string constant pool
 //String.class
 //length();
 //charAt(index);
@@ -512,7 +519,8 @@ StringBuilder sb = new StringBuilder("helloasd");
 		}
 		System.out.println(sb);
 
-//operstors
+operstors
+--
 //Bianry ==  +,-,*,/,%
 //Unary  ==  ++, --
 //relational operator  == ==, !=, >, < , >=, <= 
@@ -1177,7 +1185,73 @@ public class Stream {
 		list.stream().forEach(i -> System.out.println(i));
 		list.stream().forEach(System.out::println);
 		list.forEach(System.out::println);
+
+
+  //group by
+		//group by
+		List<Employee> emp =  Arrays.asList(new Employee(1, "aaa", 10),
+				new Employee(2, "bbb", 20),
+				new Employee(3, "ccc", 30),
+				new Employee(4, "bbb", 40),
+				new Employee(5, "ddd", 45));
 		
+		Map<Integer, List<Employee>> emp2 = emp.stream().collect(Collectors.groupingBy(emp1 -> emp1.getAge()));
+		System.out.println(emp2);
+		//Set<Integer> age3 = emp2.entrySet().stream().map(entry -> entry.getValue()).collect(Collectors.toSet());
+		List<Integer> ages = emp.stream().map(emp1 -> emp1.getAge()).toList();
+		//summary statistics can only be performed on int(have to call maptoint()) = sum , count, max, min, avg 
+		int minAge = ages.stream().mapToInt(x -> x).summaryStatistics().getMin();
+		System.out.println("min age is :" + minAge);
+		System.out.println(ages);
+		int maxAge = ages.stream().mapToInt(x -> x).summaryStatistics().getMax();
+		System.out.println("max age is :" + maxAge);
+		int avgAge = (int) ages.stream().mapToInt(x -> x).summaryStatistics().getAverage();
+		System.out.println("avg age is :" + avgAge);
+		List<Integer> twoandthree =ages.stream().sorted().skip(1).limit(2).toList();
+		System.out.println(twoandthree);
+		
+		//names
+		List<String> nameslist = emp.stream().map(name -> name.getName()).toList();
+		System.out.println(nameslist);
+		String names =nameslist.stream().map(name -> name.toUpperCase()).collect(Collectors.joining(",  "));
+		System.out.println(names);
+		
+		//find duplicate element in stream
+		Set<String> uniqueNames = new HashSet<>();
+		 Set<String> duplicateNames = nameslist.stream().filter(name -> !uniqueNames.add(name)).collect(Collectors.toSet());
+		System.out.println(duplicateNames);
+		
+		Map<String, Long> mapOfNames = nameslist.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		
+		System.out.println(mapOfNames);
+		
+		Set<String> name1 =mapOfNames.entrySet().stream().filter(entry -> entry.getValue() > 1).map(entry -> entry.getKey()).collect(Collectors.toSet());
+		System.out.println(name1);
+		
+		//frequency
+		
+		Set<String> name9 = nameslist.stream().filter(name -> Collections.frequency(nameslist, name)>1).collect(Collectors.toSet());
+		System.out.println(name9);
+
+
+ 		 //sort the employee based on there age in desc order
+		List<Employee> sortedEmp =emp.stream().sorted((o1,o2)-> (int)(o2.getAge()-o1.getAge())).toList();
+		System.out.println(sortedEmp);
+		
+		//top 3 emp with high age
+		List<Employee> highAge =emp.stream().sorted((o1,o2)-> (int)(o2.getAge()-o1.getAge())).limit(3).toList();
+		System.out.println(highAge);
+		
+		//3rd oldest
+		List<Employee> thirdAge =emp.stream().sorted((o1,o2)-> (int)(o2.getAge()-o1.getAge())).limit(3).skip(2).toList();
+		System.out.println(thirdAge);
+		
+		//orElse()
+		//String name = Optional.ofNullable(nullNmae).orElse("Anonymous");
+		
+		//orElseGet()
+		//String name = Optional.ofNullable(nullName).orElseGet(()-> "Anonymous");
+    
 		//convert stream of objects into arrays
 		//toArray()
 		//it returns an array containing elements of the stream
@@ -1593,6 +1667,23 @@ latest inhancement in hashmap
 	 for collision  linked list is used which is O(n)   to increase performance now balanced tree is used log(n) when a perticular threshold is reached the linked list is converted into balaced tree 
 optional claas- 
 	Every Java Programmer is familiar with NullPointerException. It can crash your code. And it is very hard to avoid it without using too many null checks. So, to overcome this, Java 8 has introduced a new class Optional in 		java.util package. It can help in writing a neat code without using too many null checks. By using Optional, we can specify alternate values to return or alternate code to run. This makes the code more readable because the 		facts which were hidden are now visible to the developer.
+
+ eg - 
+ 	Optinal<Employee> e = repo.findById(id);
+  	if(!e.isEmpty){
+   		Optional<String> name = Optional.ofNullable(e.get().getName());
+     		if(name.isPresent()){
+       			return new ResponseEntiry<>(name.get().toUpperCase(), HttpStatus.OK);
+		}else{
+  			return new ResponseEntiry<>("Name is null", HttpStatus.Not Found);
+		}
+
+  		or 
+    		name.ifPresent(n-> system.out.println("name is present : "+ n));
+
+      		or
+		name.ifPresentorElse(n-> system.out.println("name is present : "+ n) , system.out.println("name is not present"));
+	}
 	
 import java.util.Optional;
 
