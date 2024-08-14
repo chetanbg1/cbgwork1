@@ -1567,6 +1567,36 @@ Behavioural pattern
 Structural pattern
 J2EE pattern - 
 
+SOLID Principles
+--
+	the broad goal of solid principles is to reduce dependencies so that engineers can change one area  in software without affecting others
+ 	intended to make designs easier to understand, maintain. and extend
+  	helps to avoid issues and to build adaptive, effective and agile software
+   	lead to better code readability, maintainability, design patterns, testability
+
+    S - sinle responsibility 
+    	one class should have one and only one responsibility 
+     	change class when we need to change state of one perticular object or instance
+    O - open and close principle 
+    	means software components should be open for extension, but closed for modification
+     	open for extension - means that we can extend and include extra functionalities in our code with out impacting existing implementation
+      	close for modifiction - means that after adding extra functionalities we should not modify the existing implementation
+       if we need to modify create a new class and extend the class and override some functionalities 
+    L - Liskov Substitution
+    	the software should not alter the desirable result when we replace a parent type with any of the subtype 
+     	Derived type must be completly substitutable for their base type
+      	the classes , fellow developers created by extending our class , should be able to fit in application without failure
+       	this requires the object of subclass to behave in the same way as the object of supperclass    	
+    I - Interface Segregation
+    	clients should not be forced to implement unnecessary methods which they will not use
+     	we should splite our interface into smaller and more specific ones  
+    D - Dependency Inversion 
+    	Depend on abstractions, not on concretaions
+     	we should design our software in a such away that various modules can be seperated from each other using an abstract layer to bind them together 
+      	removes the hardcoded dependencies so that the application becomes loosely coupled and extendable
+
+    
+
 ## - DSA
 --
 LinkList -->
@@ -2296,6 +2326,8 @@ Stored Procedure
 
     Collation types- case sensitivity, kana sensitivity, width sensitivity, accent sensitivity 
 
+
+	
 
 #Query
 
