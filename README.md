@@ -25,7 +25,29 @@ class FirstClass{
 //JDK
 //JRE java runtime environment  = JVM + libraries 
 //JVM java virtual machine
+	it is a platform
+	runtime environment in whicj java byteCode(.class files) can be executed 
+ 	java's plateform independence mostly consist of JVM 
+  	JVM is aware of OS thats why JVM is plateform dependent 
+   	it provides environment based on operating system to run .class file 
+ 	.java --> compiler --> .class  --> 
+  				 jvm --> classLoader --> 3 types of class loader
+       						is partr of JVM that dynamically loads the java classes into the JVM
+       						-> bootstrape classloader -- lib/rt.jar --> conatins existing .java classes given by java people
+	     					-> extension classloader -- jre/lib/ext --> loads the class from JDK extensions 
+	   					-> application classloader -- our own code class path 
+       						byteCode verifier --> 
+							JVM memory(main memory) --> 5 parts 
+       								class /method area -> class structure
+	       							heap -> objects
+	       							stcak -> object reference
+	       							PC register  -> conatins which perticular instruction is running in jvm
+	       							native memory -> rearly used as stack contains all the native maehtods 
 
+	       						--> Execution Engine -->
+	      								JIT --> if code is large interpreter will take more time, to increase efficiency JIT is introduced, it read the chunck of code not line by line 
+	  								Interpreter --> interprite the .class file  line by line - > convert it into machine code 
+									Garbage Collector --> clears the memory 
 JIT just in time compiler
 	java source code --> JDK (javac.exe) --> byte code -->JRE(interpreter + JIT compiler) --> machine code
  	JIT is used to optimise the performace of java code at run time - its helps code to fastly compile 
@@ -445,7 +467,14 @@ Strings
 
 string pool requires string to be immutable otherwise shared reference can be changes from anywhere
 security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure ans safe 
+security --> strings in java can be used to access data sources like files, database or objects found across the network also stores password and username -whichh can not be modified once created
 
+Strign s1 = "abcd"; --> create a sting in string constant pool
+	string constant pool is memory space allocated in the heap memory to store the string literals / no duplicate strings 
+ 	it provide the facility to reuse the object 
+String s2 = new String("abcd); --> create object in heap + object in string constant pool  == tow objects will be created 
+
+intern() --> this method id used to put the string in string constant pool
 //String.class
 //length();
 //charAt(index);
@@ -490,7 +519,8 @@ StringBuilder sb = new StringBuilder("helloasd");
 		}
 		System.out.println(sb);
 
-//operstors
+operstors
+--
 //Bianry ==  +,-,*,/,%
 //Unary  ==  ++, --
 //relational operator  == ==, !=, >, < , >=, <= 
@@ -566,8 +596,64 @@ if(operation==0){
     System.out.println(newNumber);
 }
 
+Serialization and Deserialization
+--
+	Serialization -
+	is conversion of java objects into a stream (sequence) of bytes, which we can then store to a database and transfer over the network
+ 	class that are eligible for serialization need to implement a special marker interface Serializable 
+  	byte stream is platform independent. this means we can convert it into aobjet and run on any envirnment 
+   	conditions to be serialize -
+    		inplement serializable interface
+      		all of the fields in class must be serializable, if not, it must be mark as transient or static 
+		static fields are not serializable -as they belong to class
 
-//Sorting
+		// serialization of employee object
+  
+    		Employee e = new employee();
+      			e.setId(1);
+	 		e.setName("cbg");
+
+    		FileOutputStream fileOutputStream = new FileOutputStream("D:\\serializationDemo\\cbg.ser");
+      		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+		objectOutputStream.writeObject(e);
+  		fileOutputStream.close();
+    		objectOutputStream.close();
+
+      Deserialization
+      convert the byte stream into object we previously serialized
+
+ 	FileInputStream fileInputStream = new FileInputStream("D:\\serializationDemo\\cbg.ser");
+      		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+		Employee e = (Employee) objectInputStream.readObject();
+  		System.out.println(e.getName());
+  		fileInputStream.close();
+    		ObjectInputStream.close();
+
+	deserialize vulnerability 
+ 		malicious user tries to insert a modified serialized object into the system 
+
+      Serial Version UID
+      	the JVM associates a version (long) number with each serializable class
+        we use serialVersionUID attribute to remember version of a serializable class to verify that a loaded class and the serialized object are compatible 
+
+ 	Externalization
+  	 is used whenever you need to customize the serialization mechanism 
+    	 JVM does the default serialization, it does not protect the sensitive information such as password and credentials 
+      	 externalization give full control to the programmer in reading and writing the objects during serialization 
+
+ 		implements Externalization 
+   		override two methods 
+     			writeExternal(ObjectOutput out) --> add only those fields which needs to be serialize
+			readExternal(ObjectInput in) --> same as above
+
+   Transient variable - 
+   	is a variable modifier used in serialization
+    	if we dont want to save value of perticular variable in a file, then we use transient keyword
+     	JVM come accross the transient keyword - it ignores the original value of the variable and save default value of that variable data type
+      
+
+Sorting
+--
 //bubble sort
 //biggest element goes to the end after each iteration
 //in every itheration we are swapping pair wise
@@ -633,7 +719,8 @@ public static void insertionSort(int [] arr) {
 }
 
 
-//Recursion
+Recursion
+--
 //function that calls itself until base condition reached
 //recursive calls stored in stack
 for(int i =0;i<5;i++){
@@ -688,6 +775,9 @@ Throws - used to declare exception
 when exception is thrown by main() method , java runtime terminates the program and prints the exception message and teh stack trace is shown in-system console 
 unreachable catch block -when we keep super class first and sub classes later like Exception first and then nullpointer ..in multi catch block 
 
+Exception Propagation 
+	an exception is thrown from the top of the stack and if it is not cought, it drops the stack to the previous mehtod, if not cought there, the exception again drops down to the previous method and so on unit it get cought
+ 	or reach the bottom of the call stack 
 
 Final - keyword used to  apply restrictions on the class, method and variables
 	the final class can not be inherited, final method can not be override, final variable can not be changed
@@ -702,8 +792,18 @@ OOPs
 
 Polymorphism
 --
-//method overloading --> complile time polymorphism
-//method overriding -->  runTime Polymorphism
+method overloading --> complile time polymorphism
+	the name of method is same but they should have different number or type of parameters or order of parameters
+ 	the return type is not the part of method overloading ,so just changing the return type will not overload method in java  -compile time error 
+  	
+method overriding -->  runTime Polymorphism
+	a method can only be override in sud-class, ot in same class
+ 	Visibility - override method can not reduce the access of overridden method meaning - if method is public we can not make it protected or private while overriding 
+  	Accessibility - overridiing method can increase the access of overridden method - if method is protected we can make it protected or public while overriding 
+   	private, static , final method can not be overridden 
+    	if super-class does not declare an exception then sub-class can only declare unchecked exception but not the checked exceptions
+     	
+
 Covarient return type means return type may vary during overriding 
 
 Inheritance
@@ -751,13 +851,18 @@ Interface  --> pure abstraction
 
 marker interface - interface having no data members and functions , empty interface 
 	eg - serializable , clonable 
+
+
 to sort the custom object we need 
 Comparable - Comparable<generic object> has one mehod --> public int compareTo(Employee o){   // can sort only integer value
-								return this.id -o.id;    //compare given object id with current object id 
-											 // will return 0 if both are same
-	    										 // 1 if 
-											 // -1 if 						
+								return this.id -o.id;    						
       									 }
+
+//compare given object id with current object id 
+// will return 0 if both are same
+// 1 if 1st parameter is > 2nd parameter
+// -1 if 1st parameter is  < 2nd parameter
+
 Comparaotr - public static comparator<Employee> nameComp = new Comparator<Employee>();
 			public int compare(Employee e1, Employee e2){
    				return e.getName().compareTo(e2.getName());
@@ -857,8 +962,12 @@ java.util.Collection is root of collection framework except Map interface
    	elemets can be easily inserted irrespective of the position 
 
 //Queue interface --> PriorityQueue class
+			same as queue or stack data structure 
 			priority associated with each element
    			high priority elements served before a low priority irrespective of insertion order
+      			the priority queue is based on the priority heap
+			
+    
 //                --> LinkedList class
 //                --> Deque Interface --> ArrayQueue class
 			elements can be added and remove from both the ends
@@ -895,18 +1004,35 @@ java.util.Collection is root of collection framework except Map interface
 	can only conatin a unique key
  	can have duplicate values
 
+how to make list read only ? 
+	readOnlyArrayList = Collections.unmodifiableList(ArrayList);
+
 HashMap
 works on hasing principle, where hash function is used to link key and values in hashMap, the hashcode method will give us the index that is the bucket location where we can strore value 
 and to retrieve object we use key get(key) 
 if two keys return same hash index collision occurs - then linked list is formed at that location 
 in case of collision to search correct value from linked list we use equals() method
 
+weakhashmap - 
+	WeakHashMap is an implementation of the Map interface. WeakHashMap is almost the same as HashMap except in the case of WeakHashMap if the object is specified as the key doesn’t contain any references- it is eligible for garbage 	collection even though it is associated with WeakHashMap. i.e Garbage Collector dominates over WeakHashMap.
 fail fast - iterator throws ConcurrentModificationException when one thread is iterating over a collection and other thread structuralyy modify collection either by adding, removing or modifiing the object on underlying collection
 	    immediaately throw exception 
 fail safe - does not throw the exception if collection is modified while one thread is iterating over it because they word on clone of collection instead of original collection 
 Blocking queue - thread safe queue to put or take elements 
 		 multiple threads can work simultaniously 
    		 if a thread tries to take elemet form queue and there is none left, the thread can be block untile there is an element to take 
+
+Concurrent Collection
+	why - traditional collection are not thread safe, only few calsses like Vector, HashTable are threadsafe
+ 	      collections provide some methods like synchronizedList, synchronizedMap, synchronizedSet those provide thread safty but the problrm is they capture lock on complete collection even for reading that decrease performance
+	      if one thread iterates and other tries to  modify structureal changes then concurrentModificationException is thrown 
+	so the concurrent cillections claaes do not throw this exception 
+		ConcurrentHashMap -> in ConcurrentHashMap lock is acquired on bucket level so at a time multiple thread can capture locak on diff diff buckets  -> concurrencyLevel -> it create 16 buckets on collection so 16 threads can works on collection 
+  			simultaneously 
+  		CopyOnWriteArrayList
+    		CopyOnWriteArraySet
+ 	
+       
  
 Lambda Expression
 --
@@ -1138,7 +1264,73 @@ public class Stream {
 		list.stream().forEach(i -> System.out.println(i));
 		list.stream().forEach(System.out::println);
 		list.forEach(System.out::println);
+
+
+  //group by
+		//group by
+		List<Employee> emp =  Arrays.asList(new Employee(1, "aaa", 10),
+				new Employee(2, "bbb", 20),
+				new Employee(3, "ccc", 30),
+				new Employee(4, "bbb", 40),
+				new Employee(5, "ddd", 45));
 		
+		Map<Integer, List<Employee>> emp2 = emp.stream().collect(Collectors.groupingBy(emp1 -> emp1.getAge()));
+		System.out.println(emp2);
+		//Set<Integer> age3 = emp2.entrySet().stream().map(entry -> entry.getValue()).collect(Collectors.toSet());
+		List<Integer> ages = emp.stream().map(emp1 -> emp1.getAge()).toList();
+		//summary statistics can only be performed on int(have to call maptoint()) = sum , count, max, min, avg 
+		int minAge = ages.stream().mapToInt(x -> x).summaryStatistics().getMin();
+		System.out.println("min age is :" + minAge);
+		System.out.println(ages);
+		int maxAge = ages.stream().mapToInt(x -> x).summaryStatistics().getMax();
+		System.out.println("max age is :" + maxAge);
+		int avgAge = (int) ages.stream().mapToInt(x -> x).summaryStatistics().getAverage();
+		System.out.println("avg age is :" + avgAge);
+		List<Integer> twoandthree =ages.stream().sorted().skip(1).limit(2).toList();
+		System.out.println(twoandthree);
+		
+		//names
+		List<String> nameslist = emp.stream().map(name -> name.getName()).toList();
+		System.out.println(nameslist);
+		String names =nameslist.stream().map(name -> name.toUpperCase()).collect(Collectors.joining(",  "));
+		System.out.println(names);
+		
+		//find duplicate element in stream
+		Set<String> uniqueNames = new HashSet<>();
+		 Set<String> duplicateNames = nameslist.stream().filter(name -> !uniqueNames.add(name)).collect(Collectors.toSet());
+		System.out.println(duplicateNames);
+		
+		Map<String, Long> mapOfNames = nameslist.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		
+		System.out.println(mapOfNames);
+		
+		Set<String> name1 =mapOfNames.entrySet().stream().filter(entry -> entry.getValue() > 1).map(entry -> entry.getKey()).collect(Collectors.toSet());
+		System.out.println(name1);
+		
+		//frequency
+		
+		Set<String> name9 = nameslist.stream().filter(name -> Collections.frequency(nameslist, name)>1).collect(Collectors.toSet());
+		System.out.println(name9);
+
+
+ 		 //sort the employee based on there age in desc order
+		List<Employee> sortedEmp =emp.stream().sorted((o1,o2)-> (int)(o2.getAge()-o1.getAge())).toList();
+		System.out.println(sortedEmp);
+		
+		//top 3 emp with high age
+		List<Employee> highAge =emp.stream().sorted((o1,o2)-> (int)(o2.getAge()-o1.getAge())).limit(3).toList();
+		System.out.println(highAge);
+		
+		//3rd oldest
+		List<Employee> thirdAge =emp.stream().sorted((o1,o2)-> (int)(o2.getAge()-o1.getAge())).limit(3).skip(2).toList();
+		System.out.println(thirdAge);
+		
+		//orElse()
+		//String name = Optional.ofNullable(nullNmae).orElse("Anonymous");
+		
+		//orElseGet()
+		//String name = Optional.ofNullable(nullName).orElseGet(()-> "Anonymous");
+    
 		//convert stream of objects into arrays
 		//toArray()
 		//it returns an array containing elements of the stream
@@ -1193,6 +1385,24 @@ Thread - light weight process with in the process
 //many threads can run concurrently
 // threads in program exist in common memory sapce, so shares the same data and code
 
+
+Java Synchronization is used to make sure by some synchronization method that only one thread can access the resource at a given point in time. 
+
+Our systems are working in a multithreading environment that becomes an important part for OS to provide better utilization of resources. The process of running two or more parts of the program simultaneously is known as Multithreading. A program is a set of instructions in which multiple processes are running and within a process, multiple threads are working. Threads are nothing but lightweight processes.
+
+1. Process Synchronization in Java
+Process Synchronization is a technique used to coordinate the execution of multiple processes. It ensures that the shared resources are safe and in order.
+
+2. Thread Synchronization in Java
+Thread Synchronization is used to coordinate and ordering of the execution of the threads in a multi-threaded program. There are two types of thread synchronization are mentioned below:
+
+Mutual Exclusive
+	Mutual Exclusive helps keep threads from interfering with one another while sharing data. There are three types of Mutual Exclusive mentioned below:
+	Synchronized method.
+	Synchronized block.
+	Static synchronization.
+	Cooperation (Inter-thread communication in Java)
+
 //Main thread
 //when a stand alone apllication us run. a user thread is automatically created to execute the main() method of 
 // the application-- called main thread
@@ -1208,6 +1418,9 @@ when user thread finish executing program ends whether deamon is finished or not
 java.lang.Thread class
 java.lang.Runnable interface
 
+
+t.start() a new thread will be  created which is responsible for the execution of run() method 
+t.run() no new thread will be created it will be executed same as normal method 
 //Synchronisation
 //thread share the same memory space i.e they can share same resources/objects
 //however, there are critical situations where it is desirable that only one thread at a time has access to shared resources
@@ -1354,9 +1567,40 @@ Behavioural pattern
 Structural pattern
 J2EE pattern - 
 
-DSA
+SOLID Principles
 --
-//LinkList -->
+	the broad goal of solid principles is to reduce dependencies so that engineers can change one area  in software without affecting others
+ 	intended to make designs easier to understand, maintain. and extend
+  	helps to avoid issues and to build adaptive, effective and agile software
+   	lead to better code readability, maintainability, design patterns, testability
+
+    S - sinle responsibility 
+    	one class should have one and only one responsibility 
+     	change class when we need to change state of one perticular object or instance
+    O - open and close principle 
+    	means software components should be open for extension, but closed for modification
+     	open for extension - means that we can extend and include extra functionalities in our code with out impacting existing implementation
+      	close for modifiction - means that after adding extra functionalities we should not modify the existing implementation
+       if we need to modify create a new class and extend the class and override some functionalities 
+    L - Liskov Substitution
+    	the software should not alter the desirable result when we replace a parent type with any of the subtype 
+     	Derived type must be completly substitutable for their base type
+      	the classes , fellow developers created by extending our class , should be able to fit in application without failure
+       	this requires the object of subclass to behave in the same way as the object of supperclass    	
+    I - Interface Segregation
+    	clients should not be forced to implement unnecessary methods which they will not use
+     	we should splite our interface into smaller and more specific ones  
+    D - Dependency Inversion 
+    	Depend on abstractions, not on concretaions
+     	we should design our software in a such away that various modules can be seperated from each other using an abstract layer to bind them together 
+      	removes the hardcoded dependencies so that the application becomes loosely coupled and extendable
+
+    
+
+## - DSA
+--
+LinkList -->
+--
 //variable size
 //non contiguous memory
 //insert in O(1)
@@ -1364,21 +1608,25 @@ DSA
 //structure --> node --> data + next node address
 //Types -->Singular  , Double,  Circular
 
-//Stack
+Stack
+--
 //last in first out
 // push(), pop(), peek()  -->O(1)
 
 
-//queue
+queue
+--
 //first in first out
 //enque(), dequeue(), peek()/front -->O(1)
 
-//tree / binary tree
+tree / binary tree
+--
 //hirarchical data structure
 //preOrder --> root - left - right
 //inOrder --> left - root - right
 
-//Binary Search Tree
+Binary Search Tree
+--
 //left subtree Nodes < root
 //right subtree nodes > root
 // left and right subtree are also BST if there is no duplicates
@@ -1386,7 +1634,8 @@ DSA
 //skewed tree -- all nodes on either left side or right side
 
 
-//HashSet
+HashSet
+--
 //set --> not duplicate allowed / unordered
 //insert - O(1)
 //search - O(1)
@@ -1412,8 +1661,11 @@ while(it.hasNext){
 }
 
 
-//HashMap --> key-value pair
-
+HashMap --> key-value pair
+--
+	works on the principle of hashing 
+	hashing means using fuction or algorithm to map object data to some integer value, hashCode() method return the hashcode. hence it is neccessary to write the hashCode() method properly for better performance
+ 	
 HashMap<String , Integer> map = new HashMap<>();
 //insert
 map.put("india", 120); 
@@ -1447,7 +1699,8 @@ map.remove("china");
 //prefix , digital search, retrievel tree
 
 
-//Graphs
+Graphs
+--
 //vertex -- node / data
 //edges -- connection between nodes  --> gives direction
 //uni-directional  --
@@ -1517,7 +1770,197 @@ map.remove("china");
 //A vertex in an undirected connected graph is an articulation point (or cut vertex) if removing it
 //(and edges through it) disconnects the graph.
 
+Questions 
+--
+latest inhancement in hashmap 
+	 for collision  linked list is used which is O(n)   to increase performance now balanced tree is used log(n) when a perticular threshold is reached the linked list is converted into balaced tree 
+optional claas- 
+	Every Java Programmer is familiar with NullPointerException. It can crash your code. And it is very hard to avoid it without using too many null checks. So, to overcome this, Java 8 has introduced a new class Optional in 		java.util package. It can help in writing a neat code without using too many null checks. By using Optional, we can specify alternate values to return or alternate code to run. This makes the code more readable because the 		facts which were hidden are now visible to the developer.
 
+ eg - 
+ 	Optinal<Employee> e = repo.findById(id);
+  	if(!e.isEmpty){
+   		Optional<String> name = Optional.ofNullable(e.get().getName());
+     		if(name.isPresent()){
+       			return new ResponseEntiry<>(name.get().toUpperCase(), HttpStatus.OK);
+		}else{
+  			return new ResponseEntiry<>("Name is null", HttpStatus.Not Found);
+		}
+
+  		or 
+    		name.ifPresent(n-> system.out.println("name is present : "+ n));
+
+      		or
+		name.ifPresentorElse(n-> system.out.println("name is present : "+ n) , system.out.println("name is not present"));
+	}
+	
+import java.util.Optional;
+
+// Driver Class
+public class OptionalDemo {
+      // Main Method
+    public static void main(String[] args)
+    {
+        String[] words = new String[10];
+        
+          Optional<String> checkNull = Optional.ofNullable(words[5]);
+        
+          if (checkNull.isPresent()) {
+            String word = words[5].toLowerCase();
+            System.out.print(word);
+        }
+        else
+            System.out.println("word is null");
+    }
+}
+
+
+		Array 															ArrayList
+	static insize 														dynamic in size
+ 	int arr[] = new int[10];												ArrayList<Integer> arrList = new ArrayList<>();
+  	fixed length dataStucture												variable length Collection class
+   	can store both primitive type and objects 										can not store primitive type, only stores objects
+    	fast as comparfe to arraylist as have fixed size 									add() and get() operations almost same perfomance
+     																resize() - increase size by 50% of originl size
+	mandatory to provide size of array while initialization 								can create arrayList with out specifing size
+ 	uses for loop to iterate												uses iterator
+  	.length - variable 													.size() - method
+   	can be multi-dimensional 												always single-dimentional 
+    	elements stored in adjecent memory 											objects are incapable of being contained in contiguous locations
+     	ger=nerics are not compatible 												allows the use of generics 
+
+
+		ArrayList 														Vector
+	 not synchronized 													synchronized
+	 not thread safe													thread safe
+	 fast as non synchronized												slow due to synchronization
+ 	 increase capacity by 50% of current array size										increase capacity by 100%
+   	 uses iterator interface												iterator interface or enumeration interface 
+	
+    
+diff between arraylist and linked list
+		arrayList -													linked list
+	used dynamic array as internal data structure								 	uses the doubly linked list
+	manipulation is slow but searching is fast									manipulation is fast but searching is slow 
+	can act as only list												can as as list as well as queue
+ 	faster in storing and accessing data as internally uses array which has random access				slower than arrayList in storing and accessing requires node by node traversal
+  	can not traverse in reverse order										can be traverse in reverse direction
+   	better for search operation as can access randomly 								for add and delete operation
+    
+		
+  		checked exceptions 												unchecked exceptions
+  	checked by java compiler 											not checked by java compiler so called run time
+   	occure at compile time 												occure at runtime
+    	can be handled at the time of compilation									can not be handle at the time of compilation
+     	must be handled in a try-catch block or be thrown by invoking method						exception handling semantics are not required
+
+	
+						hashMap						TreeMap						LinkedHashMap
+
+     Order				random						sorted order according to natural(asc) ordering		sorted order according to the insertion order
+     time complexity 			O(1)						O(log n)						O(1)
+     Null key 				allowed						not allowed 						allowed
+     datastrucute support		hash table and linkedList			Red Black Tree						Hashtable abd doubly linked list
+     key requirment 			equals() and hashCode() methods			along with equals(), hashcode() the			equals() and hashCode() methods
+     					needs to be overridden				comparator is implemented for sorting			needs to be overridden
+     usage				normal processing, faster retrieval		for sorting and navigable features 			when insertion order needs to be maintain 
+
+Diff between hashmap and hashtable
+hashmap - not synchonize so not thread safe , much fater , one null key and multiple null values
+hashtable -shyncronize so thread safe , slow campare to hashmap , does not allow any null key or any null value 
+
+MAP and Flat MAP
+	In Java, the Stream interface has a map() and flatmap() methods and both have intermediate stream operation and return another stream as method output. Both of the functions map() and flatMap are used for transformation and 	mapping operations. map() function produces one output for one input value, whereas flatMap() function produces an arbitrary no of values as output (ie zero or more than zero) for each input value.
+ 	flatMap() --> performs the opertion on list of list 
+	                                        map()	                                     	      flatMap()
+	The function passed to map() operation returns a single value for a single input.		The function you pass to flatmap() operation returns an arbitrary number of values as the output.
+	One-to-one mapping occurs in map().								One-to-many mapping occurs in flatMap().
+	Only perform the mapping.									Perform mapping as well as flattening.
+	Produce a stream of value.									Produce a stream of stream value.
+	map() is used only for transformation.								flatMap() is used both for transformation and mapping.
+
+fail fast and fail safe 
+Concurrent Modification: Concurrent Modification in programming means to modify an object concurrently when another task is already running over it. For example, in Java to modify a collection when another thread is iterating over it. Some Iterator implementations (including those of all the general purpose collection implementations provided by the JRE) may choose to throw ConcurrentModificationException if this behavior is detected.
+
+Fail Fast And Fail Safe Iterators in Java
+Iterators in java are used to iterate over the Collection objects.Fail-Fast iterators immediately throw ConcurrentModificationException if there is structural modification of the collection. Structural modification means adding, removing any element from collection while a thread is iterating over that collection. Iterator on ArrayList, HashMap classes are some examples of fail-fast Iterator.
+Fail-Safe iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. This is because, they operate on the clone of the collection, not on the original collection and that’s why they are called fail-safe iterators. Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator.
+
+if synchronized map is there why concurrent hash map was introduce - 
+
+	 Java HashMap is a non-synchronized collection class. If we need to perform thread-safe operations on it then we must need to synchronize it explicitly. The synchronizedMap() method of java.util.Collections class is used to 	synchronize it. It returns a synchronized (thread-safe) map backed by the specified map. 
+  
+	The ConcurrentHashMap and SynchronizedHashMap both are the Collection classes which are thread-safe and can be used in multithreaded and concurrent java application. But there are few differences that exists between them.
+ 	concurrent hash map came in picture due to performance issue in synchronize hash map it works on principle of locak stripping so any number of threads can read and write where as in synchronized has map others thread has to 	wait for executing treads opertion to end 
+
+	  ConcurrentHashMap is thread-safe therefore multiple threads can operate on a single object without any problem. In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level. By 		default, it allows 16 thread to read and write from the Map without any synchronization. In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updating in the object, the thread must lock 		the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence, at a time16 update operations can be performed by threads.
+
+
+	PermGen											MetaSpace
+It is removed from java 8.							It is introduced in Java 8.
+PermGen always has a fixed maximum size.					Metaspace by default auto increases its size depending on the underlying OS.
+Contiguous Java Heap Memory.							Native Memory(provided by underlying OS).
+Inefficient garbage collection.							Efficient garbage collection.
+
+JVM memory stucture - 
+	JVM defines various run-time data area which are used during execution of a program. Some of the areas are created by the JVM whereas some are created by the threads that are used in a program. However, the memory area created 	by JVM is destroyed only when the JVM exits. The data areas of thread are created during instantiation and destroyed when the thread exits. JVM Memory Structure is divided into multiple memory area like heap area, stack area, 	method area, PC Registers etc
+
+Young Generation(Nursery):
+	All the new objects are allocated in this memory. Whenever this memory gets filled, the garbage collection is performed. This is called as Minor Garbage Collection.
+Old Generation:
+	All the long lived objects which have survived many rounds of minor garbage collection is stored in this area. Whenever this memory gets filled, the garbage collection is performed. This is called as Major Garbage Collection.
+PermGen Memory:
+	This is a special space in java heap which is separated from the main memory where all the static content is stored in this section. Apart from that, this memory also stores the application metadata required by the JVM. 		Metadata is a data which is used to describe the data. Here, garbage collection also happens like any other part of the memory. String pool was also part of this memory before Java 7. Method Area is a part of space in the 		PermGen and it is used to store the class structure and the code for methods and constructors. The biggest disadvantage of PermGen is that it contains a limited size which leads to an OutOfMemoryError. The default size of 		PermGen memory is 64 MB on 32-bit JVM and 82 MB on the 64-bit version. Due to this, JVM had to change the size of this memory by frequently performing Garbage collection which is a costly operation. Java also allows to manually 	change the size of the PermGen memory. However, the PermGen space cannot be made to auto increase. So, it is difficult to tune it. And also, the garbage collector is not efficient enough to clean the memory. 
+MetaSpace	
+	Due to the above problems, PermGen has been completely removed in Java 8. In the place of PermGen, a new feature called Meta Space has been introduced. MetaSpace grows automatically by default. Here, the garbage collection is 	automatically triggered when the class metadata usage reaches its maximum metaspace size. 
+
+How subString work in java or how substring creates memory liek in java
+	String is hava is sequence of charactors, represented by array of charactors 
+ 	char value [] = array of charactors
+  	int count - total charactors
+  	int offset - starting point, that is index =0
+ 	when we create substring out of string new string is created as string is immutable , and the value[] array will be shared between the two strings that is original and substring 
+  	even though we make original string null to be garbage collected, it will not free the space in memory as substring is using that memory in value[]
+
+  	to prevent this memory leak - in java 1.6 the intern() method is introduces, it peek up the substring and put it in string pool as string pool only takes the space required 
+   		so original string space is freeed after garbage collected 
+   	String substr = originalString.subString(0,2).intern()
+    	from JDK 7 - subString will create its own array instead of pointing it to original string array
+
+Load factor in hashmap 
+	initial capacity - number of buckets cerated initially 
+ 	load factor - is criteria to decide when we have to increase the size of hashmap when it is about to full 
+
+  Capacity - denotes how many entries HashMap can stored , bucket size
+  size - number of key-value pairs ,  real object / nodes
+
+Java Reflection API - 
+	at run time we have an object, no if we want to know details of the class then use Reflection.
+ 	it is a process of analyzing and modifying all the capabilities of a class at runtime, reflection API in java is used to manipulate class and its members which include fields, methods, constructor etc.
+  	it can manipulate private member of the class too
+   	java.lang.reflection 
+    advantage 
+    	can use it to manipulate code at runtime
+     	easy to introspect class and objects
+      	way to access and modify the fields, methods, annotations of class and objects 
+      	debugging and testing 
+   disadvantage
+   	performance overhead 
+    	not thread safe -
+     	exposure of internals - break the abstraction 
+
+what is object Lock?
+	in multithreaded environment two or more threads can access the shared resources simultaneously which can lead to inconsistent behaviour of the system 
+ 	java uses the concept of lock to restrict concurrent access of shared resources 
+
+   objetc level lock -can be used when you want non-static method or non static block of the code should be accessed by only one thread
+   class level locaks - used when we want to prevent multiple thread to enter the synchronized block in any of all avalible instance on runtime 
+
+object reference be cast to an nterface reference
+	Animal a = new Dog();
+
+  	if we implement an interface and provide body to its methids from class,
+   	we can hold object of that class using the reference variable of interface.
 
 ## SQL
 --
@@ -1588,7 +2031,11 @@ Foreign key - maintains referential integrity by enforcing a link between the da
 
 Index - performance tuning method, allows faster retrieval of records from the table 
         create an entry for each value
-
+	indexes are database objects which help in retrieving records quickly and more efficiently
+ 	query syntax- 
+ 		create index INdex_name on table_name(col1,col2);
+		drop index index_name on table_name;
+  
 Unique Index - index does not allow the field to have duplicate values if the column is unique indexed
                if a primary key is defined, a unique index can be applied automatically
 
@@ -1880,6 +2327,8 @@ Stored Procedure
     Collation types- case sensitivity, kana sensitivity, width sensitivity, accent sensitivity 
 
 
+	
+
 #Query
 
 genrate date 
@@ -1909,6 +2358,7 @@ DATE -- date in format of YYYY-MM-DD ranging from 1000-01-01 to 9999-12-31
 YEAR -- year in 4 didgits format ranging from 1901 to 2155
 
 Queries  -
+--
 create database db_name;
 create database if not exists db_name;
 
@@ -2053,6 +2503,14 @@ create view view1 as select id , name from student;
 select * from view1;
 
 
+find the third hightesrt salary
+select MAX (salary) from empoyee ; --> gives the max salary
+select MAX (salary) from empoyee where salary < (select MAX (salary) from empoyee) ; --> will give the 2nd highest salary 
+select MAX (salary) from empoyee where salary < (select MAX (salary) from empoyee where salary < select MAX (salary) from empoyee) ; --> will give the 3rd highest salary 
+
+select * from employee order by DESC limit 0(starting index),1(how many rows) ;  --> get the highest  as index is 0 and rows given are only one
+select salary from salary order by salary desc limit 2,1;  --> gives 3rd highest
+
 SQL 
 data is represented in tables
 predifined schema
@@ -2063,6 +2521,7 @@ support join operations
 
 ##
 MongoDB
+--
 is NoSQL (not only query) database that stores large volumes of data inthe form of documents .this offers the developers teh flexibility to work with evolving data models.
 alternative NOSQL DBs - Cassandra, Amazon DynamoDB, redis, Apache Hbase , neo4j
 
