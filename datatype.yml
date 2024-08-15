@@ -1,0 +1,47 @@
+name: chetan
+fruit: "apple"
+job: 'swe'
+
+bio: |
+my name is chetan
+i am the greatest.
+
+#write single link in multiple line
+massage: > 
+this will 
+all be
+in one single line
+
+#same as 
+massage: this will all be in same line
+
+number: 123123
+marks: 78.23
+booleanValue : No #n, N, false,FALSE
+#same for true ->yes , y,Y
+
+#specify the type
+zero: !!int 0
+positiveNumber: !!int 34
+negativeNumber: !!int -23
+binaryNum: !!int 0b11001
+octalNum: !!int 06574
+hexa: !!int 0x45
+commaValues: !!int +540_000 #540,000
+exponential numbers: 6.023E56
+
+
+#floating point numbers
+marks: !!float 98.09
+infiniyt : !!float .infinity 
+not a num: .nan
+
+boolean : !!bool N
+
+#null
+~ : this is a null key
+
+#dates and time
+
+date: !!timestamp 2024-06-17
+

@@ -1,0 +1,83 @@
+student: !!seq
+ -marks
+ -name
+ -rollno
+
+#some of the keys of seq will be empty 
+#sparse seq
+sparse seq: 
+ -hey
+ -how
+ -
+ -null
+ -sup
+
+#nested seq
+-
+ -mango
+ -apple
+ -banana
+-
+ -marks
+ -rollno
+ -name
+
+#key values pairs
+!!map
+
+#nested mappings : map within map
+
+name: chetan
+rollno: 
+  age: 23
+  job: swe
+
+#same as
+name: chetan
+rollno:{age: 23, job: swe}
+
+#pairs: keys may have duplicate values
+#!!pairs
+
+pair example: !!pairs
+-job: student
+-job: teacher
+
+#this will be a hashtable containging array
+
+#same as
+[job: student, job: teacher]
+
+#unique values
+#!!set will allow you to have unique values
+names: !!set
+ ?kunal 
+ ?rahul
+ ?chetan
+ 
+#dictionary !!omap
+people: !!omap
+ -chetan:
+  name: cbg
+  age: 34
+  height: 6
+ -Rahul:
+  name: rahul
+  age: 45
+  height: 7
+
+#reusing some properties using anchors
+
+likings: &likes
+ fave fruit: mango
+ dislike: grapes
+
+person1:
+ name : cbg
+ <<: *likes
+
+ 
+
+
+
+

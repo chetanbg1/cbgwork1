@@ -1,0 +1,15 @@
+{
+    "school":[
+        {
+            "name": "nesw",
+            "principal": "guldagad",
+            "students": [
+                {
+                    "rollno" : 12,
+                    "name": "cbg",
+                    "marks":99 
+                }
+            ]
+        }
+    ]
+}

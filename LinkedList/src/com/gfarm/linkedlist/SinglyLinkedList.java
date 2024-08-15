@@ -1,7 +1,5 @@
 package com.gfarm.linkedlist;
 
-import javax.security.auth.login.CredentialException;
-
 public class SinglyLinkedList {
 	private ListNode head;
 
@@ -269,32 +267,32 @@ public class SinglyLinkedList {
 		ListNode newNode = new ListNode(data);
 
 		ListNode current = head;
-		ListNode temp = null;
+		ListNode prev = null;
 
 		while (current != null && current.data < newNode.data) {
-			temp = current;
+			prev = current;
 			current = current.next;
 		}
 		newNode.next = current;
-		temp.next = newNode;
+		prev.next = newNode;
 		return head;
 	}
 
 	// remove node in linked list
 	public void removeKey(int key) {
 		ListNode current = head;
-		ListNode temp = null;
+		ListNode prev = null;
 		if (current != null && current.data == key) {
 			head = current.next;
 			return;
 		}
 		while (current != null && current.data != key) {
-			temp = current;
+			prev = current;
 			current = current.next;
 		}
 		if (current == null)
 			return;
-		temp.next = current.next;
+		prev.next = current.next;
 
 	}
 

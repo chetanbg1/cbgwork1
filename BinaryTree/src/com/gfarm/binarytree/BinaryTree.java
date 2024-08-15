@@ -19,6 +19,71 @@ public class BinaryTree {
 		}
 	}
 
+	public BinaryTree(int rootData) {
+		root = new TreeNode(rootData);
+	}
+
+	// insert
+	public void insert(int data) {
+		TreeNode newNode = new TreeNode(data);
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		while (!q.isEmpty()) {
+			TreeNode temp = q.poll();
+			if (temp.left == null) {
+				temp.left = newNode;
+				return;
+			} else if (temp.right == null) {
+				temp.right = newNode;
+				return;
+			} else {
+				q.add(temp.left);
+				q.add(temp.right);
+			}
+		}
+	}
+
+	// delete
+	public void delete(int data) {
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		TreeNode toReplace = null;
+		while (!q.isEmpty()) {
+			TreeNode current = q.remove();
+			if (current.data == data) {
+				toReplace = current;
+				break;
+			}
+			if (current.left != null) {
+				q.add(current.left);
+			}
+			if (current.right != null) {
+				q.add(current.right);
+			}
+		}
+			q.clear();
+			q.add(root);
+			TreeNode leafNodeToDelete = null;
+			while (!q.isEmpty()) {
+				TreeNode current = q.remove();
+				//leaf node
+				if(current.left!=null && current.left.left == null && current.left.right == null) {
+					leafNodeToDelete = current.left;
+					current.left = null;
+					break;
+				}
+				if(current.right!=null && current.right.left == null && current.right.right == null) {
+					leafNodeToDelete = current.right;
+					current.right = null;
+					break;
+				}
+				if(current.left != null) q.add(current.left);
+				if(current.right != null) q.add(current.right);
+		}
+			toReplace.data = leafNodeToDelete.data;
+			leafNodeToDelete = null;
+	}
+
 	public TreeNode buildTree(int node[]) {
 		idx++;
 		if (node[idx] == -1) {
@@ -323,70 +388,83 @@ public class BinaryTree {
 		}
 		return false;
 	}
-	//sum at the Kth level 
-	//Traverse the Binary Tree using Level Order Traversal and queue
-	//During traversal, pop each element out of the queue and push it’s child (if available) in the queue.
-	//Keep the track of the current level of the Binary tree.
-	//To track the current level,
-	//declare a variable level and increase it whenever a child is traversed from the parent.
-	//When the current level of the tree i.e. the variable level meets the required Kth level,
-	//pop the elements from the queue and calculate their sum.
-	
-	public int sumAtKthLevel(TreeNode root,int k) {
-		if(root == null) {
+	// sum at the Kth level
+	// Traverse the Binary Tree using Level Order Traversal and queue
+	// During traversal, pop each element out of the queue and push it’s child (if
+	// available) in the queue.
+	// Keep the track of the current level of the Binary tree.
+	// To track the current level,
+	// declare a variable level and increase it whenever a child is traversed from
+	// the parent.
+	// When the current level of the tree i.e. the variable level meets the required
+	// Kth level,
+	// pop the elements from the queue and calculate their sum.
+
+	public int sumAtKthLevel(TreeNode root, int k) {
+		if (root == null) {
 			return 0;
 		}
-		
 		Queue<TreeNode> q = new LinkedList<>();
 		q.add(root);
 		int level = 0;
 		int sum = 0;
-		int flag =0;
-		while(!q.isEmpty()) {
+		int flag = 0;
+		while (!q.isEmpty()) {
 			int size = q.size();
-			while(size-- > 0) {
+			while (size-- > 0) {
 				TreeNode current = q.peek();
 				q.remove();
-				if(level == k) {
-					flag =1;
+				if (level == k) {
+					flag = 1;
 					sum += current.data;
-				}else {
-					if(current.left !=null) 
+				} else {
+					if (current.left != null)
 						q.add(current.left);
-					
-					if(current.right !=null) 
+
+					if (current.right != null)
 						q.add(current.right);
 				}
 				level++;
-				if(flag ==1) {
+				if (flag == 1) {
 					break;
 				}
-				
+
 			}
-			
+
 		}
 		return sum;
 	}
-	//sum at kth recursion
-	  public int sumAtKthLevel(TreeNode root, int k, int level) {
-	        if (root == null) {
-	            return 0; // If the tree node is null, return 0 (no sum).
-	        }
-	        if (level == k) {
-	            return root.data; // If we've reached the desired level, return the node's value.
-	        }
-	        // Recursively calculate the sum at the kth level in the left and right subtrees.
-	        return sumAtKthLevel(root.left, k, level + 1) + sumAtKthLevel(root.right, k, level + 1);
-	    }
+
+	// sum at kth recursion
+	public int sumAtKthLevel(TreeNode root, int k, int level) {
+		if (root == null) {
+			return 0; // If the tree node is null, return 0 (no sum).
+		}
+		if (level == k) {
+			return root.data; // If we've reached the desired level, return the node's value.
+		}
+		// Recursively calculate the sum at the kth level in the left and right
+		// subtrees.
+		return sumAtKthLevel(root.left, k, level + 1) + sumAtKthLevel(root.right, k, level + 1);
+	}
+
 	public static void main(String[] args) {
-		BinaryTree tree = new BinaryTree();
-		int node[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
-		//int subNode [] = {2, 4, -1, -1, 5, -1, -1};
-		TreeNode root = tree.buildTree(node);
-		//TreeNode subRoot = tree.buildTree(subNode);
+		BinaryTree tree = new BinaryTree(7);
+		
+		tree.insert(1);
+		tree.insert(2);
+		tree.insert(3);
+		tree.insert(4);
+		tree.insert(5);
+		tree.insert(6);
+		tree.delete(4);
+		// int node[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
+		// int subNode [] = {2, 4, -1, -1, 5, -1, -1};
+		// TreeNode root = tree.buildTree(node);
+		// TreeNode subRoot = tree.buildTree(subNode);
 //		System.out.println(root.data);
 //		// tree.createBinaryTree();
-//		tree.preOrder(root);
+		tree.preOrder(tree.root);
 //		System.out.println();
 //		tree.inOrder(root);
 //		System.out.println();
@@ -399,9 +477,9 @@ public class BinaryTree {
 //		System.out.println(tree.diameter(root));
 //		System.out.println(tree.diameter1(root).diam);
 //		System.out.println(tree.diameter1(root).ht);
-		//System.out.println(tree.sumAtKthLevel(root, 3));
-		System.out.println(tree.sumAtKthLevel(root, 1, 0));
-		//System.out.println(tree.isSubTree(root,subRoot));
+		// System.out.println(tree.sumAtKthLevel(root, 3));
+		// System.out.println(tree.sumAtKthLevel(root, 1, 0));
+		// System.out.println(tree.isSubTree(root,subRoot));
 		// System.out.println();
 		// tree.preOrderT();
 		// System.out.println();

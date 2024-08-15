@@ -1,5 +1,6 @@
 package com.gfarm.graph;
 
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -30,10 +31,11 @@ public class Graph {
 //		graph[3].add(new Edge(3, 1));
 //		graph[3].add(new Edge(3, 2));
 		
+		//cycle exit 
 		graph[0].add(new Edge(0, 2));
 		graph[1].add(new Edge(1, 0));
 		graph[2].add(new Edge(2, 3));
-		//graph[3].add(new Edge(3, 0));
+		graph[3].add(new Edge(3, 0));
 	}
 
 	// BFS
@@ -115,6 +117,22 @@ public class Graph {
 		recursion[current] =false;
 		return false;
 	}
+	
+	//cycle detection
+	public static boolean isCycleUndirected(ArrayList<Edge> graph[], boolean visited[],int current, int parent) {
+		visited[current] = true;
+		for(int i= 0;i< graph[current].size();i++) {
+			Edge e = graph[current].get(i);
+			if(visited[e.dest] && e.dest != parent) {
+				return true;
+			}else if(!visited[e.dest]) {
+				if(isCycleUndirected(graph, visited, e.dest, current)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public static void printGraph(ArrayList<Edge> graph[]) {
 		for (int j = 0; j < graph.length; j++) {
 			for (int i = 0; i < graph[j].size(); i++) {
@@ -155,6 +173,7 @@ public class Graph {
 		
 		//printAllPath(graph, new boolean[V], 0, "0", 3);		//O(V^V)
 		
-		System.out.println(isCycleDirected(graph, new boolean[V], 0, new boolean[V]));
+		//System.out.println(isCycleDirected(graph, new boolean[V], 0, new boolean[V]));
+		System.out.println(isCycleUndirected(graph, new boolean[V], 0, 0));
 	}
 }

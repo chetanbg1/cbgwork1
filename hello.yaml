@@ -1,0 +1,20 @@
+"apple" : "i am a red fruit"
+1 : "this is my roll number"
+---
+#list
+-apple
+-mango
+-banana
+-Apple # yaml is case sensitive
+---
+cities:
+ -delhi
+ -pune
+ -mumbai
+
+cities: [delhi,pune,mubmai]
+---
+{mango: "fruit", age: 90}
+...
+#yamllint.com
+
