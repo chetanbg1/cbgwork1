@@ -13,7 +13,8 @@ public class TwoSum {
 		int result2[] = twoSumHashMap(arr, target);
 		System.out.println(Arrays.toString(result2));
 		int result3[] = twoSumHashMap1(arr, target);
-		for(int i : result3) {
+		int result4[] = twoSum3(arr, target);
+		for(int i : result4) {
 		System.out.println(i+" ");
 		}
 	}
@@ -28,7 +29,7 @@ public class TwoSum {
 		}
 		return null;
 	}
-	
+	//main ans
 	public static int[] twoSum1(int[]arr , int target) throws IllegalAccessException {
 		int result[] = new int [2];
 		Map<Integer, Integer> map = new HashMap<>();
@@ -96,4 +97,16 @@ public class TwoSum {
 				return new int[0];
 			}
 	
+			//
+			public static int[] twoSum3(int[]arr , int target) {
+				Map<Integer, Integer> map = new HashMap<>();
+				
+				for(int i=0;i<arr.length;i++) {
+					if(map.containsKey(target - arr[i])){
+						return new int[] {i, map.get(arr[i])};
+					}
+					map.put(arr[i], i);
+				}
+				return new int[0];
+			}
 }

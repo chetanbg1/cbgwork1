@@ -543,16 +543,16 @@ public class SinglyLinkedList {
 //		}
 //		System.out.println("length of linked list is " + length);
 
-//		SinglyLinkedList ssl1 = new SinglyLinkedList();
-//		ssl1.insertLast(1);
-//		ssl1.insertLast(4);
-//		ssl1.insertLast(8);
-//
-//		SinglyLinkedList ssl2 = new SinglyLinkedList();
-//		ssl2.insertLast(3);
-//		ssl2.insertLast(5);
-//
-//		SinglyLinkedList result = new SinglyLinkedList();
+		SinglyLinkedList ssl1 = new SinglyLinkedList();
+		ssl1.insertLast(1);
+		ssl1.insertLast(4);
+		ssl1.insertLast(8);
+
+		SinglyLinkedList ssl2 = new SinglyLinkedList();
+		ssl2.insertLast(3);
+		ssl2.insertLast(5);
+
+		SinglyLinkedList result = new SinglyLinkedList();
 
 		// result.head = ssl.merge(ssl1.head, ssl2.head);
 		// result.head = ssl.add(ssl1.head, ssl2.head);
