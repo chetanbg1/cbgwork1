@@ -26,13 +26,13 @@ class FirstClass{
 //JRE java runtime environment  = JVM + libraries 
 //JVM java virtual machine
 	it is a platform
-	runtime environment in whicj java byteCode(.class files) can be executed 
+	runtime environment in which java byteCode(.class files) can be executed 
  	java's plateform independence mostly consist of JVM 
   	JVM is aware of OS thats why JVM is plateform dependent 
    	it provides environment based on operating system to run .class file 
  	.java --> compiler --> .class  --> 
   				 jvm --> classLoader --> 3 types of class loader
-       						is partr of JVM that dynamically loads the java classes into the JVM
+       						is part of JVM that dynamically loads the java classes into the JVM
        						-> bootstrape classloader -- lib/rt.jar --> conatins existing .java classes given by java people
 	     					-> extension classloader -- jre/lib/ext --> loads the class from JDK extensions 
 	   					-> application classloader -- our own code class path 
@@ -53,20 +53,22 @@ JIT just in time compiler
  	JIT is used to optimise the performace of java code at run time - its helps code to fastly compile 
 	
 
-//varible value keeps changing if we change  ,reference to the address of memery where we store the data
-// constants value do not change
+Variable -
+	varible value keeps changing if we change  ,reference to the address of memery where we store the data
 
-//java is typed language, meaning we can not define variable without data type
-//Data type 
-//primitive data types
-//byte  == 8 bits 1 byte
-//shortv =2byte
-//char  == 2bytes
-//boolean ==1byte
-//int  = 4 byte
-//long  = 8 byte
-//double =8  byte
-//float =4 byte
+constants value do not change
+
+java is typed language, meaning we can not define variable without data type
+Data type 
+	//primitive data types
+	//byte  == 8 bits 1 byte
+	//short =2byte
+	//char  == 2bytes
+	//boolean ==1byte
+	//int  = 4 byte
+	//long  = 8 byte
+	//double =8  byte
+	//float =4 byte
 java is not completly 100% object - oriented language due to premitive data types
 we use Wrapper classes for primitive data type
 
@@ -78,30 +80,31 @@ we use Wrapper classes for primitive data type
 Pass by value - we dont pass the original memory address, value is copied at another memory location and that is passed so original value can not be modified  --java is pass by value 
 Pass by reference - actually sending the memory object / pointer of the varible to a function , if someone modifies that varible in function we may lost the original variable 
 		    changing the real address of the variable 
-//Non-primitive data type
-//Array
-//String
-//Class
-//Object
-//Interface
+      
+Non-primitive data type
+	//Array
+	//String
+	//Class
+	//Object
+	//Interface
 
-//conditional statement
-//if 
-//else
-//else if
-//switch
-Scanner sc = new Scanner(System.in);
-int button = sc.nextInt();
+conditional statement
+	//if 
+	//else
+	//else if
+	//switch
+	Scanner sc = new Scanner(System.in);
+	int button = sc.nextInt();
 
-switch(button){
-    case 1: System.out.println("hello");
-            break;
-            case 2: System.out.println("Namaste");
-            break;
-            case 3: System.out.println("ram ram");
-            break;
-            default: System.out.println("no hello");
-}
+	switch(button){
+	   	    case 1: System.out.println("hello");
+	            break;
+	            case 2: System.out.println("Namaste");
+	            break;
+	            case 3: System.out.println("ram ram");
+	            break;
+	            default: System.out.println("no hello");
+	}
 
 
 //Loops
@@ -466,13 +469,13 @@ Strings
 --
 
 string pool requires string to be immutable otherwise shared reference can be changes from anywhere
-security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure ans safe 
+security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure and safe 
 security --> strings in java can be used to access data sources like files, database or objects found across the network also stores password and username -whichh can not be modified once created
 
 Strign s1 = "abcd"; --> create a sting in string constant pool
 	string constant pool is memory space allocated in the heap memory to store the string literals / no duplicate strings 
  	it provide the facility to reuse the object 
-String s2 = new String("abcd); --> create object in heap + object in string constant pool  == tow objects will be created 
+String s2 = new String("abcd); --> create object in heap + object in string constant pool  == two objects will be created 
 
 intern() --> this method id used to put the string in string constant pool
 //String.class
@@ -603,7 +606,7 @@ Serialization and Deserialization
  	class that are eligible for serialization need to implement a special marker interface Serializable 
   	byte stream is platform independent. this means we can convert it into aobjet and run on any envirnment 
    	conditions to be serialize -
-    		inplement serializable interface
+    		implement serializable interface
       		all of the fields in class must be serializable, if not, it must be mark as transient or static 
 		static fields are not serializable -as they belong to class
 
@@ -772,7 +775,7 @@ Throws - used to declare exception
 	 checked exception can be propagated with throws
   	 used in method signature
     	 can declare multiple exceptions
-when exception is thrown by main() method , java runtime terminates the program and prints the exception message and teh stack trace is shown in-system console 
+when exception is thrown by main() method , java runtime terminates the program and prints the exception message and the stack trace is shown in-system console 
 unreachable catch block -when we keep super class first and sub classes later like Exception first and then nullpointer ..in multi catch block 
 
 Exception Propagation 
@@ -797,7 +800,7 @@ method overloading --> complile time polymorphism
  	the return type is not the part of method overloading ,so just changing the return type will not overload method in java  -compile time error 
   	
 method overriding -->  runTime Polymorphism
-	a method can only be override in sud-class, ot in same class
+	a method can only be override in sud-class, not in same class
  	Visibility - override method can not reduce the access of overridden method meaning - if method is public we can not make it protected or private while overriding 
   	Accessibility - overridiing method can increase the access of overridden method - if method is protected we can make it protected or public while overriding 
    	private, static , final method can not be overridden 
@@ -823,7 +826,7 @@ Composition - strong association - one object can not exist without other object
 
 Encapsulation -->combining data and method / data hiding
 --
-//package -- > all related classes we put it in package
+//package -- > all related classes we put it in  same package
 access modifiers
 //public  --> any one can access across all the classes and packages
 //default --> can access within the package
@@ -863,7 +866,7 @@ Comparable - Comparable<generic object> has one mehod --> public int compareTo(E
 // 1 if 1st parameter is > 2nd parameter
 // -1 if 1st parameter is  < 2nd parameter
 
-Comparaotr - public static comparator<Employee> nameComp = new Comparator<Employee>();
+Comparator - public static comparator<Employee> nameComp = new Comparator<Employee>();
 			public int compare(Employee e1, Employee e2){
    				return e.getName().compareTo(e2.getName());
 			}
