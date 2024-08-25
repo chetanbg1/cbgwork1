@@ -23,6 +23,10 @@ public class BinaryTree {
 		root = new TreeNode(rootData);
 	}
 
+	public BinaryTree() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// insert
 	public void insert(int data) {
 		TreeNode newNode = new TreeNode(data);
@@ -61,27 +65,29 @@ public class BinaryTree {
 				q.add(current.right);
 			}
 		}
-			q.clear();
-			q.add(root);
-			TreeNode leafNodeToDelete = null;
-			while (!q.isEmpty()) {
-				TreeNode current = q.remove();
-				//leaf node
-				if(current.left!=null && current.left.left == null && current.left.right == null) {
-					leafNodeToDelete = current.left;
-					current.left = null;
-					break;
-				}
-				if(current.right!=null && current.right.left == null && current.right.right == null) {
-					leafNodeToDelete = current.right;
-					current.right = null;
-					break;
-				}
-				if(current.left != null) q.add(current.left);
-				if(current.right != null) q.add(current.right);
+		q.clear();
+		q.add(root);
+		TreeNode leafNodeToDelete = null;
+		while (!q.isEmpty()) {
+			TreeNode current = q.remove();
+			// leaf node
+			if (current.left != null && current.left.left == null && current.left.right == null) {
+				leafNodeToDelete = current.left;
+				current.left = null;
+				break;
+			}
+			if (current.right != null && current.right.left == null && current.right.right == null) {
+				leafNodeToDelete = current.right;
+				current.right = null;
+				break;
+			}
+			if (current.left != null)
+				q.add(current.left);
+			if (current.right != null)
+				q.add(current.right);
 		}
-			toReplace.data = leafNodeToDelete.data;
-			leafNodeToDelete = null;
+		toReplace.data = leafNodeToDelete.data;
+		leafNodeToDelete = null;
 	}
 
 	public TreeNode buildTree(int node[]) {
@@ -210,47 +216,47 @@ public class BinaryTree {
 
 	// level order traversal
 	public void levelTrav() {
-		if (root == null) {
+		if (root == null) {  // null check
 			return;
 		}
-		Queue<TreeNode> que = new LinkedList<>();
-		que.offer(root);
-		while (!que.isEmpty()) {
-			TreeNode temp = que.poll();
-			System.out.print(temp.data + " ");
-			if (temp.left != null) {
-				que.offer(temp.left);
+		Queue<TreeNode> que = new LinkedList<>(); //create queue
+		que.offer(root);    // add the root
+		while (!que.isEmpty()) {  // if queue not empty
+			TreeNode temp = que.poll();   //remove the element from queue store in temp node
+			System.out.print(temp.data + " "); // print the node
+			if (temp.left != null) {   // check if temp has the left node 
+				que.offer(temp.left); // add in queue
 			}
-			if (temp.right != null) {
-				que.offer(temp.right);
+			if (temp.right != null) {   // check if temp has the right node 
+				que.offer(temp.right);  // add in queue
 			}
 		}
 	}
 
 	//
 	public void levelTrav1(TreeNode root) {
-		if (root == null) {
+		if (root == null) {   //null check
 			return;
 		}
-		Queue<TreeNode> que = new LinkedList<>();
-		que.offer(root);
-		que.add(null);
-		while (!que.isEmpty()) {
-			TreeNode temp = que.poll();
-			if (temp == null) {
-				System.out.println();
-				if (que.isEmpty()) {
+		Queue<TreeNode> que = new LinkedList<>(); // create queue
+		que.offer(root);    // add root in queue
+		que.add(null);   //add null to keep track of level
+		while (!que.isEmpty()) {   //if not empty
+			TreeNode temp = que.poll();  //remove the element from queue store in temp
+			if (temp == null) {    // if temp is null 
+				System.out.println();   //new line
+				if (que.isEmpty()) {  //if queue is empty breack
 					break;
 				} else {
-					que.add(null);
+					que.add(null);  // if not empty add null
 				}
 			} else {
-				System.out.print(temp.data + " ");
-				if (temp.left != null) {
-					que.offer(temp.left);
+				System.out.print(temp.data + " ");  // print the temp node
+				if (temp.left != null) {   // if temp node has left node 
+					que.offer(temp.left);   // add in queue
 				}
-				if (temp.right != null) {
-					que.offer(temp.right);
+				if (temp.right != null) {   // if temp right is not null
+					que.offer(temp.right);   //add in queue
 				}
 			}
 		}
@@ -258,16 +264,16 @@ public class BinaryTree {
 
 	// find max value in binary tree recursive
 	public int maxValue(TreeNode root) {
-		if (root == null) {
+		if (root == null) { // null check
 			return 0;
 		}
-		int result = root.data;
-		int left = maxValue(root.left);
-		int right = maxValue(root.right);
-		if (left > result) {
+		int result = root.data; // initially consider root as max
+		int left = maxValue(root.left); // recursive call to left subtree
+		int right = maxValue(root.right); // recursive call to right subtree
+		if (left > result) { // if left is greater than result set result as left
 			result = left;
 		}
-		if (right > result) {
+		if (right > result) { // if right is greater than result set result as right
 			result = right;
 		}
 		return result;
@@ -306,10 +312,6 @@ public class BinaryTree {
 		int leftHeight = heightOfTree(root.left);
 		int rightHeight = heightOfTree(root.right);
 		return Math.max(leftHeight, rightHeight) + 1;
-//		if(leftHeight > rightHeight) {
-//			return leftHeight +1;
-//		}else 
-//			 return rightHeight +1;
 	}
 
 	// diameter of the tree
@@ -325,7 +327,6 @@ public class BinaryTree {
 		int diam3 = heightOfTree(root.left) + heightOfTree(root.right) + 1;
 
 		return Math.max(diam3, Math.max(diam1, diam2));
-
 	}
 
 	// diameter of the tree in O(n)
@@ -362,14 +363,14 @@ public class BinaryTree {
 
 	// subTree of other tree
 	public boolean isSubTree(TreeNode root, TreeNode subRoot) {
-		if (subRoot == null) {
+		if (subRoot == null) { // null check
 			return true;
 		}
 		if (root == null) {
 			return false;
 		}
 		if (root.data == subRoot.data) {
-			if (isIdentical(root, subRoot)) {
+			if (isIdentical(root, subRoot)) { // call the method
 				return true;
 			}
 		}
@@ -377,13 +378,14 @@ public class BinaryTree {
 	}
 
 	private boolean isIdentical(TreeNode root, TreeNode subRoot) {
-		if (root == null && subRoot == null) {
+		if (root == null && subRoot == null) { // if both are null retrun true
 			return true;
 		}
-		if (root == null || subRoot == null) {
+		if (root == null || subRoot == null) { // one of the node is not null return false
 			return false;
 		}
-		if (root.data == subRoot.data) {
+		if (root.data == subRoot.data) { // if node values are same
+			// recursive call for left subtree and right subtree
 			return isIdentical(root.left, subRoot) && isIdentical(root.right, subRoot);
 		}
 		return false;
@@ -401,32 +403,32 @@ public class BinaryTree {
 	// pop the elements from the queue and calculate their sum.
 
 	public int sumAtKthLevel(TreeNode root, int k) {
-		if (root == null) {
+		if (root == null) { // null check
 			return 0;
 		}
-		Queue<TreeNode> q = new LinkedList<>();
-		q.add(root);
-		int level = 0;
+		Queue<TreeNode> q = new LinkedList<>(); // create a queue
+		q.add(root); // add the root in queue
+		int level = 0; // keep the track of level
 		int sum = 0;
 		int flag = 0;
 		while (!q.isEmpty()) {
 			int size = q.size();
-			while (size-- > 0) {
-				TreeNode current = q.peek();
-				q.remove();
-				if (level == k) {
+			while (size-- > 0) { // if size is greater than zero
+				TreeNode current = q.peek(); // peek the element
+				q.remove(); // remove from the queue
+				if (level == k) { // if level is equal to given parameter k
 					flag = 1;
-					sum += current.data;
-				} else {
-					if (current.left != null)
+					sum += current.data; // add into sum
+				} else { // if level not equal to given value of k
+					if (current.left != null) // if left element exist add in queue
 						q.add(current.left);
 
-					if (current.right != null)
+					if (current.right != null) // // if right element exist add in queue
 						q.add(current.right);
 				}
-				level++;
+				level++; // increase the level by 1
 				if (flag == 1) {
-					break;
+					break;// means we reach the given level no need to traverse further,return sum
 				}
 
 			}
@@ -447,24 +449,149 @@ public class BinaryTree {
 		// subtrees.
 		return sumAtKthLevel(root.left, k, level + 1) + sumAtKthLevel(root.right, k, level + 1);
 	}
+//thought before coding
+	// for each of the pairs of nodes 'p' and 'q'
+	// if p and q both are null, then it is valid pair
+	// if one of the node is null then it is invalid pair
+	// if node contain the same value, it is valid pair
+	// if does not contain the same value it is invalid pair
+	// we will implement the preorder recursive approach
+	// first compare the root then left and right subtrees
+//pseudo code
+	// implement the recursive preorder traversal
+	// parameters, p- current node in p tree , q- current node in q tree
+	// base case, if both the nodes are null return true
+	// one of the node is null return false - invalid
+	// in each of the recursive call if two node values are not the same return
+	// false
+	// recursively compare the left subtree p => p.left , q => q.left
+	// recursively compare the right subtree p => p.right , q => q.right
+	// return true only if both recursive calls returns true
+//time complexity - O(n) - n is the number of nodes, visit each node once
+//space complexity O(h) - h is the height of smaller tree
+	// O(h) - recursive call stack memory
 
-	public static void main(String[] args) {
-		BinaryTree tree = new BinaryTree(7);
+	private static boolean isSameTree(TreeNode p, TreeNode q) {
+		if (p == null && q == null)
+			return true;
+		if (p == null || q == null)
+			return false;
+
+		return p.data == q.data && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+
+	}
+
+//we will implement the recursive approach
+	// we will compare two nodes denoted as 'p' and 'q'
+	// p and q both are null valid pair return true
+	// if one of the node is null invalid return false
+	// if the values of the node are same then valid return true, else if not same
+	// then invalid
+	// after comparing the node we will compare subtrees
+	// compare p.left with q.right
+	// compare p.right with q.left
+//pseudo code
+	// if root is null return true
+	// recursively compare the subtree
+	// parameters
+	// p, node 1 - initially root.left
+	// q, node 2 - initially root.right
+	// base case
+	// both are null return true
+	// if one is null return false
+	// in each of the recursive call if node values are not same return false or
+	// else true
+	// recursively compare p.left with q.right
+	// recursively compare p.right with q.left
+	// Return true if both call return true
+//time complexity O(n) - n- is no of nodes ,visit each node once
+//space complexity O(h), h - is the height of tree, recursive call stack memory 
+
+	public boolean isSymmetric(TreeNode root) {
+		if (root == null)
+			return true;
+		return isSymmetric(root.left, root.right);
+	}
+
+	private boolean isSymmetric(TreeNode p, TreeNode q) {
+		if (p == null && q == null)
+			return true;
+		if (p == null || q == null)
+			return false;
+
+		return p.data == q.data && isSymmetric(p.left, q.right) && isSymmetric(p.right, q.left);
+	}
+
+	// symmetric tree iterative approach
+//pseudo code
+	// if root is equal to null return true
+	// create the queue to keep track of our nodes , add root twice to the queue
+	// while queue is not empty , poll two nodes p and q from the queue
+	// if both are null continue to next iteration
+	// if one of the node is null or node does not contain same values return false
+	// add p.left and q.right into queue
+	// add q.right and p.left into queue
+	// return true after evaluating all the pairs
+//time complexity
+	// O(n) = n is the number of nodes,visit each node once
+//space complexity O(n) , queue created
+
+	public boolean isSymmetrici(TreeNode root) {
+		if (root == null)
+			return true;
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.add(root);
+		queue.add(root);
 		
-		tree.insert(1);
-		tree.insert(2);
-		tree.insert(3);
-		tree.insert(4);
-		tree.insert(5);
-		tree.insert(6);
-		tree.delete(4);
+		while (!queue.isEmpty()) {
+			TreeNode p = queue.poll();
+			TreeNode q = queue.poll();
+
+			if (p == null && q == null)
+				continue;
+			if ((p == null || q == null)||(p.data != q.data))
+				return false;
+			queue.add(p.left);
+			queue.add(q.right);
+			queue.add(p.right);
+			queue.add(q.left);
+		}
+		return true;
+	}
+
+
+	
+	public static void main(String[] args) {
+//		BinaryTree tree = new BinaryTree();
+//		BinaryTree tree = new BinaryTree(7);
+//		
+//		tree.insert(1);
+//		tree.insert(2);
+//		tree.insert(3);
+//		tree.insert(4);
+//		tree.insert(5);
+//		tree.insert(6);
+//		tree.delete(4);
+//		
+//		BinaryTree p = new BinaryTree(1);
+//		p.insert(2);
+//		p.insert(3);
+//		p.preOrder(p.root);
+//		System.out.println();
+//		BinaryTree q = new BinaryTree(1);
+//		q.insert(2);
+//		q.insert(3);
+//		p.preOrder(p.root);
+//		System.out.println();
+//		System.out.println(isSameTree(p.root, q.root));
+
 		// int node[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
 		// int subNode [] = {2, 4, -1, -1, 5, -1, -1};
 		// TreeNode root = tree.buildTree(node);
 		// TreeNode subRoot = tree.buildTree(subNode);
 //		System.out.println(root.data);
-//		// tree.createBinaryTree();
-		tree.preOrder(tree.root);
+//		 tree.createBinaryTree();
+//		tree.preOrder(tree.root);
 //		System.out.println();
 //		tree.inOrder(root);
 //		System.out.println();
@@ -478,7 +605,8 @@ public class BinaryTree {
 //		System.out.println(tree.diameter1(root).diam);
 //		System.out.println(tree.diameter1(root).ht);
 		// System.out.println(tree.sumAtKthLevel(root, 3));
-		// System.out.println(tree.sumAtKthLevel(root, 1, 0));
+//		System.out.println();
+//		 System.out.println(tree.sumAtKthLevel(tree.root, 1, 0));
 		// System.out.println(tree.isSubTree(root,subRoot));
 		// System.out.println();
 		// tree.preOrderT();
@@ -493,6 +621,20 @@ public class BinaryTree {
 		// tree.levelTrav();
 		// System.out.println();
 		// System.out.println(tree.maxValue(tree.root));
+
+		BinaryTree tree = new BinaryTree(1);
+
+		tree.insert(2);
+		tree.insert(2);
+		tree.insert(3);
+		tree.insert(4);
+		tree.insert(4);
+		tree.insert(3);
+		tree.preOrder(tree.root);
+		System.out.println(tree.isSymmetric(tree.root));
+		System.out.println(tree.isSymmetrici(tree.root));
+		tree.levelTrav1(tree.root);
+
 	}
 
 }

@@ -19,7 +19,7 @@ public class UniqueSubStrings {
 		
 		//to be
 		uniqueSubSequences(str, idx+1, newString+curreentChar, set);
-		//to be
+		//not to be
 				uniqueSubSequences(str, idx+1, newString, set);
 	} 
 	public static void main(String[] args) {

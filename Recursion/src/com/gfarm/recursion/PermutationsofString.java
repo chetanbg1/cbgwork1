@@ -8,9 +8,12 @@ public class PermutationsofString {
 			return;
 		}
 		
-		for(int i=0;i<str.length();i++) {
-			char currentChar = str.charAt(i);
+		for(int i=0;i<str.length();i++) { //iterate the string
+			char currentChar = str.charAt(i); // pick the char at index 'i'
+			//create new string with sub string 0-i,last index i is exclusive in substring
+			// + rest of the string
 			String newStr = str.substring(0, i) + str.substring(i+1);
+			//recursive call 
 			printPermutations(newStr, permutation+currentChar);
 		}
 	}

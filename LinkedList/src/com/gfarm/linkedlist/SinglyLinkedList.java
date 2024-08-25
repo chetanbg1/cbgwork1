@@ -263,6 +263,8 @@ public class SinglyLinkedList {
 	}
 
 	// insert in sorted linked list
+	//time complexity -O(n) n- is no of nodes, visit each node once
+	//space complexity - O(1), modify input list 
 	public ListNode insertInSorted(int data) {
 		ListNode newNode = new ListNode(data);
 

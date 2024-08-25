@@ -25,7 +25,7 @@ public class FirstandLastOccurance {
 	public static void main(String[] args) {
 		
 		String str ="abaacdaeah";
-		findOccurence(str, 0, 'b');
+		findOccurence(str, 0, 'a');
 	}
 
 }

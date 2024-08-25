@@ -1,7 +1,7 @@
 package com.gfarm.recursion;
 
 public class Factorial {
-	// n! = n*(n-1)*(n-1)...*1
+	// n! = n*(n-1)*(n-2)...*1
 	
 	public static int factorial(int n) {
 		if(n==1 || n==0) {
