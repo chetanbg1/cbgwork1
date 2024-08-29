@@ -44,7 +44,7 @@ public class TwoSum {
 		}
 		throw new IllegalAccessException("nai mila");
 	}
-	//O(n) - eliminates the nested for lop
+	//O(n) - eliminates the nested for loop
 	private static int[] twoSumHashMap(int[] arr, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
 		for (int i = 0; i < arr.length; i++) {  //map the arr into map

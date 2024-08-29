@@ -1,6 +1,8 @@
 package com.gfarm.binarytree;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -329,6 +331,39 @@ public class BinaryTree {
 		return Math.max(diam3, Math.max(diam1, diam2));
 	}
 
+	
+	public int diameterIterrative(TreeNode root) {
+		
+		Map<TreeNode, Integer> map = new HashMap<>();
+		Stack<TreeNode> stack = new Stack<>();
+		int diameter = 0;
+		
+		if(root !=null) {
+			stack.push(root);
+		}
+		while(!stack.isEmpty()) {
+			TreeNode node = stack.peek();
+			//fill up the stack to perform post-order traversal
+			if(node.left != null && !map.containsKey(node.left)) {
+				stack.push(node.left);
+			}else if(node.right != null && !map.containsKey(node.right)) {
+				stack.push(node.right);
+			}else {
+				//process the root, once left and right subtree have been processed
+				stack.pop();
+				int leftDepth = map.getOrDefault(node.left, 0);
+				int rightDepth = map.getOrDefault(node.right, 0);
+				
+				//put the max depth at a node in the map
+				map.put(node,1 + Math.max(leftDepth, rightDepth));
+				
+				//update the max diameter found so far
+				diameter = Math.max(diameter, leftDepth + rightDepth);
+			}
+		}
+		return diameter; 
+		
+	}
 	// diameter of the tree in O(n)
 	static class TreeInfo {
 		int ht; // height
@@ -559,8 +594,26 @@ public class BinaryTree {
 		return true;
 	}
 
+//balance binary tree
+	// given a binary tree determine is it balanced height tree 
+	//left and right subtree of every node is differ in height by no more than 1 
+//thought before coding
+	//we will implement the recursive approach
+	//we will find the height of left and right subtree
+	// then we will check that the difference should not be more than 1
+	
+	public boolean isBalanced(TreeNode root) {
+		if(root == null) return true;
+		
+		return (Math.abs(heightOfTree(root.left) - heightOfTree(root.right)) <= 1);
+	}
 
 	
+//min depth of tree
+	public int minDepth(TreeNode root) {
+		if(root == null) return 0;
+		return Math.min(heightOfTree(root.left), heightOfTree(root.right)) +1;
+	}
 	public static void main(String[] args) {
 //		BinaryTree tree = new BinaryTree();
 //		BinaryTree tree = new BinaryTree(7);
@@ -630,10 +683,14 @@ public class BinaryTree {
 		tree.insert(4);
 		tree.insert(4);
 		tree.insert(3);
-		tree.preOrder(tree.root);
-		System.out.println(tree.isSymmetric(tree.root));
-		System.out.println(tree.isSymmetrici(tree.root));
-		tree.levelTrav1(tree.root);
+		//tree.preOrder(tree.root);
+		System.out.println(tree.diameter(tree.root));
+		System.out.println(tree.diameterIterrative (tree.root));
+//		System.out.println(tree.isSymmetrici(tree.root));
+//		tree.levelTrav1(tree.root);
+//		
+//		System.out.println(tree.isBalanced(tree.root));
+//		System.out.println(tree.minDepth(tree.root));
 
 	}
 

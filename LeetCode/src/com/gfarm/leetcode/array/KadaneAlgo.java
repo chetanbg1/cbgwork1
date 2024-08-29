@@ -10,10 +10,21 @@ public class KadaneAlgo {
 				currentMax = arr[i]; // assign currentMax to next element
 			}
 			if(maxSofar < currentMax) { // check if max < than current 
-				maxSofar = currentMax; // if ture assign max = current
+				maxSofar = currentMax; // if true assign max = current
 			}
 		}
 		return maxSofar; 
+	}
+	
+	public static int maxsum(int [] arr) {
+		int maxsum = arr[0];
+		int currentsum = arr[0];
+		for (int i=0;i<arr.length;i++) {
+			
+			currentsum = Math.max(arr[i], currentsum + arr[i]);
+			maxsum = Math.max(maxsum, currentsum);
+		}
+		return maxsum;
 	}
 //time complexity O(n)- n - length of array
 //space complexity O(1)
@@ -33,6 +44,7 @@ public class KadaneAlgo {
 		int []arr = {4,3,-2,6,-12,7,-1,6};
 		System.out.println(maxSubArray(arr));
 		System.out.println(maxSubArray1(arr));
+		System.out.println(maxsum(arr));
 
 	}
 

@@ -1,5 +1,6 @@
 package com.gfarm.leetcode.array;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +31,6 @@ public class RemoveDuplicates {
 	
 	public static int removeDuplicates(int [] arr) {
 		int i = 0;
-		//int result [] = new int [i];
 		for(int j = 0; j< arr.length;j++) {
 			arr[i++] = arr[j];
 			while(j!=arr.length-1 && arr[j]==arr[j+1]) {
@@ -39,18 +39,18 @@ public class RemoveDuplicates {
 		}
 		return i;
 	}
+	
+	public static void removeDuplicate(int [] arr) {
+		//int n = removeDuplicates(arr);
+		//int n = removeDuplicates3(arr);
+		int n = removedup(arr);
+		for(int i =0; i<n;i++) {
+			System.out.print(arr[i]+" ");
+		}
+		System.out.println();
+	}
+	
 	public static int removeDuplicates1(int [] arr, int n) {
-//		Set<Integer> newArr = new HashSet<>();
-//		for(int i : arr) {
-//			newArr.add(i);
-//		}
-//		System.out.println(newArr.size());
-//		int j =0;
-//		for(int i : newArr) {
-//			arr[j++] = i;
-//		}
-//		return arr;
-		
 		 if (n <= 1)
 	            return n;
 
@@ -72,21 +72,62 @@ public class RemoveDuplicates {
 	        return uniqueElements.size();
 	    
 	}
+	
+	public static int removeDuplicates3(int [] arr) {
+		
+
+	        // Use a Set to store unique elements
+	        Set<Integer> uniqueElements = new HashSet<>();
+
+	        // Traverse the array and add elements to the Set
+	        for (int i = 0; i < arr.length; ++i) {
+	            uniqueElements.add(arr[i]);
+	        }
+
+	        int index = 0;
+	        // Iterate through unique elements and update the original array
+	        for (int element : uniqueElements) {
+	            arr[index++] = element;
+	        }
+
+	        // Return the count of unique elements
+	        return uniqueElements.size();
+	    
+	}
+	
+	public static int removedup(int []arr) {
+		Set<Integer> unielem = new HashSet<>();
+		
+		for(int i=0;i<arr.length;i++) {
+			unielem.add(arr[i]);
+		}
+		int idx =0;
+		for(int i : unielem) {
+			arr[idx++] = i;
+		}
+		return unielem.size();
+	}
+	
 	public static void main(String[] args) {
-		int arr[] = {1,1,2,3,4,4,5,5,5};
-//		 int n = arr.length;
-//
-//	        // Remove duplicates and get the count of unique elements
-//	        n = removeDuplicates1(arr, n);
-//
-//	        // Print the modified array containing unique elements
-//	        for (int i = 0; i < n; i++) {
-//	            System.out.print(arr[i] + " ");
-//	        }
-//		System.out.println();
-//		System.out.println("-------------");
+		int arr[] = {1,5,2,3,4,4,5,5,5};
+		
+		removeDuplicate(arr);
+		
+		
+		 int n = arr.length;
+
+	        // Remove duplicates and get the count of unique elements
+	        n = removeDuplicates1(arr, n);
+
+	        // Print the modified array containing unique elements
+	        for (int i = 0; i < n; i++) {
+	            System.out.print(arr[i] + " ");
+	        }
+		System.out.println();
+		System.out.println("-------------");
 		System.out.println(removeDuplicates(arr));
-		for (int i = 0; i < arr.length; i++) {
+		int m = removeDuplicates(arr);
+		for (int i = 0; i < m; i++) {
           System.out.print(arr[i] + " ");
         }
 	}
