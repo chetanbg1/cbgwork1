@@ -72,6 +72,9 @@ Data type
 java is not completly 100% object - oriented language due to premitive data types
 we use Wrapper classes for primitive data type
 
+Autoboxing - converts a primitive data type to its corresponding wrapper class
+Unboxing - converts the wrapper class into the primary data type
+
 -- pointers not allowed in java
 	they are unsafe
  	increase complexity
@@ -80,7 +83,15 @@ we use Wrapper classes for primitive data type
 Pass by value - we dont pass the original memory address, value is copied at another memory location and that is passed so original value can not be modified  --java is pass by value 
 Pass by reference - actually sending the memory object / pointer of the varible to a function , if someone modifies that varible in function we may lost the original variable 
 		    changing the real address of the variable 
-      
+
+
+public static void main(Strings[] args)
+public makes this methos accessible from anywhere
+static - we dont need to create object to call this method
+void - means does not return anything 
+main - name of the mathod - entry point method to jvm
+String[] args - array that hold command-line arguments passed to the program
+
 Non-primitive data type
 	//Array
 	//String
@@ -760,8 +771,13 @@ Exception Handling
 abnormal condition which can disrupt the normal flow of program, if not handled properly program can terminate abruptly 
 try - enclose the set of statements which can throw exception , heance required to be monitored. can not use try block alone, must be followed by catch or finally 
 Catch - when exception occurs block catches the exception and work accordingly to handle it or to throw it as required
-Finally - this block get executed always regardless of exception occurence , hence clean up is done 
+Finally - this block get executed always regardless of exception occurence , hence clean up is done.
+	  the finally block executes even if a retrun statement is used in the try catch block
+   	  ensuring cleanup reuns.
+try-catch-finally can affect performance slightly due to overhead of managing exceptions but is generally
+minimal unless exception arre thrown frerquently.
 
+we can handle multiple exceptions by seperating them with a pipe( | ) 
 Throwable  --> Exception -->checked exception / compile time   --> eg - sql exception , classnnotfound
 			 --> unchecked exception / runtime exception --> eg - nullpointer, number format , indexoutofbound 
     	   --> Error --> stack overflow 
@@ -784,7 +800,9 @@ Exception Propagation
 
 Final - keyword used to  apply restrictions on the class, method and variables
 	the final class can not be inherited, final method can not be override, final variable can not be changed
-finally - keyword used with try catch block to provide statement that will always get executed if some exception arises, used to close resources
+finally - keyword used with try catch block to provide statement that will always get executed if some exception arises, used to close resources.
+	finally block will not execute if the JVM exits via System.exit() during try catch execution
+ 	we can not write multiple try catch block in java, each try can only have one finally block 
 Finalize - used to perform clean up processing just before the object is garbage collected 
 
 OOPs
@@ -805,7 +823,8 @@ method overriding -->  runTime Polymorphism
   	Accessibility - overridiing method can increase the access of overridden method - if method is protected we can make it protected or public while overriding 
    	private, static , final method can not be overridden 
     	if super-class does not declare an exception then sub-class can only declare unchecked exception but not the checked exceptions
-     	
+
+Dynamic method dispatch is away java decides which method to use at runtime when method are overridden in subclass. it ensure the correct method is used based on the type of object
 
 Covarient return type means return type may vary during overriding 
 
@@ -827,6 +846,12 @@ Composition - strong association - one object can not exist without other object
 Encapsulation -->combining data and method / data hiding
 --
 //package -- > all related classes we put it in  same package
+		help in organizing code
+  		prevents the naming conflict
+    		support modularity by allowing developers to seperate the program
+      		makes easier to locate related classes
+      		
+    
 access modifiers
 //public  --> any one can access across all the classes and packages
 //default --> can access within the package
@@ -914,8 +939,13 @@ static --> common property of class accessible to all
 //properties , method, block , nested class
 //memory allocate only once
 we can not override private and static methods in java 
+this and super keyword cannot be used in static methods.
+static method belong to class not instances, and super refers to the superclass onject context which does not exist in static context
+
+static block can throw a exception but if it does the exception must be handled within the block itself or declared using throws clause in the class 
 
 finally block always execute in java except "System.exit()" called or system crashes 
+
 
 Garbage collection 
 --
@@ -1035,7 +1065,7 @@ Concurrent Collection
   		CopyOnWriteArrayList
     		CopyOnWriteArraySet
  	
-       
+we only use wrapper classes in collection framework as it can only hold objects and not the primitive type, wrapper class allows primitive values to be treated as objects, enabling then to stroe and manage    
  
 Lambda Expression
 --
@@ -1100,9 +1130,9 @@ interface StringLength{
 StringLength slambda = s -> s.length();
 System.out.println(slambda.getLength("hello world"));
 
-//function interface
-// interface having one abstract method
-// we use annotation @FunctionalInterface to mark interface as functional interface
+function interface
+ interface having one abstract method
+ we use annotation @FunctionalInterface to mark interface as functional interface
 
 List<Person> people = Arrays.asList(
             new Person(String"firstName", String "lastName" ,int age),  
