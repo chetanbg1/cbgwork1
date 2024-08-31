@@ -27,8 +27,8 @@ class FirstClass{
 //JVM java virtual machine
 	it is a platform
 	runtime environment in which java byteCode(.class files) can be executed 
- 	java's plateform independence mostly consist of JVM 
-  	JVM is aware of OS thats why JVM is plateform dependent 
+ 	java's platform independence mostly consist of JVM 
+  	JVM is aware of OS thats why JVM is platform dependent 
    	it provides environment based on operating system to run .class file 
  	.java --> compiler --> .class  --> 
   				 jvm --> classLoader --> 3 types of class loader
@@ -54,7 +54,7 @@ JIT just in time compiler
 	
 
 Variable -
-	varible value keeps changing if we change  ,reference to the address of memery where we store the data
+	varible value keeps changing if we change, reference to the address of memery where we store the data
 
 constants value do not change
 
@@ -86,7 +86,7 @@ Pass by reference - actually sending the memory object / pointer of the varible 
 
 
 public static void main(Strings[] args)
-public makes this methos accessible from anywhere
+public makes this method accessible from anywhere
 static - we dont need to create object to call this method
 void - means does not return anything 
 main - name of the mathod - entry point method to jvm
@@ -198,7 +198,7 @@ int n=4;
 int m=5;
 for(int i =1;i<=n;i++){
     for(j=1;j<=m;j++){
-        if(i==1 || j ==1 ||i==n || j==m){
+        if(i==1 || ||j ==1 i==n || j==m){
             System.out.printl("*");
         }else{
             System.out.print(" ");
@@ -428,6 +428,7 @@ for(int i=1;i<=n;i++){
     for(int j =i;j>=1;j--){
         System.out.print(j);
     }
+     //2nd half
     for(int j =2;j<=i;j++){
         System.out.print(j);
     }
@@ -481,14 +482,15 @@ Strings
 
 string pool requires string to be immutable otherwise shared reference can be changes from anywhere
 security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure and safe 
-security --> strings in java can be used to access data sources like files, database or objects found across the network also stores password and username -whichh can not be modified once created
+security --> strings in java can be used to access data sources like files, database or objects found across the network also stores password and username -which can not be modified once created
 
-Strign s1 = "abcd"; --> create a sting in string constant pool
+Strign s1 = "abcd"; --> create a string in string constant pool
 	string constant pool is memory space allocated in the heap memory to store the string literals / no duplicate strings 
  	it provide the facility to reuse the object 
 String s2 = new String("abcd); --> create object in heap + object in string constant pool  == two objects will be created 
 
 intern() --> this method id used to put the string in string constant pool
+
 //String.class
 //length();
 //charAt(index);
@@ -497,9 +499,8 @@ intern() --> this method id used to put the string in string constant pool
 //      s1  == s2  : 0          eg = hello == hello
 //      s1  < s2  : -ve value   eg = hellow < wello
 //subString(begining index , ending index(not included));
-//parseing
+//parsing
 
-//Strings are immutable - can not be modified
 //data stored in java in two parts  stack(reference) heap(actual data)
 //str = h  , h+e;
 //str =he;   str will point to "he", "h" will be deleted
@@ -537,7 +538,7 @@ operstors
 --
 //Bianry ==  +,-,*,/,%
 //Unary  ==  ++, --
-//relational operator  == ==, !=, >, < , >=, <= 
+//relational operator  ->  ==, !=, >, < , >=, <= 
 //logical operator  == &&(logical and),||(logical or), !(logical not)
 //Bitwise Operators --> &(binary and) == 0101 & 0110 = 0100, 
 //                      |(binary or) == 0101 & 0110 = 0111,
@@ -566,7 +567,7 @@ if((bitMask & number)==0){
 //set
 //Q - set the 2nd bit (position=1) of a number n(n=0101)
 //Bit mask : 1<< 1 (postion) = 0001  << 1 = 0010
-// operation OR = n & bit mask = 0101 | 0010 = 0111
+// operation OR = n | bit mask = 0101 | 0010 = 0111
 
 int n=5;
 int position =1;
@@ -615,7 +616,7 @@ Serialization and Deserialization
 	Serialization -
 	is conversion of java objects into a stream (sequence) of bytes, which we can then store to a database and transfer over the network
  	class that are eligible for serialization need to implement a special marker interface Serializable 
-  	byte stream is platform independent. this means we can convert it into aobjet and run on any envirnment 
+  	byte stream is platform independent. this means we can convert it into an object and run on any envirnment 
    	conditions to be serialize -
     		implement serializable interface
       		all of the fields in class must be serializable, if not, it must be mark as transient or static 
@@ -717,7 +718,7 @@ public static void selectionSort(int [] arr) {
 
 //insertion sort
 //divide the array in two parts sorted and unsorted
-//pick the element from unsorted part and pu it in sorted part at correct sorted position
+//pick the element from unsorted part and put it in sorted part at correct sorted position
 //time complexity O(n^2)
 public static void insertionSort(int [] arr) {
     int n = arr.length;
@@ -773,12 +774,13 @@ try - enclose the set of statements which can throw exception , heance required 
 Catch - when exception occurs block catches the exception and work accordingly to handle it or to throw it as required
 Finally - this block get executed always regardless of exception occurence , hence clean up is done.
 	  the finally block executes even if a retrun statement is used in the try catch block
-   	  ensuring cleanup reuns.
+   	  ensuring cleanup runs.
 try-catch-finally can affect performance slightly due to overhead of managing exceptions but is generally
-minimal unless exception arre thrown frerquently.
+minimal unless exception are thrown frerquently.
 
 we can handle multiple exceptions by seperating them with a pipe( | ) 
-Throwable  --> Exception -->checked exception / compile time   --> eg - sql exception , classnnotfound
+
+Throwable  --> Exception -->checked exception / compile time   --> eg - sql exception , classnotfound
 			 --> unchecked exception / runtime exception --> eg - nullpointer, number format , indexoutofbound 
     	   --> Error --> stack overflow 
 			 out of memory 
@@ -802,7 +804,7 @@ Final - keyword used to  apply restrictions on the class, method and variables
 	the final class can not be inherited, final method can not be override, final variable can not be changed
 finally - keyword used with try catch block to provide statement that will always get executed if some exception arises, used to close resources.
 	finally block will not execute if the JVM exits via System.exit() during try catch execution
- 	we can not write multiple try catch block in java, each try can only have one finally block 
+ 	we can not write multiple try finally block in java, each try can only have one finally block 
 Finalize - used to perform clean up processing just before the object is garbage collected 
 
 OOPs
@@ -940,7 +942,7 @@ static --> common property of class accessible to all
 //memory allocate only once
 we can not override private and static methods in java 
 this and super keyword cannot be used in static methods.
-static method belong to class not instances, and super refers to the superclass onject context which does not exist in static context
+static method belong to class not instances, and super refers to the superclass object context which does not exist in static context
 
 static block can throw a exception but if it does the exception must be handled within the block itself or declared using throws clause in the class 
 
@@ -1010,7 +1012,7 @@ java.util.Collection is root of collection framework except Map interface
       			only one null is allowes
 	 		unorder set
 //              --> LinkedHashSet class
-			orereed verion of hashset - maintain doubly-linnked list accross all elements
+			orered verion of hashset - maintain doubly-linnked list accross all elements
    			preserves the insertion order
 //              --> SortedSet(interface) -->TreeSet class
 			all elements of sorted set implements the comparable interface
@@ -1048,20 +1050,20 @@ in case of collision to search correct value from linked list we use equals() me
 
 weakhashmap - 
 	WeakHashMap is an implementation of the Map interface. WeakHashMap is almost the same as HashMap except in the case of WeakHashMap if the object is specified as the key doesn’t contain any references- it is eligible for garbage 	collection even though it is associated with WeakHashMap. i.e Garbage Collector dominates over WeakHashMap.
-fail fast - iterator throws ConcurrentModificationException when one thread is iterating over a collection and other thread structuralyy modify collection either by adding, removing or modifiing the object on underlying collection
+fail fast - iterator throws ConcurrentModificationException when one thread is iterating over a collection and other thread structuraly modify collection either by adding, removing or modifiing the object on underlying collection
 	    immediaately throw exception 
-fail safe - does not throw the exception if collection is modified while one thread is iterating over it because they word on clone of collection instead of original collection 
+fail safe - does not throw the exception if collection is modified while one thread is iterating over it because they work on clone of collection instead of original collection 
 Blocking queue - thread safe queue to put or take elements 
 		 multiple threads can work simultaniously 
    		 if a thread tries to take elemet form queue and there is none left, the thread can be block untile there is an element to take 
 
 Concurrent Collection
 	why - traditional collection are not thread safe, only few calsses like Vector, HashTable are threadsafe
- 	      collections provide some methods like synchronizedList, synchronizedMap, synchronizedSet those provide thread safty but the problrm is they capture lock on complete collection even for reading that decrease performance
+ 	      collections provide some methods like synchronizedList, synchronizedMap, synchronizedSet those provide thread safty but the problem is they capture lock on complete collection even for reading that decrease performance
 	      if one thread iterates and other tries to  modify structureal changes then concurrentModificationException is thrown 
 	so the concurrent cillections claaes do not throw this exception 
-		ConcurrentHashMap -> in ConcurrentHashMap lock is acquired on bucket level so at a time multiple thread can capture locak on diff diff buckets  -> concurrencyLevel -> it create 16 buckets on collection so 16 threads can works on collection 
-  			simultaneously 
+		ConcurrentHashMap -> in ConcurrentHashMap lock is acquired on bucket level so at a time multiple thread can capture lock on diff diff buckets  -> concurrencyLevel -> it create 16 buckets on collection so 16 threads can works on collection 
+  		simultaneously 
   		CopyOnWriteArrayList
     		CopyOnWriteArraySet
  	
@@ -1084,18 +1086,18 @@ greetingFunction = public void perform(){  // assigning method to varible
     System.out.println("hello word");
 }
 greetingFunction = void perform(){ //removed public(access modifier) as function is not part of class 
-    System.out.println("hello word");
+    System.out.println("hello world");
 }
 greetingFunction = void (){ //no need of name as it will be refered by the variable name  = greetingFunction
-    System.out.println("hello word");
+    System.out.println("hello world");
 }
 greetingFunction =  (){ //no need of return type java compiler will figure out by looking at the code
-    System.out.println("hello word");
+    System.out.println("hello world");
 }
 greetingFunction = () -> { // add arrow -> /syntax of lambda expresion
-    System.out.println("hello word");
+    System.out.println("hello world");
 }
-greetingFunction =()-> System.out.println("hello word");//no need of parenthesis {} if one line of code /inline function
+greetingFunction =()-> System.out.println("hello world");//no need of parenthesis {} if one line of code /inline function
 
 doubleNUmberFucntion = (int a) -> return 2*a; 
 doubleNUmberFucntion = (int a) ->  2*a; // we can also remove return
@@ -1154,7 +1156,7 @@ printConditionally (people , p -> true,  p ->System.out.println(p) );
 //print conditionally
 public void printConditionally(List<Person> people , Predicate<Person> condition,Consumer<Person> consumer){
     for(Person p : people){
-        if(condition.tets(p)) // condition which return boolean
+        if(condition.test(p)) // condition which return boolean
         consumer.accept(p);
     }
 }
@@ -1210,7 +1212,7 @@ public class Stream {
 		List<Integer> filteredList = list.stream().filter(i -> i % 2 == 0).toList(); / collect(Collectors.asList());
             System.out.println(filteredList);
         //people list is above in lambda
-        List<Person> FilerPeople = people.strem().filter(p -> p.getLastname().startWith("C"))
+        List<Person> FilerPeople = people.stream().filter(p -> p.getLastname().startWith("C"))
                                                  .forEach(p -> System.out.println(p.getFirstName()));
 		
 
@@ -1437,7 +1439,7 @@ Mutual Exclusive
 	Cooperation (Inter-thread communication in Java)
 
 //Main thread
-//when a stand alone apllication us run. a user thread is automatically created to execute the main() method of 
+//when a stand alone application runs. a user thread is automatically created to execute the main() method of 
 // the application-- called main thread
 //program ends when main() thread finishes executing   --> Thread.currentThread().getName();
 //all other threads are child threads
@@ -1454,6 +1456,7 @@ java.lang.Runnable interface
 
 t.start() a new thread will be  created which is responsible for the execution of run() method 
 t.run() no new thread will be created it will be executed same as normal method 
+
 //Synchronisation
 //thread share the same memory space i.e they can share same resources/objects
 //however, there are critical situations where it is desirable that only one thread at a time has access to shared resources
@@ -1492,7 +1495,7 @@ public synchronized int pop(){
 }
 
 //while the thread is inside a synchronized method of an object, 
-//all other thread wish to execute the same synchronized methos have to wait
+//all other thread wish to execute the same synchronized method have to wait
 //thread must have the object lock
 
 //Volatile keyword
@@ -1849,7 +1852,7 @@ public class OptionalDemo {
 
 
 		Array 															ArrayList
-	static insize 														dynamic in size
+	static in size 														dynamic in size
  	int arr[] = new int[10];												ArrayList<Integer> arrList = new ArrayList<>();
   	fixed length dataStucture												variable length Collection class
    	can store both primitive type and objects 										can not store primitive type, only stores objects
@@ -1860,7 +1863,7 @@ public class OptionalDemo {
   	.length - variable 													.size() - method
    	can be multi-dimensional 												always single-dimentional 
     	elements stored in adjecent memory 											objects are incapable of being contained in contiguous locations
-     	ger=nerics are not compatible 												allows the use of generics 
+     	generics are not compatible 												allows the use of generics 
 
 
 		ArrayList 														Vector
@@ -1924,7 +1927,7 @@ if synchronized map is there why concurrent hash map was introduce -
 	 Java HashMap is a non-synchronized collection class. If we need to perform thread-safe operations on it then we must need to synchronize it explicitly. The synchronizedMap() method of java.util.Collections class is used to 	synchronize it. It returns a synchronized (thread-safe) map backed by the specified map. 
   
 	The ConcurrentHashMap and SynchronizedHashMap both are the Collection classes which are thread-safe and can be used in multithreaded and concurrent java application. But there are few differences that exists between them.
- 	concurrent hash map came in picture due to performance issue in synchronize hash map it works on principle of locak stripping so any number of threads can read and write where as in synchronized has map others thread has to 	wait for executing treads opertion to end 
+ 	concurrent hash map came in picture due to performance issue in synchronize hash map it works on principle of lock stripping so any number of threads can read and write where as in synchronized has map others thread has to 	wait for executing treads opertion to end 
 
 	  ConcurrentHashMap is thread-safe therefore multiple threads can operate on a single object without any problem. In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level. By 		default, it allows 16 thread to read and write from the Map without any synchronization. In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updating in the object, the thread must lock 		the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence, at a time16 update operations can be performed by threads.
 
@@ -1947,8 +1950,8 @@ PermGen Memory:
 MetaSpace	
 	Due to the above problems, PermGen has been completely removed in Java 8. In the place of PermGen, a new feature called Meta Space has been introduced. MetaSpace grows automatically by default. Here, the garbage collection is 	automatically triggered when the class metadata usage reaches its maximum metaspace size. 
 
-How subString work in java or how substring creates memory liek in java
-	String is hava is sequence of charactors, represented by array of charactors 
+How subString work in java or how substring creates memory lick in java
+	String is a sequence of charactors, represented by array of charactors 
  	char value [] = array of charactors
   	int count - total charactors
   	int offset - starting point, that is index =0
@@ -1986,10 +1989,10 @@ what is object Lock?
 	in multithreaded environment two or more threads can access the shared resources simultaneously which can lead to inconsistent behaviour of the system 
  	java uses the concept of lock to restrict concurrent access of shared resources 
 
-   objetc level lock -can be used when you want non-static method or non static block of the code should be accessed by only one thread
+   object level lock -can be used when you want non-static method or non static block of the code should be accessed by only one thread
    class level locaks - used when we want to prevent multiple thread to enter the synchronized block in any of all avalible instance on runtime 
 
-object reference be cast to an nterface reference
+object reference be cast to an interface reference
 	Animal a = new Dog();
 
   	if we implement an interface and provide body to its methids from class,
@@ -2555,7 +2558,7 @@ support join operations
 ##
 MongoDB
 --
-is NoSQL (not only query) database that stores large volumes of data inthe form of documents .this offers the developers teh flexibility to work with evolving data models.
+is NoSQL (not only query) database that stores large volumes of data in the form of documents .this offers the developers the flexibility to work with evolving data models.
 alternative NOSQL DBs - Cassandra, Amazon DynamoDB, redis, Apache Hbase , neo4j
 
 the schema of a database describes the structure of the data to be stored , schema is defined by tables, fields, and relation between them 
