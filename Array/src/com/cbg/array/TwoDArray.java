@@ -12,7 +12,7 @@ public class TwoDArray {
 		System.out.println("enter the number of cols");
 		int cols = sc.nextInt();
 		
-		int [][] numbers = new int [rows][cols];
+		int [][] numbers = new int [rows][cols];//2d array declaration 
 		
 		System.out.println("enter the elements");
 		//input

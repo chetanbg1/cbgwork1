@@ -17,6 +17,7 @@ public class InterSectionOfArrays {
 				count ++;
 			}
 		}
+		System.out.println();
 		return count;
 		
 	}

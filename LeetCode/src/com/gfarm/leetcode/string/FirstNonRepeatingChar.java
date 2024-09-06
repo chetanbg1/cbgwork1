@@ -6,8 +6,8 @@ import java.util.Map;
 public class FirstNonRepeatingChar {
 	
 	public static int firstNonRepeatingChar(String str) {
-		Map<Character, Integer> charFrequencyMap = new HashMap<>();
-		char[] chars =str.toCharArray();
+		Map<Character, Integer> charFrequencyMap = new HashMap<>();//create a map to check frequency
+		char[] chars =str.toCharArray(); //convert string into char array
 		for(char ch: chars) {
 			charFrequencyMap.put(ch, charFrequencyMap.getOrDefault(ch, 0)+1);
 		}

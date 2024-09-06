@@ -10,6 +10,13 @@ public class PalindromString {
 			System.out.println("string is not palindrom");
 	}
 
+	//use two pinter approach 
+	//convert the string into character array
+	//start i from 0 , j from last index of array
+	//while i is less than j
+	//check whether the element at i is equal to element at j
+	// increment i , i++ / decrement j, j--
+	// if not retrun false else true
 	private static boolean isplaindrom(String word) {
 		char [] arr = word.toCharArray();
 		

@@ -11,26 +11,33 @@ public class SecondMax {
 		secondMaxDuplicate(arr);
 
 	}
-
+	
+	// take two pointers as max and secondmax both starts at index 0
+	//traverse through the array
+	// if index at i is greater than max 
+	// assign max to second max 
+	// and assign arr[i] to max 
+	// else if max is not equal (or less than arr[i]) but arr[i] is greater than secondmax
+	// assign arr[i] to secondmax
 	private static int secondMax(int[] arr) {
-//		int max = arr[0];
-//		int secondmax = arr[0];
-//		
-//		for(int i=0;i<arr.length;i++) {
-//			if(arr[i]>max) {
-//				secondmax =max;
-//				arr[i]=max;
-//			}else if(arr[i]> secondmax && arr[i]!=max) {
-//				secondmax=arr[i];
-//			}
-//		}
-//		return secondmax;
-//	}
-		//  array with no duplicates
-		Arrays.sort(arr); // array with no duplicates
-		 int result = arr[arr.length-2];
-		 return result;	
+		int max = arr[0];
+		int secondmax = arr[0];
+		
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]>max) {
+				secondmax =max;
+				arr[i]=max;
+			}else if(arr[i]> secondmax && arr[i]!=max) {
+				secondmax=arr[i];
+			}
+		}
+		return secondmax;
 	}
+		//  array with no duplicates
+//		Arrays.sort(arr); // array with no duplicates
+//		 int result = arr[arr.length-2]; //second last element will be second max
+//		 return result;	
+//	}
 	
 	public static void secondMaxDuplicate(int [] arr) {
 		Arrays.sort(arr);

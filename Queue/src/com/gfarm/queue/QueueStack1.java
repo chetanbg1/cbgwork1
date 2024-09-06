@@ -4,20 +4,20 @@ import java.util.Stack;
 
 public class QueueStack1 {
 
-	static Stack<Integer> s1 = new Stack<>();
-	static Stack<Integer> s2 = new Stack<>();
+	static Stack<Integer> s1 = new Stack<>();  //create a stack s1 and s2
+	static Stack<Integer> s2 = new Stack<>();  
 
 	public boolean isEmpty() {
-		return s1.isEmpty() && s2.isEmpty();
+		return s1.isEmpty() && s2.isEmpty(); //check if empty
 
 	}
 
-	public void add(int data) {
-		while (!s1.isEmpty()) {
-			s2.push(s1.pop());
+	public void add(int data) {  
+		while (!s1.isEmpty()) { //empty the s1
+			s2.push(s1.pop()); //push in s2
 		}
-		s1.push(data);
-		while (!s2.isEmpty()) {
+		s1.push(data);  // add new data
+		while (!s2.isEmpty()) {  //again put all data back in s1 from s2
 			s1.push(s2.pop());
 		}
 	}

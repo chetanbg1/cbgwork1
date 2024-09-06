@@ -3,7 +3,7 @@ package com.gfarm.leetcode.array;
 // ith day
 //you want to maximize the profit by choosing a single day to buy one stock and choosing 
 //different day in future to sell that stock
-//return the maximim profit you can achieve from this transaction, if you can not achieve profit 
+//return the maximum profit you can achieve from this transaction, if you can not achieve profit 
 //return zero
 public class BuyAndSellStock {
 
@@ -30,14 +30,14 @@ public class BuyAndSellStock {
 	public static int maxProfit(int [] prices) {
 		if(prices.length ==0) return 0;
 		
-		int minPrice = prices[0];
-		int maxProfit = 0;
+		int minPrice = prices[0]; //min at index 0
+		int maxProfit = 0;   //initially zero
 		
-		for(int i=0; i< prices.length;i++) {
-		maxProfit = Math.max(maxProfit, prices[i]-minPrice);
-		minPrice = Math.min(minPrice, prices[i]);
+		for(int i=0; i< prices.length;i++) { //traverse 
+		maxProfit = Math.max(maxProfit, prices[i]-minPrice); // take max form max and price at index i - minprice 
+		minPrice = Math.min(minPrice, prices[i]); // update min price,take min if index i values is less than minprice
 		}
-		return maxProfit;
+		return maxProfit; // return max 
 	}
 
 	public static void main(String[] args) {

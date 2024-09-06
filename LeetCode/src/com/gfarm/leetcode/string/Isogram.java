@@ -8,12 +8,12 @@ public class Isogram {
 	// every char in string is non repeating
 	static boolean isIsogram(String s) {
 		boolean isogram = true;
-		char[] ch = s.toCharArray();
-		Set<Character> set = new HashSet<>();
-		for (Character c : ch) {
-			if (set.contains(c)) {
-				isogram = false;
-			} else {
+		char[] ch = s.toCharArray(); //convert the string in char array
+		Set<Character> set = new HashSet<>();  // create set to check duplicate char 
+		for (Character c : ch) {  //traverse through the character array
+			if (set.contains(c)) {   //check if set contains that char
+				isogram = false;     //if contains return false
+			} else {			//if not add the character
 				set.add(c);
 			}
 		}

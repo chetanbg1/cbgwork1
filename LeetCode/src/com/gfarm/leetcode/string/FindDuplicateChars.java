@@ -17,10 +17,10 @@ public class FindDuplicateChars {
 
 	// using for loop O(n^2)
 	private static Set<Character> findDuplicatesUsingFor(String string) {
-		Set<Character> duplicate = new LinkedHashSet<>();
-		for (int i = 0; i < string.length(); i++) {
-			for (int j = i + 1; j < string.length(); j++) {
-				if (string.charAt(i) == string.charAt(j)) {
+		Set<Character> duplicate = new LinkedHashSet<>();  //create a set of characters to return result
+		for (int i = 0; i < string.length(); i++) {  //traverse through the string
+			for (int j = i + 1; j < string.length(); j++) {  // send for starts from i+1
+				if (string.charAt(i) == string.charAt(j)) {  //if i==j add in set
 					duplicate.add(string.charAt(i));
 				}
 			}

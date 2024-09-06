@@ -9,6 +9,12 @@ public class ReverseArray {
 	
 	}
 
+	//use two pointer approach
+	//index i will be starting index = 0
+	// index  j last index of array , arr.length-1;
+	//while i is less than j
+	// swap the i and j 
+	// increment i,i++ / decrement j, j--
 	private static void reverseArray(int[] arr) {
 		int i = 0;
 		int j= arr.length-1;

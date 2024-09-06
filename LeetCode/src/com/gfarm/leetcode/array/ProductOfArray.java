@@ -5,16 +5,16 @@ package com.gfarm.leetcode.array;
 public class ProductOfArray {
 	
 	public static int[] findProduct(int arr[]) {
-		int temp =1;
-		int []result = new int [arr.length];
-		for(int i =0 ;i<arr.length;i++) {
-			result[i]=temp;
-			temp = temp*arr[i];
+		int temp =1;  // create variable temp =1
+		int []result = new int [arr.length];  // create new array of same lenght
+		for(int i =0 ;i<arr.length;i++) { // traverse through the array
+			result[i]=temp;    // assign temp at current index of result array  
+			temp = temp*arr[i]; // multiply the temp with current index 
 		}
-		temp=1;
-		for(int i =arr.length-1 ;i>=0;i--) {
-			result[i]=result[i]*temp;
-			temp = temp*arr[i];
+		temp=1;  // reassign temp to 1 
+		for(int i =arr.length-1 ;i>=0;i--) {  //traverse array in reverse 
+			result[i]=result[i]*temp; // multiply the current index of result array with temp
+			temp = temp*arr[i];  // multiply current index with temp
 		}
 		return result;
 	}

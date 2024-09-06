@@ -47,7 +47,7 @@ public class PascalTriangle {
 			int num = 1;
 			for (int k = 0; k <= i; k++) {
 				System.out.print(num + " ");
-				num = num * (i - k) / (k + 1);
+				num = num * (i - k) / (k + 1); //num = num* (i-k)/(k+1)
 			}
 			System.out.println();
 		}

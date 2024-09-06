@@ -4,7 +4,7 @@ package com.gfarm.recursion;
 public class Maza {
 	
 	public static int countPaths(int i, int j, int n, int m) {
-		
+		//base conditions
 		if(i==n || j==m) {
 			return 0;
 		}

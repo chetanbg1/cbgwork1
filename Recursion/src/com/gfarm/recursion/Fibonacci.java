@@ -1,7 +1,7 @@
 package com.gfarm.recursion;
 
 public class Fibonacci {
-	// result = 1,2,3,5,8,13,21...
+	// result = 0,1,1,2,3,5,8,13,21...
 
 	public static int fibonacci(int N) {
 		int num1 = 0, num2 = 1;

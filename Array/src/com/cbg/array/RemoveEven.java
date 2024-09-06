@@ -10,7 +10,14 @@ public class RemoveEven {
 	    }
 
 	}
-
+	// we have to create new array of odd numbers by removing the even
+	// to find out the size of new array traverse through the array
+	// create variable oddcount 
+	//add check for odd number as element at index mod 2 not equal to zero, arr[i]%2 != 0
+	//increment the count, oddcount++
+	// now create the new array of size oddcount 
+	// add check for odd element , arr[i]%2 !=0
+	// add those elements in result array 
 	private static int[] removeEven(int[] arr) {
 		int n = arr.length;
 		int oddcount = 0;

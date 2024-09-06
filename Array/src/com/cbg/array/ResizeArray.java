@@ -20,7 +20,9 @@ public class ResizeArray {
 		printArray(result);
 	}
 
-
+	//to resize create new array  with given capacity 
+	// add all elements of existing array in new array
+	// return new array
 	private static int[] resize(int[] arr, int capacity) {
 		int [] temp = new int[capacity];
 		

@@ -10,19 +10,19 @@ import java.util.Arrays;
 
 public class ThreeSum {
 	public static void threeSum(int[]arr, int target) {
-		Arrays.sort(arr);
-		for(int i=0;i<arr.length-2;i++) {
-			int j=i+1;
-			int k=arr.length-1;
-			while(j<k) {
-				int sum =arr[i]+arr[j]+arr[k];
+		Arrays.sort(arr);  //sort the given array
+		for(int i=0;i<arr.length-2;i++) { // traverse the array till send last index
+			int j=i+1;  //  create variable j having plus 1 index of i 
+			int k=arr.length-1;  // create variable k at last index of array
+			while(j<k) {   //imp j is less than k 
+				int sum =arr[i]+arr[j]+arr[k];  
 				if(sum==target) {
 					System.out.println(arr[i]+" "+arr[j]+" "+arr[k]);
-					j++;
-					k--;
-				}else if(sum < target) {
-					j++;
-				}else {
+					j++;   //increment j;
+					k--;   // decrement k;
+				}else if(sum < target) {  // if sum less than target 
+					j++;    // increment j
+				}else {  // if sum is greater than target decrement k
 					k--;
 				}
 			}

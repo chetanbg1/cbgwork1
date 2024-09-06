@@ -3,7 +3,7 @@ package com.gfarm.leetcode.number;
 public class AddBinary {
 
 //thought before coding
-	//we need to bits from right to left
+	//we need two bits from right to left
 	//we can implement two pointer approach
 	//'i' will indicate our current location inside a
 	//'j' will indicate our current location inside b
@@ -36,19 +36,19 @@ public class AddBinary {
 	// calculate sum =b1 +b2 + carry
 	//if sum is equal to 3 or 2 then the carry will be 1 else set carry to 0
 	//if the sum is equal to 1 or 3 then append 1 to our result else append 0 to result
-	// if carry id greater than 0 append 1 to result
+	// if carry is greater than 0 append 1 to result
 	//reverse the result and return string representation
 //time complexity - O(n) length of the longer bit, process all the bits
 //space complexity - O(n) StringBuilder and result string O(2*n)
 	
 	public static String addBinary(String a, String b) {
-		int i = a.length()-1;
-		int j = b.length()-1;
-		int carry =0;
+		int i = a.length()-1; //start from last index
+		int j = b.length()-1;  //start from last index
+		int carry =0;   //initially carry is zero
 		
-		StringBuilder result = new StringBuilder();
+		StringBuilder result = new StringBuilder();  // create stringbuilder to store result
 		while(i >=0 || j >=0 ) {
-			int b1 = (i>=0) ? Character.getNumericValue(a.charAt(i--)) : 0;
+			int b1 = (i>=0) ? Character.getNumericValue(a.charAt(i--)) : 0; //
 			int b2 = (j>=0) ? Character.getNumericValue(b.charAt(j--)) : 0;
 			int sum = b1 + b2 + carry;
 			carry =(sum ==3 || sum == 2) ? 1 :0; 

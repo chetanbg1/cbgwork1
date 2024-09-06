@@ -12,7 +12,7 @@ public class StringRotation {
 	}
 
 	private static boolean checkrotation(String originalstring, String tobechecked) {
-		// add the original string twise create new string
+		// add the original string twice create new string
 		String concatinatedString = originalstring + originalstring;
 		// check in concatinatedString whether the string tobechecked is substring of it or not 
 		if(concatinatedString.contains(tobechecked)) {

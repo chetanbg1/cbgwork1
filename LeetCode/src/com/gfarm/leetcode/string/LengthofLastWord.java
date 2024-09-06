@@ -21,9 +21,9 @@ public class LengthofLastWord {
 	public static int lengthOfLastString(String s) {
 		int i = s.length()-1;
 		int lenght =0;
-		while(i>=1 && s.charAt(i) == ' ') {
-			i--;
-		}
+//		while(i>=1 && s.charAt(i) == ' ') {
+//			i--;
+//		}
 		while(i>=1 && s.charAt(i) != ' ') {
 			lenght++;
 			i--;

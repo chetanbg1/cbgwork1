@@ -16,8 +16,8 @@ public class LongestCommonPrefix {
 	// initially we have the longest common prefix length which is equal to length
 	// of 1st word
 	// we will compare 1st word with every other word
-	// but, we will compare up to the index up ot length
-	// because there is no point for checking for charactors after this index
+	// but, we will compare up to the index up of length
+	// because there is no point for checking for characters after this index
 	// ["flower","flow","flight"]
 	// initially we have a length of '6'
 	// we will only compare the indices from 0 to 5
@@ -55,25 +55,25 @@ public class LongestCommonPrefix {
 	// O(k)- resulting substring
 
 	private static String longestCommonPrefix(String[] strs) {
-		if (strs.length == 0)
+		if (strs.length == 0)  //null check
 			return "";
 
-		int length = strs[0].length();
+		int length = strs[0].length(); //create variable length = length of first word of array strs
 
 		for (int i = 0; i < strs.length; i++) {
-			length = Math.min(length, strs[i].length());
+			length = Math.min(length, strs[i].length());//take the min lenght between current index string and length
 			
-			for(int j =0; j < length;j++) {
-				char c = strs[0].charAt(j);
-				char d = strs[i].charAt(j);
+			for(int j =0; j < length;j++) { //traverse up to lenght
+				char c = strs[0].charAt(j); //check char of 1st string 
+				char d = strs[i].charAt(j);  // cheack char of string at index i
 				
-				if(c!=d) {
-					length = j;
+				if(c!=d) { // if not same 
+					length = j;   //update length to j
 					break;
 				}
 			}
 		}
-		return strs[0].substring(0, length);
+		return strs[0].substring(0, length);  //return string up to length
 
 	}
 

@@ -20,7 +20,7 @@ public class UniqueSubStrings {
 		//to be
 		uniqueSubSequences(str, idx+1, newString+curreentChar, set);
 		//not to be
-				uniqueSubSequences(str, idx+1, newString, set);
+		uniqueSubSequences(str, idx+1, newString, set);
 	} 
 	public static void main(String[] args) {
 		String str = "aaa";

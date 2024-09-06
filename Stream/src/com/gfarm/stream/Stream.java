@@ -133,6 +133,7 @@ public class Stream {
 		List<Integer> twoandthree =ages.stream().sorted().skip(1).limit(2).toList();
 		System.out.println(twoandthree);
 		
+		
 		//names
 		List<String> nameslist = emp.stream().map(name -> name.getName()).toList();
 		System.out.println(nameslist);

@@ -8,6 +8,9 @@ public class RotateString {
 		System.out.println(rightRotate(originalString, 2));
 	}
 
+	// break the string from where we want to rotate
+	//create two separate sub strings
+	// add the substrings 
 	private static String leftRotate(String originalString, int rotations) {
 		
 //		String leftrotated = null;

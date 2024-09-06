@@ -210,15 +210,15 @@ public class DoublyLinkedList {
 		
 		// reverse linklist
 		public ListNode reverse() {
-			if (head == null) {
+			if (head == null) { //null check
 				return null;
 			}
-			ListNode current = head;
-			while (current != null) {
-				ListNode nextNode = current.next;
-				current.next = current.previous;
-				current.previous = nextNode;
-				current = nextNode;
+			ListNode current = head; //create current node assign head to it
+			while (current != null) {  // traverse
+				ListNode nextNode = current.next; // next node current ka next
+				current.next = current.previous; // current next = current previous
+				current.previous = nextNode;   // current previous = is current 
+				current = nextNode; 
 			}
 			current = head;
 			head =tail;

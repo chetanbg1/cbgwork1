@@ -46,19 +46,19 @@ public class CountAndSay {
 	}
 
 	private static String countAndSayHelper(String s) {
-		StringBuilder sb = new StringBuilder();
-		char prev = s.charAt(0);
-		int count = 1;
-		for (int i = 1; i < s.length(); i++) {
-			if (s.charAt(i) == prev) {
-				count++;
+		StringBuilder sb = new StringBuilder();  // create a string builder to store result
+		char prev = s.charAt(0);  // create variable prev store char at index 0 in it 
+		int count = 1; // create variable count = 1
+		for (int i = 1; i < s.length(); i++) { //traverse the string from 2nd index
+			if (s.charAt(i) == prev) {  //if element at current index is = prev
+				count++;   //increase the count
 			} else {
-				sb.append(count).append(prev);
-				prev = s.charAt(i);
-				count = 1;
+				sb.append(count).append(prev);  // else append count in result string sb also append the prev 
+				prev = s.charAt(i); // set prev to current index
+				count = 1;  // set count again to 1
 			}
 		}
-		sb.append(count).append(prev);
+		//sb.append(count).append(prev); 
 		return sb.toString();
 	}
 

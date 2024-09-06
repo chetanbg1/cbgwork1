@@ -3,11 +3,11 @@ package com.gfarm.linkedlist;
 public class SinglyLinkedList {
 	private ListNode head;
 
-	private static class ListNode {
+	private static class ListNode {  //inner class for node
 		private int data;
 		private ListNode next;
 
-		public ListNode(int data) {
+		public ListNode(int data) {  //innner class constructor
 			this.data = data;
 			this.next = null;
 		}
@@ -81,13 +81,13 @@ public class SinglyLinkedList {
 			node.next = head;
 			head = node;
 		} else {
-			ListNode previous = head;
-			int count = 1;
-			while (count < position - 1) {
-				previous = previous.next;
-				count++;
+			ListNode previous = head;  //create variable previous point to head
+			int count = 1;  // create variable counut =1
+			while (count < position - 1) { //check condition count < position -1
+				previous = previous.next; // keep going
+				count++; //increase count
 			}
-			ListNode current = previous.next;
+			ListNode current = previous.next; // previous next = listnode current 
 			node.next = current;
 			previous.next = node;
 		}
@@ -98,33 +98,33 @@ public class SinglyLinkedList {
 		if (head == null) {
 			return null;
 		} else {
-			ListNode temp = head;
-			head = head.next;
-			temp.next = null;
+			ListNode temp = head;  // create temp node put head in to it
+			head = head.next; // assign head to head.next
+			temp.next = null;  //point temp to null
 			return temp;
 		}
 	}
 
 	// remove last
 	public ListNode removeLast() {
-		if (head == null || head.next == null) {
+		if (head == null || head.next == null) { //if only one node 
 			return head;
 		} else {
-			ListNode current = head;
-			ListNode previous = null;
-			while (current.next != null) {
-				previous = current;
-				current = current.next;
+			ListNode current = head; // create current node assign head to it
+			ListNode previous = null;  // create node previous
+			while (current.next != null) {  // traverse till current.next == null
+				previous = current;   //keep assign current to previous 
+				current = current.next;  //and current to current next
 			}
-			previous.next = null;
-			return current;
+			previous.next = null; //point previous next to null
+			return current; //return current 
 		}
 	}
 
 	// remove from given position
 	public void deleteAtPosition(int position) {
-		if (position == 1) {
-			head = head.next;
+		if (position == 1) {  //if position =1mremove head
+			head = head.next;  //pint head to head.next
 		} else {
 
 			ListNode previous = head;
@@ -406,25 +406,25 @@ public class SinglyLinkedList {
 
 	// adding two linked list
 	public ListNode add(ListNode a, ListNode b) {
-		ListNode dummy = new ListNode(0);
-		ListNode tail = dummy;
-		int carry = 0;
-		while (a != null || b != null) {
-			int x = (a != null) ? a.data : 0;
-			int y = b != null ? b.data : 0;
-			int sum = carry + x + y;
-			carry = sum / 10;
-			tail.next = new ListNode(sum % 10);
-			tail = tail.next;
-			if (a != null)
+		ListNode dummy = new ListNode(0);  //create new list node
+		ListNode tail = dummy;  // create new node assign the node to it
+		int carry = 0;// create variable carry ==0
+		while (a != null || b != null) { // //null check
+			int x = (a != null) ? a.data : 0;//create variable x  add value at a or esel 0
+			int y = b != null ? b.data : 0; //create variable y add b node vaue or else 0
+			int sum = carry + x + y;  //create variable sum = add x+ y+ carry
+			carry = sum / 10; //carry 
+			tail.next = new ListNode(sum % 10); //create new node assign to tail next as sum%10
+			tail = tail.next;  // increment tail
+			if (a != null) 
 				a = a.next;
 			if (b != null)
 				b = b.next;
 		}
-		if (carry > 0) {
+		if (carry > 0) { // if carry is greater than 0 add in tail.next as new node 
 			tail.next = new ListNode(carry);
 		}
-		return dummy.next;
+		return dummy.next; // return dummy.next 
 	}
 
 	// isPalindrom
@@ -435,13 +435,13 @@ public class SinglyLinkedList {
 		if (head == null || head.next == null) {
 			return true;
 		}
-		ListNode middleNode = findMiddle(head);// tells 1st half end
-		ListNode secondHalfStart = reverse(middleNode.next);
+		ListNode middleNode = findMiddle(head);// find middle using slow and fast pointer
+		ListNode secondHalfStart = reverse(middleNode.next); //reverse the list from middle
 
 		ListNode firstHalfStart = head;
 
 		while (secondHalfStart != null) {
-			if (firstHalfStart.data != secondHalfStart.data) {
+			if (firstHalfStart.data != secondHalfStart.data) { //compare each node from start and middle
 				return false;	
 			}
 			firstHalfStart = firstHalfStart.next;

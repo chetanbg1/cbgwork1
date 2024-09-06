@@ -14,15 +14,15 @@ public class GenerateBinaryNumber {
 	}
 
 	private static String[] genrateBinaryNumbrers(int num) {
-		String [] result = new String[num];
-		Queue<String> q = new LinkedList<>();
-		q.offer("1");
-		for(int i=0;i< num;i++) {
-			result[i] = q.poll();
-			String n1 =result[i]+ "0";
-			String n2 =result[i]+ "1";
-			q.offer(n1);
-			q.offer(n2);
+		String [] result = new String[num]; // create a result array to store result
+		Queue<String> q = new LinkedList<>(); // create queue of strings
+		q.offer("1");  // add 1
+		for(int i=0;i< num;i++) {  //for loop till n 
+			result[i] = q.poll();  //insert the queue.poll in result
+			String n1 =result[i]+ "0"; //append the 0 in result generate new number
+			String n2 =result[i]+ "1"; //append the 1 in result generate new number
+			q.offer(n1);  // add in queue
+			q.offer(n2);   //add in queue
 		}
 		return result;
 	}
