@@ -1,5 +1,9 @@
 package com.gfarm.leetcode.number;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 //Q - "3322251" --> two3's + three 2's + one 5 + one 1 == 2 3+ 3 2+ 1 5+ 1 1 = "23321511"
 public class CountAndSay {
 
@@ -62,8 +66,25 @@ public class CountAndSay {
 		return sb.toString();
 	}
 
+	public static String compressString(String s) {
+		Map<Character, Integer> map = new LinkedHashMap<>();
+		
+		for(char c : s.toCharArray()) {
+			map.put(c, map.getOrDefault(c, 0) + 1); 
+			
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		for(Entry<Character, Integer> entry : map.entrySet()) {
+			sb.append(entry.getKey());
+			sb.append(entry.getValue());
+		}
+		return sb.toString();
+	}
 	public static void main(String[] args) {
-		System.out.println(countAndSay(3322251));
+		//System.out.println(countAndSay(3322251));
+		
+		System.out.println(compressString("aaabbcccd"));
 
 	}
 

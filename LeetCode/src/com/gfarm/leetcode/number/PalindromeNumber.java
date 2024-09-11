@@ -1,5 +1,7 @@
 package com.gfarm.leetcode.number;
 
+import java.util.stream.IntStream;
+
 public class PalindromeNumber {
 
 	public static void main(String[] args) {
@@ -53,5 +55,7 @@ public class PalindromeNumber {
 		}
 		return false;
 	}
+	
+	
 
 }

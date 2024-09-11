@@ -32,8 +32,8 @@ public class StackArrya {
 		if(isEmpty()) {
 			throw new EmptyStackException();
 		}
-		int item =  stack[top];
-		top--;
+		int item =  stack[top--];
+		//ltop--;
 		return item;
 	}
 	public int peek() {

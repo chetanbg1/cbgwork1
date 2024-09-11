@@ -100,7 +100,7 @@ public class RemoveDuplicates {
 	public static int removedup(int []arr) {
 		Set<Integer> unielem = new HashSet<>(); //create set as it does not contain duplicate elements
 		
-		for(int i=0;i<arr.length;i++) { // traver array
+		for(int i=0;i<arr.length;i++) { // traverse array
 			unielem.add(arr[i]);  // add element into set 
 		}
 		int idx =0;

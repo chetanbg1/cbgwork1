@@ -16,7 +16,7 @@ public class PalindromString {
 	//while i is less than j
 	//check whether the element at i is equal to element at j
 	// increment i , i++ / decrement j, j--
-	// if not retrun false else true
+	// if not return false else true
 	private static boolean isplaindrom(String word) {
 		char [] arr = word.toCharArray();
 		

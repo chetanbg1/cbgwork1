@@ -93,24 +93,75 @@ public class LinkedList {
 		}
 		return dummy.next;
 	}
+	
+	//given the head of two single linked lists, find the their intersection point
+	//brute force
+	//1- compare each element of 1st string with every other element of 2nd string,check where
+	// we get the same element return that
+	//2 - put the 1st list into hashset then check elements from 2nd list contained in hashset or not
+	//efficient solution
+	//calculate the length of strings
+	// subtract the lengths, get the heads at the same position as smaller list
+	// traverse both of the list, check where both intersects
+	//time complexity - O(n+m)
+	//space complexity - O(1)
+	public static Node intersection(Node headA, Node headB) {
+		int lengthA = getListLength(headA);
+		int lengthB = getListLength(headB);
+		
+		while(lengthA > lengthB) {
+			lengthA--;
+			headA = headA.next;
+		}
+		
+		while(lengthA < lengthB) {
+			lengthB--;
+			headB = headB.next;
+		}
+		//now both the heads are at same distance from intersection
+		//start moving both until they meet
+		while(headA.data != headB.data) {
+			headA = headA.next;
+			headB = headB.next;
+		}
+		return headA;
+	}
+	
+	private static int getListLength(Node head) {
+		int length =0;
+		Node current = head;
+		while(current.next!=null) {
+			length++;
+			current = current.next;
+		}
+		return length;
+	}
+
 	public static void main(String[] args) {
 
 		LinkedList l1 = new LinkedList();
 		l1.insertLast(1);
 		l1.insertLast(2);
-		l1.insertLast(4);
+		l1.insertLast(8);
+		l1.insertLast(5);
+		l1.insertLast(6);
+		l1.insertLast(7);
 		l1.print();
 		
 		LinkedList l2 = new LinkedList();
-		l2.insertLast(1);
 		l2.insertLast(3);
 		l2.insertLast(4);
+		l2.insertLast(5);
+		l2.insertLast(6);
+		l2.insertLast(7);
 		l2.print();
+//		
+//		LinkedList result = new LinkedList();
+//		//result.head = result.mergeTwoList(l1.head, l2.head);
+//		result.head = result.merge(l1.head, l2.head);
+//		result.print();
 		
-		LinkedList result = new LinkedList();
-		//result.head = result.mergeTwoList(l1.head, l2.head);
-		result.head = result.merge(l1.head, l2.head);
-		result.print();
+		System.out.println(intersection(l1.head, l2.head).data);
 	}
 
 }

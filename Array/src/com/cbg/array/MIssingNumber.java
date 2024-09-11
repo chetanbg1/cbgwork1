@@ -11,7 +11,7 @@ public class MIssingNumber {
 	}
 	
 	//if array starts from 1 and till n 
-	// the sum of n number are n*(n-1)/2
+	// the sum of n number are n*(n+1)/2
 	// calculate the sum 
 	//traverse the array 
 	// subtract the each element of array from sum 
