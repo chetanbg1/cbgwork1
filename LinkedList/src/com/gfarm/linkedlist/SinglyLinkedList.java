@@ -148,7 +148,7 @@ public class SinglyLinkedList {
 			}
 			current = current.next;
 		}
-		return null;
+		return current;
 	}
 
 	// reverse linklist iteration

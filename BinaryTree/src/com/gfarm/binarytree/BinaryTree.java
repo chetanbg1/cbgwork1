@@ -51,24 +51,24 @@ public class BinaryTree {
 
 	// delete
 	public void delete(int data) {
-		Queue<TreeNode> q = new LinkedList<>();
-		q.add(root);
-		TreeNode toReplace = null;
-		while (!q.isEmpty()) {
-			TreeNode current = q.remove();
-			if (current.data == data) {
-				toReplace = current;
+		Queue<TreeNode> q = new LinkedList<>(); //create a queue
+		q.add(root); //add root inqueue
+		TreeNode toReplace = null; // delete and replace 
+		while (!q.isEmpty()) { 
+			TreeNode current = q.remove(); //remove from queue store in current
+			if (current.data == data) { 
+				toReplace = current; //replace with null
 				break;
 			}
-			if (current.left != null) {
-				q.add(current.left);
+			if (current.left != null) { // check current left
+				q.add(current.left);  // add in queue
 			}
-			if (current.right != null) {
-				q.add(current.right);
+			if (current.right != null) { //check current right
+				q.add(current.right); // add in queue
 			}
 		}
-		q.clear();
-		q.add(root);
+		q.clear();     //clear the queue
+		q.add(root);   // add root
 		TreeNode leafNodeToDelete = null;
 		while (!q.isEmpty()) {
 			TreeNode current = q.remove();

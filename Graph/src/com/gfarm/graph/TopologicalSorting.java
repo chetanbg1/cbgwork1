@@ -5,7 +5,7 @@ import java.util.Stack;
 
 import com.gfarm.graph.Graph.Edge;
 
-public class KosaRajuAlgorithm {
+public class TopologicalSorting {
 	static class Edge {
 		int src;
 		int dest;
@@ -41,16 +41,36 @@ public class KosaRajuAlgorithm {
 		}
 	}
 
-	// topological sorting
-	private static void topSort(ArrayList<Edge>[] graph, int current, boolean[] visited, Stack<Integer> s) {
+	// topological sorting used for DAG
+	// directed Acyclic graph is a directed graph with no cycle
+	// it is a linear order of vertices such that every directed edge u-> v , the
+	// vertex u comes before v in oerder
+	// it shows the dependency of one action on other
+	// eg - buy laptop -> install OS -> install code editor -> install java -> write
+	// code
+	private static void topSortUtil(ArrayList<Edge>[] graph, int current, boolean[] visited, Stack<Integer> s) {
 		visited[current] = true;
 		for (int i = 0; i < graph[current].size(); i++) {
 			Edge e = graph[current].get(i);
 			if (!visited[e.dest]) {
-				topSort(graph, e.dest, visited, s);
+				topSortUtil(graph, e.dest, visited, s);
 			}
 		}
 		s.push(current);
+	}
+
+	public static void topSort(ArrayList<Edge>[] graph, int V) {
+		boolean vis[] = new boolean[V];
+		Stack<Integer> stack = new Stack<>();
+		for (int i = 0; i < V; i++) {
+			if (!vis[i]) {
+				topSortUtil(graph, i, vis, stack);
+			}
+		}
+		while (!stack.isEmpty()) {
+			System.out.println(stack.pop());
+
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -61,7 +81,7 @@ public class KosaRajuAlgorithm {
 
 		for (int i = 0; i < V; i++) {
 			if (!visited[i]) {
-				topSort(graph, i, visited, s);
+				topSortUtil(graph, V, visited, s);
 			}
 		}
 		// step 2 - clone graph to store transpose //reverse graph //O(V+N)
@@ -93,7 +113,8 @@ public class KosaRajuAlgorithm {
 		int V = 5;
 		ArrayList<Edge> graph[] = new ArrayList[V];
 		createGraph(graph);
-		kosarajuAlgo(graph, V);
+		topSort(graph, V);
+		// kosarajuAlgo(graph, V);
 
 	}
 

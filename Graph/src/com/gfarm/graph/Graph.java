@@ -22,23 +22,24 @@ public class Graph {
 		for (int i = 0; i < graph.length; i++) {
 			graph[i] = new ArrayList<Edge>();
 		}
-//		graph[0].add(new Edge(0, 2));
-//		graph[1].add(new Edge(1, 2));
-//		graph[1].add(new Edge(1, 3));
-//		graph[2].add(new Edge(2, 0));
-//		graph[2].add(new Edge(2, 1));
-//		graph[2].add(new Edge(2, 3));
-//		graph[3].add(new Edge(3, 1));
-//		graph[3].add(new Edge(3, 2));
+		graph[0].add(new Edge(0, 2));
+		graph[1].add(new Edge(1, 2));
+		graph[1].add(new Edge(1, 3));
+		graph[2].add(new Edge(2, 0));
+		graph[2].add(new Edge(2, 1));
+		graph[2].add(new Edge(2, 3));
+		graph[3].add(new Edge(3, 1));
+		graph[3].add(new Edge(3, 2));
 		
 		//cycle exit 
-		graph[0].add(new Edge(0, 2));
-		graph[1].add(new Edge(1, 0));
-		graph[2].add(new Edge(2, 3));
-		graph[3].add(new Edge(3, 0));
+//		graph[0].add(new Edge(0, 2));
+//		graph[1].add(new Edge(1, 0));
+//		graph[2].add(new Edge(2, 3));
+//		graph[3].add(new Edge(3, 0));
 	}
 
 	// BFS
+	//go to the immediate neighbors first 
 	public static void bfs(ArrayList<Edge> graph[], int V) {
 		Queue<Integer> que = new LinkedList<>();
 		boolean visted[] = new boolean[V];
@@ -56,7 +57,7 @@ public class Graph {
 		}
 	}
 
-	// un connected graph
+	// disconnected graph
 	private static void bfs(ArrayList<Edge>[] graph, int v, boolean[] visited, int start) {
 		Queue<Integer> que = new LinkedList<>();
 		que.add(start);
@@ -74,6 +75,7 @@ public class Graph {
 	}
 
 	// DFS
+	//keep going to the 1st neighbor
 	public static void dfs(ArrayList<Edge> graph[], int current, boolean visited[]) {
 		System.out.print(current + " ");
 		visited[current] = true;
@@ -148,12 +150,23 @@ public class Graph {
 
 		int V = 4;
 		ArrayList<Edge> graph[] = new ArrayList[V];
+		
+		
 		createGraph(graph);
+		
+		//print 2 neighbors
+		
+//		for(int i=0;i<graph[2].size();i++) {
+//			Edge e = graph[2].get(i);
+//			System.out.println(e.dest);
+//		}
+		
 		// printGraph(graph);
-		// bfs(graph, V);
+//		bfs(graph, V);
+//		System.out.println();
 
 		// graph that is not connected BFS
-//		boolean visited [] = new boolean[V];
+		boolean visited [] = new boolean[V];
 //		for(int i=0; i<V; i++){
 //			if(visited[i] ==false) {
 //				bfs(graph, V , visited , i);
@@ -169,11 +182,11 @@ public class Graph {
 //			}
 //
 //		}
-		// dfs(graph, 0, visited);
+		 dfs(graph, 0, visited);
 		
 		//printAllPath(graph, new boolean[V], 0, "0", 3);		//O(V^V)
 		
 		//System.out.println(isCycleDirected(graph, new boolean[V], 0, new boolean[V]));
-		System.out.println(isCycleUndirected(graph, new boolean[V], 0, 0));
+	//System.out.println(isCycleUndirected(graph, new boolean[V], 0, -1));
 	}
 }

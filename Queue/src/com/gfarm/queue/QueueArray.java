@@ -32,9 +32,6 @@ public class QueueArray {
 	public void enqueue(int data) {
 		if (isFull()) {
 			throw new ArrayIndexOutOfBoundsException();
-//		}else if(front ==-1 && rear ==-1) {
-//			front = rear =0;
-//			queue[rear] =data;
 		} else {
 			queue[++rear] = data;
 		}

@@ -137,7 +137,7 @@ public class Stream {
 		//names
 		List<String> nameslist = emp.stream().map(name -> name.getName()).toList();
 		System.out.println(nameslist);
-		String names =nameslist.stream().map(name -> name.toUpperCase()).collect(Collectors.joining(",  "));
+		String names =nameslist.stream().map(name -> name.toUpperCase()).collect(Collectors.joining(", "));
 		System.out.println(names);
 		
 		//find duplicate element in stream

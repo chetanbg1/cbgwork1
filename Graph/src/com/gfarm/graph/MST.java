@@ -1,5 +1,8 @@
 package com.gfarm.graph;
 
+//a minimum spanning tree or minimum weight spanning tree is a subset of the edges of a connected,
+//edge-weighted undirected graph that connects all the vertices together, without any cycle
+//and with the minimum possible total edge weight 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 //Prim's Algorithm

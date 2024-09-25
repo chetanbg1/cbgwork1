@@ -6,7 +6,7 @@ public class ProductOfArray {
 	
 	public static int[] findProduct(int arr[]) {
 		int temp =1;  // create variable temp =1
-		int []result = new int [arr.length];  // create new array of same lenght
+		int []result = new int [arr.length];  // create new array of same length to store result
 		for(int i =0 ;i<arr.length;i++) { // traverse through the array
 			result[i]=temp;    // assign temp at current index of result array  
 			temp = temp*arr[i]; // multiply the temp with current index 

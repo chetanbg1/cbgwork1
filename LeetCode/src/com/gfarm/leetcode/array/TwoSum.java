@@ -62,7 +62,7 @@ public class TwoSum {
 		}
 	public static void main(String[] args) throws IllegalAccessException {
 		int arr[]  = {2,11,5,10,7,8};
-		int[] result = twoSum2(arr, 9);
+		int[] result = twoSum(arr, 9);
 		for(int i: result) {
 			System.out.print(i+" ");
 		}

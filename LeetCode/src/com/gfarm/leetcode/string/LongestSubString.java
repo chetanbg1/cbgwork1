@@ -50,6 +50,25 @@ public class LongestSubString {
 		return max;
 	}
 	
+	public static String LongetsSubString3(String s) {
+		int i=0;
+		int j=0;
+		int max =0;
+		HashSet<Character> set = new HashSet<>();
+		
+		while(j < s.length()) {
+			if(!set.contains(s.charAt(j))) {
+				set.add(s.charAt(j));
+				j++;
+				max = Math.max(max, set.size());
+			}else {
+				set.remove(s.charAt(i));
+				i++;
+			}
+		}
+		return s.substring(i, j);
+	}
+	
 	public static String longetsSubString1(String s) {
 		int i=0;
 		int j=0;
@@ -82,6 +101,7 @@ public class LongestSubString {
 		System.out.println(longestSubString(s));
 		System.out.println(lenghtofLongetsSubString(s));
 		System.out.println(longetsSubString1(s));
+		System.out.println(LongetsSubString3(s));
 	}
 
 }

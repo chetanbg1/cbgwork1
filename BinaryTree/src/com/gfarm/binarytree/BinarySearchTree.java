@@ -64,7 +64,7 @@ public class BinarySearchTree {
 	}
 
 	private TreeNode inorderSuccessor(TreeNode root) {
-		while (root.left != null) { // null check for left chile
+		while (root.left != null) { // null check for left child
 			root = root.left; // if not null go till left most child
 		}
 		return root;
@@ -278,8 +278,8 @@ public class BinarySearchTree {
 //		tree.inorder(tree.root);
 //		System.out.println();
 //		tree.printInRange(tree.root, 4, 11);
-//		ArrayList<Integer> path = new ArrayList<>();
-//		tree.printRootToLeaf(tree.root, path);
+		ArrayList<Integer> path = new ArrayList<>();
+		tree.printRootToLeaf(tree.root, path);
 		// System.out.println();
 		// System.out.println(tree.search(tree.root, 3).data);
 		// System.out.println(tree.isValid(tree.root, -100, 100));
@@ -287,8 +287,8 @@ public class BinarySearchTree {
 //		int[] nums = { -10, -3, 0, 5, 9 };
 //		TreeNode result = tree.sortedArray(nums);
 //		tree.preorder(result);
-		tree.preorder(tree.root);
-		System.out.println(tree.hasPathSum(tree.root, 6));
+		//tree.preorder(tree.root);
+		//System.out.println(tree.hasPathSum(tree.root, 6));
 	}
 
 }

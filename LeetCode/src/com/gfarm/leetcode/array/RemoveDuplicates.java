@@ -52,6 +52,19 @@ public class RemoveDuplicates {
 		System.out.println();
 	}
 	
+	public static int removedup(int []arr) {
+		Set<Integer> unielem = new HashSet<>(); //create set as it does not contain duplicate elements
+		
+		for(int i=0;i<arr.length;i++) { // traverse array
+			unielem.add(arr[i]);  // add element into set 
+		}
+		int idx =0;
+		for(int i : unielem) { // traverse the set
+			arr[idx++] = i;   // add set elements into array
+		}
+		return unielem.size(); // return the size of set
+	}
+	
 	public static int removeDuplicates1(int [] arr, int n) {
 		 if (n <= 1)
 	            return n;
@@ -97,18 +110,7 @@ public class RemoveDuplicates {
 	    
 	}
 	
-	public static int removedup(int []arr) {
-		Set<Integer> unielem = new HashSet<>(); //create set as it does not contain duplicate elements
-		
-		for(int i=0;i<arr.length;i++) { // traverse array
-			unielem.add(arr[i]);  // add element into set 
-		}
-		int idx =0;
-		for(int i : unielem) { // traverse the set
-			arr[idx++] = i;   // add set elements into array
-		}
-		return unielem.size(); // return the size of set
-	}
+	
 	
 	
 	//space complexity O(1) = with out using extra space

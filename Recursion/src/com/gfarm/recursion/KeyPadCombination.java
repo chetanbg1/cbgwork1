@@ -15,8 +15,7 @@ public class KeyPadCombination {
 		
 		for(int i=0; i<mapping.length();i++) { // def lenght =3 
 			printComb(str, idx+1, combination+mapping.charAt(i));
-		}
-			
+		}		
 	}
 	public static void main(String[] args) {
 		String str ="23";

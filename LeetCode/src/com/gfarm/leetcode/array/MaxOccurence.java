@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 public class MaxOccurence {
 
 	public static int majorityElem(int [] arr) {
-		int n = arr.length;
 		
 		Map<Integer, Integer> map = new HashMap<>();
 		
