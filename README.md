@@ -671,7 +671,7 @@ Sorting
 --
 //bubble sort
 //biggest element goes to the end after each iteration
-//in every itheration we are swapping pair wise
+//in every iteration we are swapping pair wise
 //time complexity O(n^2)
 public static void bubbleSort(int [] arr) {
     boolean isSwapped;
@@ -826,7 +826,7 @@ method overriding -->  runTime Polymorphism
    	private, static , final method can not be overridden 
     	if super-class does not declare an exception then sub-class can only declare unchecked exception but not the checked exceptions
 
-Dynamic method dispatch is away java decides which method to use at runtime when method are overridden in subclass. it ensure the correct method is used based on the type of object
+Dynamic method dispatch is a way java decides which method to use at runtime when method are overridden in subclass. it ensure the correct method is used based on the type of object
 
 Covarient return type means return type may vary during overriding 
 
@@ -1012,7 +1012,7 @@ java.util.Collection is root of collection framework except Map interface
       			only one null is allowes
 	 		unorder set
 //              --> LinkedHashSet class
-			orered verion of hashset - maintain doubly-linnked list accross all elements
+			orered verion of hashset - maintain doubly-linked list accross all elements
    			preserves the insertion order
 //              --> SortedSet(interface) -->TreeSet class
 			all elements of sorted set implements the comparable interface
