@@ -912,7 +912,7 @@ deep comparision (e1.equals(e2)) --> compare the internal details --> actual val
   if two objects are saame  according to Equals(Object o) then the hashcode are same 
 
 default methods - is a way of adding new methods to the interfaces without affecting the implementing classes
-		  so no error arises due to unimplemeted methods fo interface 
+		  so no error arises due to unimplemeted methods of interface 
     		  default method have dummy implemetation
 		  implementing classes if ok with dummy implementation then use dummy impl, if not can override and provide their own implementation 
     		  while overriding we use public access modifiers in implementing classes
@@ -1061,7 +1061,7 @@ Concurrent Collection
 	why - traditional collection are not thread safe, only few calsses like Vector, HashTable are threadsafe
  	      collections provide some methods like synchronizedList, synchronizedMap, synchronizedSet those provide thread safty but the problem is they capture lock on complete collection even for reading that decrease performance
 	      if one thread iterates and other tries to  modify structureal changes then concurrentModificationException is thrown 
-	so the concurrent cillections claaes do not throw this exception 
+	so the concurrent collections classes do not throw this exception 
 		ConcurrentHashMap -> in ConcurrentHashMap lock is acquired on bucket level so at a time multiple thread can capture lock on diff diff buckets  -> concurrencyLevel -> it create 16 buckets on collection so 16 threads can works on collection 
   		simultaneously 
   		CopyOnWriteArrayList
