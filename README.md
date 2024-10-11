@@ -1998,6 +1998,88 @@ object reference be cast to an interface reference
   	if we implement an interface and provide body to its methids from class,
    	we can hold object of that class using the reference variable of interface.
 
+## Design Patterns in java
+	
+Creational
+--
+-  creation of objects
+	
+1.1 Factory Method
+Factory Method is a creational design pattern, that provide an interface for creating objects in superclass, but subclasses are responsible to create the instance of the class.
+
+1.2 Abstract Factory Method
+Abstract Factory Method is a creational design pattern, it provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+1.3 Builder Method
+Builder Method is a creational design pattern, it provides an interface for constructing an object and then have concrete builder classes that implement this interface to create specific objects in a stepwise manner.
+
+1.4 Prototype Method
+Prototype Method is a creational design pattern, it provide to create new objects with the same structure and initial state as an existing object without explicitly specifying their class or construction details.
+
+1.5 Singleton Method
+Singleton Method is a creational design pattern, it provide a class has only one instance, and that instance provides a global point of access to it.
+
+Structure 
+--
+- if we have two object we want to compose one inside other we use structural
+	Structural design patterns are a subset of design patterns in software development that focus on the composition of classes or objects to form larger, more complex structures. They help in organizing and managing relationships between objects to achieve greater flexibility, reusability, and maintainability in a software system.
+
+2.1 Adapter Method
+Adapter Method is a structural design pattern, it allows you to make two incompatible interfaces work together by creating a bridge between them.
+
+2.2 Bridge Method
+Bridge Method is a structural design pattern,it provide to design separate an object’s abstraction from its implementation so that the two can vary independently.
+
+2.3 Composite Method
+Composite Method is structural design pattern, it’s used to compose objects into tree structures to represent part-whole hierarchies. This pattern treats both individual objects and compositions of objects it allow clients to work with complex structures of objects as if they were individual objects.
+
+2.4 Decorator Method
+Decorator Method is structural design pattern, it allows to add behavior to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+
+2.5 Facade Method
+Facade Method is a structural design pattern, it provides a simplified, higher-level interface to a set of interfaces in a subsystem, making it easier for clients to interact with that subsystem.
+
+2.6 Proxy Method
+Proxy Method is a structural design pattern, it provide to create a substitute for an object, which can act as an intermediary or control access to the real object.
+
+2.7 Flyweight Method
+Flyweight Method is a structural design pattern, it is used when we need to create a lot of objects of a class. Since every object consumes memory space that can be crucial for low memory devices, flyweight design pattern can be applied to reduce the load on memory by sharing objects. 
+
+Behavioural
+--
+- when we dont want to compose object but want to have some communication between them  
+Behavioral design patterns are a subset of design patterns in software development that deal with the communication and interaction between objects and classes. They focus on how objects and classes collaborate and communicate to accomplish tasks and responsibilities.
+
+3.1 Command Method
+Command Method is a Behavioral Design Pattern, it promotes loose coupling between the sender (client) and the receiver (the object that performs the operation) and provides a way to support undoable operations.
+
+3.2 Iterator Method
+Iterator Method is a Behavioral Design Pattern, it provides a way to access elements of an aggregate object (a collection) sequentially without exposing the underlying representation of that collection.
+
+3.3 Mediator Method
+Mediator Method is a Behavioral Design Pattern, it promotes loose coupling between objects by centralizing their communication through a mediator object. Instead of objects directly communicating with each other, they communicate through the mediator, which encapsulates the interaction and coordination logic.
+
+3.4 Memento Method
+Momento Method is a Behavioral Design Pattern, it provide to save and restore the previous state of an object without revealing the details of its implementation.
+
+3.5 Observer method
+Observer Method is a Behavioral Design Pattern, it defines a one-to-many dependency between objects, so that when one object (the subject) changes state, all its dependents (observers) are notified and updated automatically.
+
+3.6 State Method
+State Method is a Behavioral Design Pattern, it allows an object to alter its behavior when its internal state changes.
+
+3.7 Strategy Method
+Strategy Method is a Behavioral Design Pattern, it defines a family of algorithms, encapsulates each one, and makes them interchangeable and it allows a client to choose an appropriate algorithm from a family of algorithms at runtime.
+
+3.8 Template Method
+Template Method is a Behavioral Design Pattern, it defines the skeleton of an algorithm in a method but lets subclasses alter some steps of that algorithm without changing its structure.
+
+3.9 Visitor Method
+Visitor Method is a Behavioral Design Pattern, it is used when you have a set of structured, hierarchical objects and you want to perform various operations on these objects without modifying their classes.
+
+3.10 Interpreter Design Pattern
+Interpreter pattern is used to defines a grammatical representation for a language and provides an interpreter to deal with this grammar.
+
 ## SQL
 --
 
