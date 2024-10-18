@@ -1608,7 +1608,7 @@ SOLID Principles
 	the broad goal of solid principles is to reduce dependencies so that engineers can change one area  in software without affecting others
  	intended to make designs easier to understand, maintain. and extend
   	helps to avoid issues and to build adaptive, effective and agile software
-   	lead to better code readability, maintainability, design patterns, testability
+   	lead to better code readability, maintainability,  patterns, testability
 
     S - sinle responsibility 
     	one class should have one and only one responsibility 
