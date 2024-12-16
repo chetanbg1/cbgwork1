@@ -1595,6 +1595,536 @@ Thread t2 = new Thread( ()->{
     }
 } , "thread2");
 
+Basic Level Questions with Answers 
+
+What is multithreading? How is it different from multiprocessing? 
+
+Multithreading: Allows multiple threads to run within a single process. Threads share the same memory and resources. 
+
+Multiprocessing: Involves multiple processes running independently, each with its own memory space. 
+
+Difference: Threads are lighter and share memory, while processes are heavier and independent. 
+
+What are the benefits of multithreading? 
+
+Efficient CPU utilization. 
+
+Faster execution by performing tasks concurrently. 
+
+Simplifies modeling real-world problems like producer-consumer scenarios. 
+
+Allows an application to remain responsive (e.g., GUI applications). 
+
+How do you create a thread in Java? 
+
+Using Thread class: 
+
+ 
+
+class MyThread extends Thread { 
+
+ 
+public void run() { 
+      System.out.println("Thread is running..."); 
+
+ 
+} 
+ 
+
+} 
+
+ 
+MyThread t = new MyThread(); 
+
+ 
+t.start(); 
+ 
+
+Using Runnable interface: 
+
+class MyRunnable implements Runnable { 
+ 
+
+  public void run() { 
+ 
+
+         System.out.println("Thread is running..."); 
+ 
+
+  } 
+
+ 
+} 
+ 
+
+Thread t = new Thread(new MyRunnable()); 
+
+ 
+t.start(); 
+ 
+
+What is the difference between the start() and run() methods in Java threads? 
+
+start(): Starts a new thread and executes the run() method on that thread. 
+
+run(): Called directly, it runs on the current thread, not a new one. 
+
+What are daemon threads, and how do they work? 
+
+Daemon threads: Background threads that provide support for user threads. They automatically terminate when all user threads are finished. 
+
+Thread t = new Thread(); 
+
+ 
+t.setDaemon(true); // Setting thread as daemon 
+ 
+
+ 
+
+ 
+
+Intermediate Level Questions with Answers 
+
+What is synchronization? Why is it important in multithreading? 
+
+Synchronization: A mechanism to control access to shared resources to prevent thread interference. 
+
+Importance: Prevents data inconsistency and race conditions when multiple threads access shared resources. 
+
+Explain the difference between synchronized methods and synchronized blocks. 
+
+Synchronized method: Locks the entire object. 
+
+Synchronized block: Allows more granular locking on a specific part of the code or a specific object. 
+
+What is a race condition, and how can you avoid it? 
+
+Race Condition: Occurs when multiple threads access shared data simultaneously and at least one thread modifies it. 
+
+Solution: Use synchronization, locks, or atomic variables. 
+
+What are wait(), notify(), and notifyAll() methods? 
+
+wait(): Makes a thread wait until another thread invokes notify() or notifyAll(). 
+
+notify(): Wakes up a single thread waiting on the object's monitor. 
+
+notifyAll(): Wakes up all threads waiting on the object's monitor. 
+
+These methods must be called within a synchronized block. 
+
+What is a thread pool? Why is it used? 
+
+Thread Pool: A pool of pre-created threads that can be reused for executing tasks. 
+
+Advantages: 
+
+Reduces overhead of thread creation. 
+
+Improves performance in a multithreaded environment. 
+
+Example: 
+
+ExecutorService executor = Executors.newFixedThreadPool(5); 
+
+ 
+executor.execute(() -> System.out.println("Task executed")); 
+
+ 
+executor.shutdown(); 
+ 
+
+ 
+
+ 
+
+Advanced Level Questions with Answers 
+
+What is the difference between synchronized and Lock interface? 
+
+Synchronized: Implicit locking and simpler to use but less flexible. 
+
+Lock interface: Explicit locking, supports try-locking, and provides more control. 
+
+Example using Lock: 
+
+Lock lock = new ReentrantLock(); 
+
+ 
+lock.lock(); 
+ 
+
+try { 
+// Critical section 
+}  
+
+finally { 
+lock.unlock(); 
+
+ 
+} 
+ 
+
+What is a deadlock? How do you prevent it? 
+
+Deadlock: Occurs when two or more threads are waiting for each other’s locks, causing a standstill. 
+
+Prevention: 
+
+Avoid nested locks. 
+
+Use try-lock with timeouts. 
+
+Acquire locks in a consistent order. 
+
+What is a volatile keyword? When should you use it? 
+
+volatile: Ensures that changes made by one thread to a variable are visible to other threads. 
+
+Use it for variables that are accessed and modified by multiple threads but not involved in compound actions (e.g., increment). 
+
+Explain the ForkJoinPool framework. 
+
+ForkJoinPool: Designed for divide-and-conquer tasks where a large task is recursively broken into smaller tasks. 
+
+ForkJoinPool pool = new ForkJoinPool(); 
+ 
+
+pool.invoke(new RecursiveTask<Integer>() { 
+ 
+
+  @Override 
+ 
+
+  protected Integer compute() { 
+
+ 
+return 1 + 1; // Example computation 
+} 
+
+ 
+}); 
+ 
+
+How does the ConcurrentHashMap provide thread safety? 
+
+It uses a technique called bucket-level locking (or segment-level locking). Multiple threads can read and write concurrently as long as they operate on different buckets. 
+
+What is a thread, and how is it different from a process? 
+
+A thread is a lightweight subunit of a process. 
+
+Threads share the process's memory and resources, while processes are independent and isolated. 
+
+Explain the lifecycle of a thread in Java. 
+
+New: Created but not started (new Thread()). 
+
+Runnable: Ready to run but waiting for CPU (start() called). 
+
+Running: Actively executing. 
+
+Blocked/Waiting: Paused, waiting for resources or notifications. 
+
+Terminated: Completed execution. 
+
+What is the purpose of the join() method in threads? 
+
+join(): Makes the current thread wait until the specified thread completes execution. 
+
+Thread t = new Thread(() -> System.out.println("Child thread running")); 
+ 
+
+t.start(); 
+
+ 
+t.join(); // Main thread waits for t to finish 
+ 
+
+System.out.println("Main thread resumes"); 
+
+ 
+
+      
+
+            Synchronized Methods: Locks the entire method. Only one thread can access it at a time. 
+
+Synchronized Blocks: Locks only a portion of the method, providing finer control and better performance. 
+
+ 
+
+Use sleep() when you need to pause execution for a certain time. 
+
+Use wait() when you need inter-thread communication and synchronization. 
+
+Runnable: Represents a task that doesn’t return a result. 
+
+Callable: Represents a task that returns a result and can throw exceptions 
+
+Synchronized: Implicit locking mechanism with automatic lock release. 
+
+Lock Interface: Explicit locking mechanism that provides more control, e.g., try-lock, interruptible locks, etc. 
+
+Race Conditions: Multiple threads modifying shared data simultaneously. 
+
+Deadlocks: Two or more threads waiting on each other’s resources indefinitely. 
+
+Livelocks: Threads keep changing states but fail to make progress. 
+
+Starvation: A thread is perpetually denied access to resources. 
+
+ 
+
+ 
+
+ 
+
+Design Pattern 
+
+-- 
+
+ 
+
+What are design patterns? Why are they important? 
+
+Design Patterns are reusable solutions to common problems in software design. 
+
+Importance: 
+
+Provide best practices. 
+
+Improve code readability and maintainability. 
+
+Facilitate communication between developers. 
+
+What are the types of design patterns? 
+
+Creational Patterns: Deal with object creation (e.g., Singleton, Factory). 
+
+Structural Patterns: Deal with object composition (e.g., Adapter, Decorator). 
+
+Behavioral Patterns: Deal with object interaction (e.g., Observer, Strategy). 
+
+Explain the Singleton Pattern. 
+
+Ensures a class has only one instance and provides a global point of access to it. 
+
+Implementation: 
+
+public class Singleton { 
+private static Singleton instance; 
+private Singleton() {} 
+public static Singleton getInstance() { 
+if (instance == null) { 
+  instance = new Singleton(); 
+} 
+        return instance; 
+    } 
+} 
+ 
+
+What is the Factory Pattern? 
+
+Provides an interface for creating objects without exposing their instantiation logic. 
+
+public interface Shape { void draw(); } 
+public class Circle implements Shape { public void draw() { System.out.println("Circle"); } } 
+public class ShapeFactory { 
+    public Shape getShape(String shapeType) { 
+        if (shapeType.equals("Circle")) 
+
+ return new Circle(); 
+        return null; 
+    } 
+} 
+ 
+
+What is the difference between a Factory and Abstract Factory Pattern? 
+
+Factory: Creates objects of a single family. 
+
+Abstract Factory: Creates objects of related families. 
+
+Example: An Abstract Factory could create different types of UI components like Buttons and TextFields for multiple platforms (Windows, Mac). 
+
+ 
+
+ 
+
+Intermediate Level Questions 
+
+What is the Builder Pattern? 
+
+Separates the construction of a complex object from its representation. 
+
+public class Car { 
+    private String engine; 
+    private int wheels; 
+    // Setters and Getters 
+} 
+public class CarBuilder { 
+    private Car car = new Car(); 
+    public CarBuilder setEngine(String engine) { car.setEngine(engine); return this; } 
+    public CarBuilder setWheels(int wheels) { car.setWheels(wheels); return this; } 
+    public Car build() { return car; } 
+} 
+ 
+
+Explain the Adapter Pattern. 
+
+Allows incompatible interfaces to work together by providing a bridge. 
+
+public interface MediaPlayer { void play(String audioType); } 
+public class AdvancedPlayer { public void playMP4() { System.out.println("Playing MP4"); } } 
+public class MediaAdapter implements MediaPlayer { 
+    private AdvancedPlayer advancedPlayer = new AdvancedPlayer(); 
+    public void play(String audioType) { 
+        if (audioType.equals("MP4")) advancedPlayer.playMP4(); 
+    } 
+} 
+ 
+
+What is the Observer Pattern? 
+
+Defines a dependency between objects so that when one changes state, all dependents are notified. 
+public interface Observer { void update(); } 
+public class Subject { 
+    private List<Observer> observers = new ArrayList<>(); 
+    public void attach(Observer o) { observers.add(o); } 
+    public void notifyObservers() { observers.forEach(Observer::update); } 
+} 
+ 
+
+What is the Strategy Pattern? 
+
+Defines a family of algorithms, encapsulates each one, and makes them interchangeable. 
+
+public interface PaymentStrategy { void pay(int amount); } 
+public class CreditCardPayment implements PaymentStrategy { 
+    public void pay(int amount) { System.out.println("Paid by Credit Card: " + amount); } 
+} 
+public class ShoppingCart { 
+    private PaymentStrategy paymentStrategy; 
+    public ShoppingCart(PaymentStrategy strategy) { this.paymentStrategy = strategy; } 
+    public void checkout(int amount) { paymentStrategy.pay(amount); } 
+} 
+ 
+
+What is the Decorator Pattern? 
+
+Adds behavior to objects dynamically without modifying their structure. 
+
+public interface Car { void assemble(); } 
+public class BasicCar implements Car { 
+    public void assemble() { System.out.println("Basic Car"); } 
+} 
+public class SportsCarDecorator implements Car { 
+    private Car car; 
+    public SportsCarDecorator(Car car) { this.car = car; } 
+    public void assemble() { 
+        car.assemble(); 
+        System.out.println("Adding Sports Car Features"); 
+    } 
+} 
+ 
+
+ 
+
+ 
+
+Advanced Level Questions 
+
+What is the Prototype Pattern? 
+
+Creates new objects by copying an existing object (a prototype). 
+
+public class Prototype implements Cloneable { 
+    public Prototype clone() throws CloneNotSupportedException { return (Prototype) super.clone(); } 
+} 
+ 
+
+Explain the difference between Proxy and Decorator Patterns. 
+
+Proxy: Controls access to an object. 
+
+Decorator: Adds behavior to an object dynamically. 
+
+Example: 
+
+Proxy: SecurityProxy to check access permissions. 
+
+Decorator: Adding features to a car. 
+
+What is the Flyweight Pattern? 
+
+Reduces memory usage by sharing objects that are similar in nature. 
+
+public class Flyweight { 
+    private String intrinsicState; 
+    public Flyweight(String state) { this.intrinsicState = state; } 
+} 
+ 
+
+What is the Chain of Responsibility Pattern? 
+
+Passes a request along a chain of handlers. Each handler decides to process or pass the request. 
+
+public interface Handler { void setNext(Handler handler); void handleRequest(String request); } 
+ 
+
+What is Dependency Injection? Which design pattern does it use? 
+
+Dependency Injection: Injects dependencies into objects, rather than creating them within. 
+
+Follows the Inversion of Control (IoC) principle. 
+
+Often implemented using the Factory or Builder Pattern. 
+
+Explain the MVC Pattern. 
+
+Separates concerns into: 
+
+Model: Represents data/business logic. 
+
+View: Represents UI. 
+
+Controller: Handles user input and updates model/view. 
+
+What is the Composite Pattern? 
+
+Treats individual objects and compositions uniformly. 
+
+Example: File systems where files and folders are treated similarly. 
+
+How is the Command Pattern useful? 
+
+Encapsulates a request as an object, allowing parameterization and queuing of requests. 
+
+Example: Undo/Redo functionality. 
+
+What is the Template Method Pattern? 
+
+Defines the skeleton of an algorithm, letting subclasses fill in specific steps. 
+
+public abstract class Game { 
+    abstract void initialize(); 
+    abstract void play(); 
+    public final void playGame() { 
+        initialize(); 
+        play(); 
+    } 
+} 
+ 
+
+What is the main benefit of the Dependency Inversion Principle? 
+
+Encourages dependency on abstractions, not concretions. It decouples modules and makes the system more modular. 
+
+ 
+
+public interface Observer { void update(); } 
+public class Subject { 
+    private List<Observer> observers = new Arr
 Design Pattern
 --
 
