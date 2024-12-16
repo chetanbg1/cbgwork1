@@ -481,7 +481,7 @@ Strings
 --
 
 string pool requires string to be immutable otherwise shared reference can be changes from anywhere
-security because string is shared on different are like file system, network coonection, database connection, passwords, having string immutable allows us to be secure and safe 
+security because string are used in file system, network coonection, database connection, passwords, having string immutable allows us to be secure and safe 
 security --> strings in java can be used to access data sources like files, database or objects found across the network also stores password and username -which can not be modified once created
 
 Strign s1 = "abcd"; --> create a string in string constant pool
@@ -541,8 +541,8 @@ operstors
 //relational operator  ->  ==, !=, >, < , >=, <= 
 //logical operator  == &&(logical and),||(logical or), !(logical not)
 //Bitwise Operators --> &(binary and) == 0101 & 0110 = 0100, 
-//                      |(binary or) == 0101 & 0110 = 0111,
-//                      ^(binary XOR) ==0101 & 0110 = 1011,similar vales--> false, diff value -->true, 
+//                      |(binary or) == 0101 | 0110 = 0111,
+//                      ^(binary XOR) ==0101 ^ 0110 = 1011,similar vales--> false, diff value -->true, 
 //                      ~(Binary one component)==0-->1, 1-->0 = gives the complement of binnary value,
 //                      << (binary left shift) == 0101<<1 = 1010,
 //                      >> (binary right shift) == 0101>>1 ==0010
@@ -770,7 +770,7 @@ public static void printNumber(int n){
 Exception Handling 
 --
 abnormal condition which can disrupt the normal flow of program, if not handled properly program can terminate abruptly 
-try - enclose the set of statements which can throw exception , heance required to be monitored. can not use try block alone, must be followed by catch or finally 
+try - enclose the set of statements which can throw exception , hence required to be monitored. can not use try block alone, must be followed by catch or finally 
 Catch - when exception occurs block catches the exception and work accordingly to handle it or to throw it as required
 Finally - this block get executed always regardless of exception occurence , hence clean up is done.
 	  the finally block executes even if a retrun statement is used in the try catch block
