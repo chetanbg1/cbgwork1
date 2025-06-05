@@ -1,10 +1,7 @@
 import java.util.Scanner;
 
 class FirstClass{
-
-   
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
         String name =sc.next();
         //next() only single word
@@ -30,8 +27,8 @@ class FirstClass{
  	java's platform independence mostly consist of JVM 
   	JVM is aware of OS thats why JVM is platform dependent 
    	it provides environment based on operating system to run .class file 
- 	.java --> compiler --> .class  --> 
-  				 jvm --> classLoader --> 3 types of class loader
+ 	.java --> compiler --> .class(Bytecode)  --> 
+  			       jvm (machinecode)--> classLoader --> 3 types of class loader
        						is part of JVM that dynamically loads the java classes into the JVM
        						-> bootstrape classloader -- lib/rt.jar --> conatins existing .java classes given by java people
 	     					-> extension classloader -- jre/lib/ext --> loads the class from JDK extensions 
@@ -60,15 +57,15 @@ constants value do not change
 
 java is typed language, meaning we can not define variable without data type
 Data type 
-	//primitive data types
-	//byte  == 8 bits 1 byte
-	//short =2byte
-	//char  == 2bytes
-	//boolean ==1byte
-	//int  = 4 byte
-	//long  = 8 byte
-	//double =8  byte
-	//float =4 byte
+	primitive data types
+	byte  == 8 bits 1 byte    -128 to 127
+	short =2byte		  -32768 to 32767              
+	char  == 2bytes
+	boolean ==1byte
+	int  = 4 byte		  -2147483648 to -2147483667
+	long  = 8 byte		  -9223372036854775808 to 9223372036854775807
+	double =8  byte
+	float =4 byte
 java is not completly 100% object - oriented language due to premitive data types
 we use Wrapper classes for primitive data type
 
@@ -87,10 +84,10 @@ Pass by reference - actually sending the memory object / pointer of the varible 
 
 public static void main(Strings[] args)
 public makes this method accessible from anywhere
-static - we dont need to create object to call this method
+static - we dont need to create object to call this method, indicates that the method belongs to class rather than instance of the class
 void - means does not return anything 
 main - name of the mathod - entry point method to jvm
-String[] args - array that hold command-line arguments passed to the program
+String[] args - accepts the array of strings as parameter, array that hold command-line arguments passed to the program
 
 Non-primitive data type
 	//Array
