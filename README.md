@@ -851,30 +851,32 @@ Encapsulation -->combining data and method / data hiding
       		makes easier to locate related classes
       		
     
-access modifiers
-//public  --> any one can access across all the classes and packages
-//default --> can access within the package
-//protected --> can access in same package plus other packages having subclasses
-//privtae -->access only with in class
+Access modifiers
+-
+public  --> any one can access across all the classes and packages
+default --> can access within the package
+protected --> can access in same package plus other packages having subclasses
+privtae -->access only with in class
 what if the method in child class is more restricted than parent  -- > compile time error , can not reduce the visibility of the method 
 
 Abstraction -->only importent things user can see/ hide all unneccessary things from user
 --
-//Abstract class -->just a concept --only method declaration no defination
-//now we can have abstract or normal methods
-//we can not create the object of abstact class
-//can have constructors and static methods--> constructor chaining
-//can have final method which will force subclass not to change the body of method
-
+Abstract class -->just a concept --only method declaration no defination
+now we can have abstract or normal methods
+we can not create the object of abstact class
+can have constructors and static methods--> constructor chaining
+can have final method which will force subclass not to change the body of method
+have instance variables - need constructor to initialize them , no such thing in interfaces
 
 Interface  --> pure abstraction
 --
-//no constructor
-//no method implementations
-//all fields bydefault public, static and final
-//all methods are public and abstract
-//class that implements an interface must implement all the methods declared in the interface
-//support the functionality of multiple inheritance
+abstract methods + static constants 
+no constructor
+no method implementations
+all fields bydefault public, static and final
+all methods are public and abstract
+class that implements an interface must implement all the methods declared in the interface
+support the functionality of multiple inheritance
 
 marker interface - interface having no data members and functions , empty interface 
 	eg - serializable , clonable 
