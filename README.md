@@ -768,7 +768,8 @@ Exception Handling
 --
 abnormal condition which can disrupt the normal flow of program, if not handled properly program can terminate abruptly 
 try - enclose the set of statements which can throw exception , hence required to be monitored. can not use try block alone, must be followed by catch or finally 
-Catch - when exception occurs block catches the exception and work accordingly to handle it or to throw it as required
+Catch - when excepti
+on occurs block catches the exception and work accordingly to handle it or to throw it as required
 Finally - this block get executed always regardless of exception occurence , hence clean up is done.
 	  the finally block executes even if a retrun statement is used in the try catch block
    	  ensuring cleanup runs.
@@ -880,6 +881,126 @@ support the functionality of multiple inheritance
 
 marker interface - interface having no data members and functions , empty interface 
 	eg - serializable , clonable 
+
+Inner class
+-
+types
+Member inner class
+Static inner class
+Local inner class
+Anonymous Inner Class
+
+In Java, an inner class is a class that is defined within another class. Inner classes are used to logically group classes that are only used in one place, increase encapsulation, and can access members (including private ones) of the outer class.
+
+🔹 Types of Inner Classes in Java
+Java supports four types of inner classes:
+
+Non-static Nested Class (Regular Inner Class)
+
+Static Nested Class
+
+Local Inner Class (inside a method)
+
+Anonymous Inner Class
+
+✅ 1. Non-static Nested Class (Regular Inner Class)
+Can access all members (including private) of the outer class.
+
+Requires an instance of the outer class to be instantiated.
+
+
+public class Outer {
+    private String msg = "Hello from Outer!";
+
+    class Inner {
+        void display() {
+            System.out.println(msg);  // Accessing outer class member
+        }
+    }
+
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner(); // Creating instance
+        inner.display();
+    }
+}
+✅ 2. Static Nested Class
+Does not need an instance of the outer class.
+
+Can only access static members of the outer class.
+
+
+public class Outer {
+    static String msg = "Hello from Static Nested Class!";
+
+    static class StaticInner {
+        void display() {
+            System.out.println(msg);  // Only static members can be accessed
+        }
+    }
+
+    public static void main(String[] args) {
+        Outer.StaticInner inner = new Outer.StaticInner();
+        inner.display();
+    }
+}
+✅ 3. Local Inner Class (Inside a Method)
+Defined inside a method, constructor, or block.
+Has access to local variables (only if they are final or effectively final).
+
+public class Outer {
+    void outerMethod() {
+        int num = 10;  // effectively final
+
+        class LocalInner {
+            void print() {
+                System.out.println("Value: " + num);
+            }
+        }
+
+        LocalInner inner = new LocalInner();
+        inner.print();
+    }
+
+    public static void main(String[] args) {
+        new Outer().outerMethod();
+    }
+}
+✅ 4. Anonymous Inner Class
+Used to create a class with a method implementation on the fly, usually for interfaces or abstract classes.
+Does not have a name.
+
+
+abstract class Animal {
+    abstract void sound();
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal dog = new Animal() {
+            void sound() {
+                System.out.println("Bark!");
+            }
+        };
+        dog.sound();
+    }
+}
+
+Type			Static?		Can Access Outer’s Private Members				Usage Context
+Regular Inner Class	No		Yes								Grouping logic,tight coupling
+Static Nested Class	Yes		Only static members						Utility/helper classes
+Local Inner Class	No		Yes (only final/effectively final)				Temporary use inside a method
+Anonymous Inner Class	No		Yes								Quick override of methods
+
+✅ Why Use Inner Classes in Java – Summary
+Inner classes are used in Java to:
+
+Logically group related classes – Keep helper classes close to where they’re used.
+Improve encapsulation – Can access private members of the outer class.
+Enhance code readability – Keeps related logic together.
+Simplify event handling – Especially useful in GUI apps (e.g., Swing, JavaFX).
+Avoid namespace pollution – Prevents unnecessary top-level class declarations.
+Create quick, short-lived classes – Useful for implementing interfaces or abstract methods on the fly (e.g., anonymous classes).
 
 
 to sort the custom object we need 
