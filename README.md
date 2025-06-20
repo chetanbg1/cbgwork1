@@ -1091,21 +1091,24 @@ ArrayList
 
 Collection Framework
 --
+an object that represent a group of objects, know as its elements
+
 java.util.Collection is root of collection framework except Map interface
 
-//Iterable Interface --->Collection Interface --> List Interface
-//                                            --> Set Interface
-//                                            --> Queue Interface
-//methods --> add, size, remove, iterate, allAll, removeAll, clear
-//List Interface --> ArrayList Class
+Iterable Interface --->Collection Interface --> List Interface
+                                            --> Set Interface
+                                            --> Queue Interface
+methods --> add, size, remove, iterate, allAll, removeAll, clear
+List Interface - an ordered collection that can contain duplicate elements
+		--> ArrayList Class
 			dynamic resizing 50% of original size
    			not synchronized
-//               --> LinkedList Class
+               --> LinkedList Class
 			implements list and deque interface
    			maintain insertion order
       			does not support accessing elements ramdomly
 	 		use listIterator to iterate list 
-//               --> Vector Class  (same as LinkedList threadsafe) --> Stack
+               --> Vector Class  (same as LinkedList threadsafe) --> Stack
 			is synchronized
    			maintain insertion order
       			thread safe
@@ -1116,25 +1119,27 @@ java.util.Collection is root of collection framework except Map interface
   	support index base search, random access 
    	elemets can be easily inserted irrespective of the position 
 
-//Queue interface --> PriorityQueue class
+Queue interface collectoin designed for holding elements prior to processing
+		--> PriorityQueue class
 			same as queue or stack data structure 
 			priority associated with each element
    			high priority elements served before a low priority irrespective of insertion order
       			the priority queue is based on the priority heap
 			
     
-//                --> LinkedList class
-//                --> Deque Interface --> ArrayQueue class
+                --> LinkedList class
+                --> Deque Interface --> ArrayQueue class
 			elements can be added and remove from both the ends
-//Set interface --> HashSet class
+Set interface - can not conatin duplicate elements
+		--> HashSet class
 			implicitly implements the hashtable
    			contain only unique elements
       			only one null is allowes
 	 		unorder set
-//              --> LinkedHashSet class
+              --> LinkedHashSet class
 			orered verion of hashset - maintain doubly-linked list accross all elements
    			preserves the insertion order
-//              --> SortedSet(interface) -->TreeSet class
+              --> SortedSet(interface) -->TreeSet class
 			all elements of sorted set implements the comparable interface
    			sorted in ascending order
       			tree-set - uses tree for storage - self balancing tree -red - black 
@@ -1144,15 +1149,15 @@ java.util.Collection is root of collection framework except Map interface
  	not support the index base search
   	do not conatin duplicates
    
-//Map Interface --> key-value pair
-//              --> HashMap
+Map Interface --> key-value pair
+              --> HashMap
 			non synchronize 
    			allows only one null key but multiple null values
-//              --> LinkedHashMap
-//              --> HashTable
+              --> LinkedHashMap
+              --> HashTable
 			synchronized
    			does not allow any null key or value
-//              --> SortedMap -->TreeMap
+              --> SortedMap -->TreeMap
 			entries are maintained in ascending key order
    			tree map - implicitly implements the red-black tree , can not store null key 
 	does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
@@ -1798,7 +1803,14 @@ Thread t = new Thread();
  
 t.setDaemon(true); // Setting thread as daemon 
  
-
+Feature			synchronized				Lock (e.g., ReentrantLock)
+Syntax			Keyword					Object from java.util.concurrent.locks
+Automatic unlocking	Yes					No (manual with unlock())
+Interruptible	No	Yes 					(lockInterruptibly())
+Timed try-lock	No	Yes 					(tryLock(timeout))
+Fairness policy	No	Yes					 (configurable)
+Multiple conditions	No					Yes (newCondition())
+Use case complexity	Simple					zxcvbhl./Advanced/flexible
  
 
  
@@ -1888,7 +1900,10 @@ lock.unlock();
 What is a deadlock? How do you prevent it? 
 
 Deadlock: Occurs when two or more threads are waiting for each other’s locks, causing a standstill. 
-
+mutual exclusion - only one thread can access a resource at a time
+hold and wait - a thread holding at least one resource is waiting to acquire additionl resources held by other threads
+NO Preemption - resources can not be forcibly taken from thrad holding them
+circular wait - a set of thread wait for each other in a circular chain
 Prevention: 
 
 Avoid nested locks. 
