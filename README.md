@@ -666,10 +666,10 @@ Serialization and Deserialization
 
 Sorting
 --
-//bubble sort
-//biggest element goes to the end after each iteration
-//in every iteration we are swapping pair wise
-//time complexity O(n^2)
+bubble sort
+biggest element goes to the end after each iteration
+in every iteration we are swapping pair wise
+time complexity O(n^2)
 public static void bubbleSort(int [] arr) {
     boolean isSwapped;
     int n = arr.length;
@@ -692,11 +692,11 @@ public static void bubbleSort(int [] arr) {
     
 }
 
-//selection sort
-//smallest element goes to the begining 
-//in every iteration we sawp only once
-//we find the smallest element and put it first
-//time complexity O(n^2)
+selection sort
+smallest element goes to the begining 
+in every iteration we sawp only once
+we find the smallest element and put it first
+time complexity O(n^2)
 public static void selectionSort(int [] arr) {
     int n = arr.length;
     for(int i = 0; i<n-1;i++) {
@@ -713,10 +713,10 @@ public static void selectionSort(int [] arr) {
     }
 }
 
-//insertion sort
-//divide the array in two parts sorted and unsorted
-//pick the element from unsorted part and put it in sorted part at correct sorted position
-//time complexity O(n^2)
+insertion sort
+divide the array in two parts sorted and unsorted
+pick the element from unsorted part and put it in sorted part at correct sorted position
+time complexity O(n^2)
 public static void insertionSort(int [] arr) {
     int n = arr.length;
     for(int i =1;i<n; i++){ //unsorted part
@@ -747,22 +747,22 @@ public static void printNumber(int n){
     printNumber(n-1); //recursion
 }
 
-//BackTracking
-//find all possible solutions and use the one you want
-//all possible arrangement total permutation = n!
+BackTracking
+find all possible solutions and use the one you want
+all possible arrangement total permutation = n!
 
-//Merge Sort
-//divide and conquer
-// mid = s + (e-s)/2 
-//time complexity O(nlogn)
+Merge Sort
+divide and conquer
+ mid = s + (e-s)/2 
+time complexity O(nlogn)
 
-//QuickSort
-//Pivot 
-//Partition part the array based on pivot
-//elements smaller than pivot will come before pivot and elements bigger than pivot comes after pivot
-//pivot selection ramdom , median , 1st element , last element
-//time complexity worst = o(n^2)  average = O(nlogn)
-//worst case occurs when pivot is always the smallest or largest element
+QuickSort
+Pivot 
+Partition part the array based on pivot
+elements smaller than pivot will come before pivot and elements bigger than pivot comes after pivot
+pivot selection ramdom , median , 1st element , last element
+time complexity worst = o(n^2)  average = O(nlogn)
+worst case occurs when pivot is always the smallest or largest element
 
 Exception Handling 
 --
@@ -807,9 +807,9 @@ Finalize - used to perform clean up processing just before the object is garbage
 
 OOPs
 --
-// this kewaord = tells us which object call the fuction or varible --refers to current object
-//Constructor argument / no - argument / default   
-//copy constructor -->passing constructor in the argument of other constructor 
+ this kewaord = tells us which object call the fuction or varible --refers to current object
+Constructor argument / no - argument / default   
+copy constructor -->passing constructor in the argument of other constructor 
 
 Polymorphism
 --
@@ -830,12 +830,12 @@ Covarient return type means return type may vary during overriding
 
 Inheritance
 --
-//once class can inherite properties of other class
-//single level
-//multilevel
-//hirarchial inheritance one class extended by many classes
-//hybrid 
-// multiple inheritance is not supported in java
+once class can inherite properties of other class
+single level
+multilevel
+hirarchial inheritance one class extended by many classes
+hybrid 
+multiple inheritance is not supported in java
 
 Association
 --
@@ -845,7 +845,7 @@ Composition - strong association - one object can not exist without other object
 
 Encapsulation -->combining data and method / data hiding
 --
-//package -- > all related classes we put it in  same package
+package -- > all related classes we put it in  same package
 		help in organizing code
   		prevents the naming conflict
     		support modularity by allowing developers to seperate the program
@@ -1004,14 +1004,20 @@ Create quick, short-lived classes – Useful for implementing interfaces or abst
 
 
 to sort the custom object we need 
-Comparable - Comparable<generic object> has one mehod --> public int compareTo(Employee o){   // can sort only integer value
-								return this.id -o.id;    						
-      									 }
-
-//compare given object id with current object id 
-// will return 0 if both are same
-// 1 if 1st parameter is > 2nd parameter
-// -1 if 1st parameter is  < 2nd parameter
+Comparable - Comparable<generic object> has one mehod --> 
+public int compareTo(Employee o){   // can sort only integer value
+					return this.id -o.id;    						
+    				}
+	
+Comparator Interface
+--
+compare - compare two object of same type
+given object id with current object id 
+public int compare(Integer o1, Integer o2)
+	return o1 - o2; (Ascending order ) / return o2 - o1; (descending order)
+ will return 0 if both are same
+ 1 if 1st parameter is > 2nd parameter  -> o2 will be first and o1 is second
+ -1 if 1st parameter is  < 2nd parameter -> o1 will be first and o2 is second
 
 Comparator - public static comparator<Employee> nameComp = new Comparator<Employee>();
 			public int compare(Employee e1, Employee e2){
@@ -1100,9 +1106,20 @@ Iterable Interface --->Collection Interface --> List Interface
                                             --> Queue Interface
 methods --> add, size, remove, iterate, allAll, removeAll, clear
 List Interface - an ordered collection that can contain duplicate elements
+		contains ordered elements
+ 		may include duplicates
+  		support index base search, random access 
+   		elemets can be easily inserted irrespective of the position 
 		--> ArrayList Class
-			dynamic resizing 50% of original size
+			dynamic resizing 50% of original size , initial capacity is 10
    			not synchronized
+      			time complexity 
+	 			Access by index(get) is O(1)
+     				add element O(n) worst case if resizing occurs
+	 			remove O(n) shifting elements
+     				iteration O(n)
+      			Arraylist <Integer> list = new Arraylist<>();
+	 		list.add(10); , list.get(0); , list.contains(10); list.remove(0); , list.add(2 , 20);(insert inbetween the index) , list.set(2 , 30);(element at 2nd index will get replaced)
                --> LinkedList Class
 			implements list and deque interface
    			maintain insertion order
@@ -1113,11 +1130,13 @@ List Interface - an ordered collection that can contain duplicate elements
    			maintain insertion order
       			thread safe
 	 		increase size by doubling the array size
-
-	contains ordered elements
- 	may include duplicates
-  	support index base search, random access 
-   	elemets can be easily inserted irrespective of the position 
+	       --> Stack
+	       --> CopyonWriteArrayListList
+			cpoy on write means that whenever a write operation like adding or removing an element, instead of directly modifying the existing list a new copy of the list is created and the modification is applied on that copy. This ensures that other thread reading the list while its being modified are unaffected. 
+   			read operation - fast and direct, since they happn on a stable list without interference from modification
+      			write operation - A new copy of the list is created for every modification.
+	 				  the reference to list is then updated so that subsequent reads use this new list.
+	
 
 Queue interface collectoin designed for holding elements prior to processing
 		--> PriorityQueue class
@@ -1150,10 +1169,14 @@ Set interface - can not conatin duplicate elements
   	do not conatin duplicates
    
 Map Interface --> key-value pair
+		does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
+		can only conatin a unique key , only one null key
+ 		can have duplicate values
               --> HashMap
 			non synchronize 
    			allows only one null key but multiple null values
               --> LinkedHashMap
+	      		LinkedHashMap is a HashMap that maintains a doubly linked list running through its entries. This allows it to preserve the insertion order (or access order, if configured).
               --> HashTable
 			synchronized
    			does not allow any null key or value
@@ -1172,6 +1195,10 @@ works on hasing principle, where hash function is used to link key and values in
 and to retrieve object we use key get(key) 
 if two keys return same hash index collision occurs - then linked list is formed at that location 
 in case of collision to search correct value from linked list we use equals() method
+
+Hash function
+A hash function takes an input (the key) and computes an integer value called the hash code.
+This hash code determines the bucket or index where the value associated with that key will be stored in the underlying array.
 
 weakhashmap - 
 	WeakHashMap is an implementation of the Map interface. WeakHashMap is almost the same as HashMap except in the case of WeakHashMap if the object is specified as the key doesn’t contain any references- it is eligible for garbage 	collection even though it is associated with WeakHashMap. i.e Garbage Collector dominates over WeakHashMap.
@@ -1193,6 +1220,63 @@ Concurrent Collection
     		CopyOnWriteArraySet
  	
 we only use wrapper classes in collection framework as it can only hold objects and not the primitive type, wrapper class allows primitive values to be treated as objects, enabling then to stroe and manage    
+
+An LRU (Least Recently Used) Cache is a data structure that removes the least recently used item when it reaches its capacity limit — it's commonly used in memory/caching systems.
+
+✅ Goals of an LRU Cache
+Fast get(key) and put(key, value) operations.
+Automatically evicts the least recently used entry when full.
+Maintains order based on access, not insertion.
+
+🚀 Easiest Way in Java: Use LinkedHashMap
+Java’s LinkedHashMap supports access-order iteration and can be customized to behave like an LRU cache.
+import java.util.*;
+public class LRUCache<K, V> extends LinkedHashMap<K, V> {
+    private final int capacity;
+
+    public LRUCache(int capacity) {
+        super(capacity, 0.75f, true); // true = access-order
+        this.capacity = capacity;
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        return size() > capacity;
+    }
+
+    public static void main(String[] args) {
+        LRUCache<Integer, String> cache = new LRUCache<>(3);
+
+        cache.put(1, "One");
+        cache.put(2, "Two");
+        cache.put(3, "Three");
+        System.out.println(cache); // {1=One, 2=Two, 3=Three}
+
+        cache.get(1);              // Access key 1
+        cache.put(4, "Four");      // Key 2 will be evicted
+
+        System.out.println(cache); // {3=Three, 1=One, 4=Four}
+    }
+}
+🧠 How It Works
+When capacity is exceeded, removeEldestEntry() is triggered.
+
+Since access-order is enabled (true in constructor), get() or put() moves the key to the end (most recently used).
+
+The eldest key (least recently used) is removed first.
+
+🛠️ Time Complexity
+get() → O(1)
+
+put() → O(1)
+Because LinkedHashMap is backed by a hash table + doubly linked list.
+
+🔁 If You Want Manual LRU (Without LinkedHashMap)
+You can also implement LRU using a combination of:
+
+HashMap for O(1) access
+
+Doubly Linked List for ordering
  
 Lambda Expression
 --
