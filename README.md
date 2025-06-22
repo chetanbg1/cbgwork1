@@ -1004,7 +1004,9 @@ Create quick, short-lived classes – Useful for implementing interfaces or abst
 
 
 to sort the custom object we need 
-Comparable - Comparable<generic object> has one mehod --> 
+Comparable -
+The Comparable interface in Java is part of the java.lang package and is used to define the natural ordering of objects. When a class implements the Comparable interface, it must override the compareTo() method, which is used to compare the current object with another object of the same type.
+Comparable<generic object> has one mehod --> 
 public int compareTo(Employee o){   // can sort only integer value
 					return this.id -o.id;    						
     				}
@@ -1150,6 +1152,9 @@ Queue interface collectoin designed for holding elements prior to processing
                 --> Deque Interface --> ArrayQueue class
 			elements can be added and remove from both the ends
 Set interface - can not conatin duplicate elements
+		does not define the order 
+ 		not support the index base search
+  	
 		--> HashSet class
 			implicitly implements the hashtable
    			contain only unique elements
@@ -1163,10 +1168,19 @@ Set interface - can not conatin duplicate elements
    			sorted in ascending order
       			tree-set - uses tree for storage - self balancing tree -red - black 
 	 			   sorted and ascending order 
-      
-	does not define the order 
- 	not support the index base search
-  	do not conatin duplicates
+
+	     --> CopyOnWriteArraySet 
+      			is a thread-safe Set implementation backed by a CopyOnWriteArrayList. It belongs to the java.util.concurrent package and is designed for use in concurrent 				applications where reads are far more frequent than writes.
+
+✅ Key Characteristics
+Feature				Description
+Thread-safe			✅ Yes (no need for external synchronization)
+Backed by			CopyOnWriteArrayList
+Duplicates			❌ Not allowed (Set behavior)
+Nulls				✅ Allows null (only one, if at all)
+Performance			🚀 Fast for reads, 🐢 slow for writes (due to copying)
+Use case			Ideal for read-heavy concurrent scenarios like caches, observer lists, etc.
+	
    
 Map Interface --> key-value pair
 		does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
@@ -1180,12 +1194,28 @@ Map Interface --> key-value pair
               --> HashTable
 			synchronized
    			does not allow any null key or value
-              --> SortedMap -->TreeMap
+              --> SortedMap(interface extend Map) -->TreeMap
 			entries are maintained in ascending key order
    			tree map - implicitly implements the red-black tree , can not store null key 
-	does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
-	can only conatin a unique key
- 	can have duplicate values
+      	      --> NavigableMap is an interface in the Java Collections Framework that extends SortedMap and provides navigation methods for key-value pairs. It allows retrieval of entries 		based on closest matches to given search targets.
+		It is part of the java.util package, and the most commonly used implementation is TreeMap.
+		does not extend collection interface as have a key value pair rest only have the collection of objects which are sorted in a structured manner put(K,V) rest have add(E e) 
+		can only conatin a unique key
+ 		can have duplicate values
+	     -->EnumMap 
+      			is a specialized Map implementation designed specifically for use with enum keys. It is part of java.util and offers a high-performance, memory-efficient map when keys are from a single enum type.
+
+✅ Key Characteristics
+Feature				Description
+Key type			Must be an enum type
+Performance			Very fast (backed by an array internally)
+Ordering			Maintains natural order of enum constants
+Null keys			❌ Not allowed (throws NullPointerException)
+Null values			✅ Allowed
+Thread-safe			❌ Not synchronized (wrap with Collections.synchronizedMap() if needed)
+
+
+
 
 how to make list read only ? 
 	readOnlyArrayList = Collections.unmodifiableList(ArrayList);
@@ -1218,7 +1248,17 @@ Concurrent Collection
   		simultaneously 
   		CopyOnWriteArrayList
     		CopyOnWriteArraySet
- 	
+ConcurrentSkipListMap is a concurrent, sorted, and navigable implementation of the Map interface. It is part of the java.util.concurrent package and is implemented using a skip list data structure.
+
+✅ Key Characteristics
+Feature   			Description
+Thread-safe			Yes – supports concurrent access without locking the entire map
+Sorted (Natural Order)		Yes – maintains keys in ascending order
+Implements			ConcurrentNavigableMap<K,V>
+Allows nulls			❌ No – neither null keys nor null values
+Performance			Fast non-blocking reads and writes with expected log(n) time for most operations
+Use Case			When you need a concurrent sorted map, e.g., priority queues, caches, or time-based data structures
+  
 we only use wrapper classes in collection framework as it can only hold objects and not the primitive type, wrapper class allows primitive values to be treated as objects, enabling then to stroe and manage    
 
 An LRU (Least Recently Used) Cache is a data structure that removes the least recently used item when it reaches its capacity limit — it's commonly used in memory/caching systems.
