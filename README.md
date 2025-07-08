@@ -49,6 +49,56 @@ JIT just in time compiler
 	java source code --> JDK (javac.exe) --> byte code -->JRE(interpreter + JIT compiler) --> machine code
  	JIT is used to optimise the performace of java code at run time - its helps code to fastly compile 
 	
+ 1. What is the Java memory model?
+Answer:
+The Java Memory Model (JMM) defines how Java threads interact through memory and what behaviors are allowed in concurrent execution. It ensures consistency and visibility of variables across threads.
+🔹 2. What are the different memory areas allocated by the JVM?
+Answer:
+Heap – Stores objects and class instances.
+Stack – Stores method calls and local variables.
+Method Area – Stores class metadata and static variables.
+PC Register – Stores address of current instruction.
+Native Method Stack – For native (non-Java) method calls.
+🔹 3. What is the difference between Heap and Stack memory?
+Answer:
+Heap: Shared memory for all threads, stores objects.
+Stack: Thread-specific, stores method calls and primitives.
+Heap is slower but flexible; stack is faster but limited.
+🔹 4. What is garbage collection in Java?
+Answer:
+Garbage collection is the process by which the JVM automatically removes unused or unreachable objects from the heap to free memory.
+🔹 5. What is finalize() in Java?
+Answer:
+The finalize() method is called by the garbage collector before an object is removed. It's used for cleanup, but it's not guaranteed to run and is largely deprecated in modern Java.
+🔹 6. What are strong, weak, soft, and phantom references?
+Answer:
+Strong: Default reference type; prevents GC.
+Soft: Cleared only when memory is low.
+Weak: Cleared during GC if no strong refs.
+Phantom: Used to track object lifecycle, but can't access the object.
+🔹 7. What are Young and Old generations in the JVM heap?
+Answer:
+Young Gen: Stores short-lived objects. Has Eden and Survivor spaces.
+Old (Tenured) Gen: Stores long-lived objects. GC here is less frequent but heavier.
+🔹 8. How do you avoid memory leaks in Java?
+Answer:
+Release unused object references.
+Avoid static references for large objects.
+Use WeakReference for caches.
+Use memory profiling tools like VisualVM or Eclipse MAT.
+🔹 9. What is OutOfMemoryError and how do you handle it?
+Answer:
+It's thrown when the JVM can't allocate memory.
+Handle it by:
+Increasing heap size (-Xmx).
+Optimizing memory usage.
+Fixing memory leaks.
+🔹 10. What are common JVM memory tuning options?
+Answer:
+-Xms: Initial heap size
+-Xmx: Maximum heap size
+-Xss: Stack size
+-XX:+UseG1GC: Use G1 Garbage Collector
 
 Variable -
 	varible value keeps changing if we change, reference to the address of memery where we store the data
@@ -2145,31 +2195,18 @@ Design Pattern
  
 
 What are design patterns? Why are they important? 
-
 Design Patterns are reusable solutions to common problems in software design. 
-
 Importance: 
-
 Provide best practices. 
-
 Improve code readability and maintainability. 
-
 Facilitate communication between developers. 
-
 What are the types of design patterns? 
-
 Creational Patterns: Deal with object creation (e.g., Singleton, Factory). 
-
 Structural Patterns: Deal with object composition (e.g., Adapter, Decorator). 
-
 Behavioral Patterns: Deal with object interaction (e.g., Observer, Strategy). 
-
 Explain the Singleton Pattern. 
-
 Ensures a class has only one instance and provides a global point of access to it. 
-
 Implementation: 
-
 public class Singleton { 
 private static Singleton instance; 
 private Singleton() {} 
@@ -2183,9 +2220,7 @@ if (instance == null) {
  
 
 What is the Factory Pattern? 
-
 Provides an interface for creating objects without exposing their instantiation logic. 
-
 public interface Shape { void draw(); } 
 public class Circle implements Shape { public void draw() { System.out.println("Circle"); } } 
 public class ShapeFactory { 
@@ -2197,25 +2232,16 @@ public class ShapeFactory {
     } 
 } 
  
-
 What is the difference between a Factory and Abstract Factory Pattern? 
-
 Factory: Creates objects of a single family. 
-
 Abstract Factory: Creates objects of related families. 
 
 Example: An Abstract Factory could create different types of UI components like Buttons and TextFields for multiple platforms (Windows, Mac). 
 
  
-
- 
-
 Intermediate Level Questions 
-
 What is the Builder Pattern? 
-
 Separates the construction of a complex object from its representation. 
-
 public class Car { 
     private String engine; 
     private int wheels; 
@@ -2230,9 +2256,7 @@ public class CarBuilder {
  
 
 Explain the Adapter Pattern. 
-
 Allows incompatible interfaces to work together by providing a bridge. 
-
 public interface MediaPlayer { void play(String audioType); } 
 public class AdvancedPlayer { public void playMP4() { System.out.println("Playing MP4"); } } 
 public class MediaAdapter implements MediaPlayer { 
@@ -2244,7 +2268,6 @@ public class MediaAdapter implements MediaPlayer {
  
 
 What is the Observer Pattern? 
-
 Defines a dependency between objects so that when one changes state, all dependents are notified. 
 public interface Observer { void update(); } 
 public class Subject { 
@@ -2255,9 +2278,7 @@ public class Subject {
  
 
 What is the Strategy Pattern? 
-
 Defines a family of algorithms, encapsulates each one, and makes them interchangeable. 
-
 public interface PaymentStrategy { void pay(int amount); } 
 public class CreditCardPayment implements PaymentStrategy { 
     public void pay(int amount) { System.out.println("Paid by Credit Card: " + amount); } 
@@ -2270,9 +2291,7 @@ public class ShoppingCart {
  
 
 What is the Decorator Pattern? 
-
 Adds behavior to objects dynamically without modifying their structure. 
-
 public interface Car { void assemble(); } 
 public class BasicCar implements Car { 
     public void assemble() { System.out.println("Basic Car"); } 
@@ -2285,39 +2304,21 @@ public class SportsCarDecorator implements Car {
         System.out.println("Adding Sports Car Features"); 
     } 
 } 
- 
-
- 
-
- 
 
 Advanced Level Questions 
-
 What is the Prototype Pattern? 
-
 Creates new objects by copying an existing object (a prototype). 
-
 public class Prototype implements Cloneable { 
     public Prototype clone() throws CloneNotSupportedException { return (Prototype) super.clone(); } 
 } 
- 
-
 Explain the difference between Proxy and Decorator Patterns. 
-
 Proxy: Controls access to an object. 
-
 Decorator: Adds behavior to an object dynamically. 
-
 Example: 
-
 Proxy: SecurityProxy to check access permissions. 
-
 Decorator: Adding features to a car. 
-
 What is the Flyweight Pattern? 
-
 Reduces memory usage by sharing objects that are similar in nature. 
-
 public class Flyweight { 
     private String intrinsicState; 
     public Flyweight(String state) { this.intrinsicState = state; } 
@@ -2325,46 +2326,30 @@ public class Flyweight {
  
 
 What is the Chain of Responsibility Pattern? 
-
 Passes a request along a chain of handlers. Each handler decides to process or pass the request. 
-
 public interface Handler { void setNext(Handler handler); void handleRequest(String request); } 
  
 
 What is Dependency Injection? Which design pattern does it use? 
-
 Dependency Injection: Injects dependencies into objects, rather than creating them within. 
-
 Follows the Inversion of Control (IoC) principle. 
-
 Often implemented using the Factory or Builder Pattern. 
-
 Explain the MVC Pattern. 
-
 Separates concerns into: 
-
 Model: Represents data/business logic. 
-
 View: Represents UI. 
-
 Controller: Handles user input and updates model/view. 
 
 What is the Composite Pattern? 
-
 Treats individual objects and compositions uniformly. 
-
 Example: File systems where files and folders are treated similarly. 
 
 How is the Command Pattern useful? 
-
 Encapsulates a request as an object, allowing parameterization and queuing of requests. 
-
 Example: Undo/Redo functionality. 
 
 What is the Template Method Pattern? 
-
 Defines the skeleton of an algorithm, letting subclasses fill in specific steps. 
-
 public abstract class Game { 
     abstract void initialize(); 
     abstract void play(); 
@@ -2376,14 +2361,12 @@ public abstract class Game {
  
 
 What is the main benefit of the Dependency Inversion Principle? 
-
 Encourages dependency on abstractions, not concretions. It decouples modules and makes the system more modular. 
-
- 
 
 public interface Observer { void update(); } 
 public class Subject { 
     private List<Observer> observers = new Arr
+    
 Design Pattern
 --
 
