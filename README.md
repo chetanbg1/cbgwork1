@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 class FirstClass{
@@ -32,7 +33,7 @@ class FirstClass{
        						is part of JVM that dynamically loads the java classes into the JVM
        						-> bootstrape classloader -- lib/rt.jar --> conatins existing .java classes given by java people
 	     					-> extension classloader -- jre/lib/ext --> loads the class from JDK extensions 
-	   					-> application classloader -- our own code class path 
+	   					    -> application classloader -- our own code class path 
        						byteCode verifier --> 
 							JVM memory(main memory) --> 5 parts 
        								class /method area -> class structure
@@ -52,41 +53,41 @@ JIT just in time compiler
  1. What is the Java memory model?
 Answer:
 The Java Memory Model (JMM) defines how Java threads interact through memory and what behaviors are allowed in concurrent execution. It ensures consistency and visibility of variables across threads.
-🔹 2. What are the different memory areas allocated by the JVM?
+2. What are the different memory areas allocated by the JVM?
 Answer:
 Heap – Stores objects and class instances.
 Stack – Stores method calls and local variables.
 Method Area – Stores class metadata and static variables.
 PC Register – Stores address of current instruction.
 Native Method Stack – For native (non-Java) method calls.
-🔹 3. What is the difference between Heap and Stack memory?
+3. What is the difference between Heap and Stack memory?
 Answer:
 Heap: Shared memory for all threads, stores objects.
 Stack: Thread-specific, stores method calls and primitives.
 Heap is slower but flexible; stack is faster but limited.
-🔹 4. What is garbage collection in Java?
+4. What is garbage collection in Java?
 Answer:
 Garbage collection is the process by which the JVM automatically removes unused or unreachable objects from the heap to free memory.
-🔹 5. What is finalize() in Java?
+5. What is finalize() in Java?
 Answer:
 The finalize() method is called by the garbage collector before an object is removed. It's used for cleanup, but it's not guaranteed to run and is largely deprecated in modern Java.
-🔹 6. What are strong, weak, soft, and phantom references?
+6. What are strong, weak, soft, and phantom references?
 Answer:
 Strong: Default reference type; prevents GC.
 Soft: Cleared only when memory is low.
 Weak: Cleared during GC if no strong refs.
 Phantom: Used to track object lifecycle, but can't access the object.
-🔹 7. What are Young and Old generations in the JVM heap?
+7. What are Young and Old generations in the JVM heap?
 Answer:
 Young Gen: Stores short-lived objects. Has Eden and Survivor spaces.
 Old (Tenured) Gen: Stores long-lived objects. GC here is less frequent but heavier.
-🔹 8. How do you avoid memory leaks in Java?
+8. How do you avoid memory leaks in Java?
 Answer:
 Release unused object references.
 Avoid static references for large objects.
 Use WeakReference for caches.
 Use memory profiling tools like VisualVM or Eclipse MAT.
-🔹 9. What is OutOfMemoryError and how do you handle it?
+9. What is OutOfMemoryError and how do you handle it?
 Answer:
 It's thrown when the JVM can't allocate memory.
 Handle it by:
@@ -818,8 +819,7 @@ Exception Handling
 --
 abnormal condition which can disrupt the normal flow of program, if not handled properly program can terminate abruptly 
 try - enclose the set of statements which can throw exception , hence required to be monitored. can not use try block alone, must be followed by catch or finally 
-Catch - when excepti
-on occurs block catches the exception and work accordingly to handle it or to throw it as required
+Catch - when exception occurs block catches the exception and work accordingly to handle it or to throw it as required
 Finally - this block get executed always regardless of exception occurence , hence clean up is done.
 	  the finally block executes even if a retrun statement is used in the try catch block
    	  ensuring cleanup runs.
@@ -829,7 +829,7 @@ minimal unless exception are thrown frerquently.
 we can handle multiple exceptions by seperating them with a pipe( | ) 
 
 Throwable  --> Exception -->checked exception / compile time   --> eg - sql exception , classnotfound
-			 --> unchecked exception / runtime exception --> eg - nullpointer, number format , indexoutofbound 
+			 			 --> unchecked exception / runtime exception --> eg - nullpointer, number format , indexoutofbound 
     	   --> Error --> stack overflow 
 			 out of memory 
     			 virtual machine error 
@@ -942,7 +942,7 @@ Anonymous Inner Class
 
 In Java, an inner class is a class that is defined within another class. Inner classes are used to logically group classes that are only used in one place, increase encapsulation, and can access members (including private ones) of the outer class.
 
-🔹 Types of Inner Classes in Java
+Types of Inner Classes in Java
 Java supports four types of inner classes:
 
 Non-static Nested Class (Regular Inner Class)
@@ -953,11 +953,9 @@ Local Inner Class (inside a method)
 
 Anonymous Inner Class
 
-✅ 1. Non-static Nested Class (Regular Inner Class)
+1. Non-static Nested Class (Regular Inner Class)
 Can access all members (including private) of the outer class.
-
 Requires an instance of the outer class to be instantiated.
-
 
 public class Outer {
     private String msg = "Hello from Outer!";
@@ -974,11 +972,9 @@ public class Outer {
         inner.display();
     }
 }
-✅ 2. Static Nested Class
+2. Static Nested Class
 Does not need an instance of the outer class.
-
 Can only access static members of the outer class.
-
 
 public class Outer {
     static String msg = "Hello from Static Nested Class!";
@@ -1042,9 +1038,8 @@ Static Nested Class	Yes		Only static members						Utility/helper classes
 Local Inner Class	No		Yes (only final/effectively final)				Temporary use inside a method
 Anonymous Inner Class	No		Yes								Quick override of methods
 
-✅ Why Use Inner Classes in Java – Summary
+Why Use Inner Classes in Java – Summary
 Inner classes are used in Java to:
-
 Logically group related classes – Keep helper classes close to where they’re used.
 Improve encapsulation – Can access private members of the outer class.
 Enhance code readability – Keeps related logic together.
@@ -1052,9 +1047,9 @@ Simplify event handling – Especially useful in GUI apps (e.g., Swing, JavaFX).
 Avoid namespace pollution – Prevents unnecessary top-level class declarations.
 Create quick, short-lived classes – Useful for implementing interfaces or abstract methods on the fly (e.g., anonymous classes).
 
-
 to sort the custom object we need 
 Comparable -
+--
 The Comparable interface in Java is part of the java.lang package and is used to define the natural ordering of objects. When a class implements the Comparable interface, it must override the compareTo() method, which is used to compare the current object with another object of the same type.
 Comparable<generic object> has one mehod --> 
 public int compareTo(Employee o){   // can sort only integer value
@@ -1183,10 +1178,10 @@ List Interface - an ordered collection that can contain duplicate elements
       			thread safe
 	 		increase size by doubling the array size
 	       --> Stack
-	       --> CopyonWriteArrayListList
-			cpoy on write means that whenever a write operation like adding or removing an element, instead of directly modifying the existing list a new copy of the list is created and the modification is applied on that copy. This ensures that other thread reading the list while its being modified are unaffected. 
-   			read operation - fast and direct, since they happn on a stable list without interference from modification
-      			write operation - A new copy of the list is created for every modification.
+	       --> CopyonWriteArrayList
+			copy on write means that whenever a write operation like adding or removing an element, instead of directly modifying the existing list a new copy of the list is created and the modification is applied on that copy. This ensures that other thread reading the list while its being modified are unaffected. 
+   			read operation - fast and direct, since they happen on a stable list without interference from modification
+      		write operation - A new copy of the list is created for every modification.
 	 				  the reference to list is then updated so that subsequent reads use this new list.
 	
 
@@ -1197,10 +1192,10 @@ Queue interface collectoin designed for holding elements prior to processing
    			high priority elements served before a low priority irrespective of insertion order
       			the priority queue is based on the priority heap
 			
-    
-                --> LinkedList class
-                --> Deque Interface --> ArrayQueue class
+        --> LinkedList class
+    	--> Deque Interface --> ArrayQueue class
 			elements can be added and remove from both the ends
+			
 Set interface - can not conatin duplicate elements
 		does not define the order 
  		not support the index base search
@@ -1222,13 +1217,13 @@ Set interface - can not conatin duplicate elements
 	     --> CopyOnWriteArraySet 
       			is a thread-safe Set implementation backed by a CopyOnWriteArrayList. It belongs to the java.util.concurrent package and is designed for use in concurrent 				applications where reads are far more frequent than writes.
 
-✅ Key Characteristics
+ Key Characteristics
 Feature				Description
-Thread-safe			✅ Yes (no need for external synchronization)
+Thread-safe			Yes (no need for external synchronization)
 Backed by			CopyOnWriteArrayList
-Duplicates			❌ Not allowed (Set behavior)
-Nulls				✅ Allows null (only one, if at all)
-Performance			🚀 Fast for reads, 🐢 slow for writes (due to copying)
+Duplicates			Not allowed (Set behavior)
+Nulls				Allows null (only one, if at all)
+Performance			Fast for reads, slow for writes (due to copying)
 Use case			Ideal for read-heavy concurrent scenarios like caches, observer lists, etc.
 	
    
@@ -1255,14 +1250,14 @@ Map Interface --> key-value pair
 	     -->EnumMap 
       			is a specialized Map implementation designed specifically for use with enum keys. It is part of java.util and offers a high-performance, memory-efficient map when keys are from a single enum type.
 
-✅ Key Characteristics
+Key Characteristics
 Feature				Description
 Key type			Must be an enum type
 Performance			Very fast (backed by an array internally)
 Ordering			Maintains natural order of enum constants
-Null keys			❌ Not allowed (throws NullPointerException)
-Null values			✅ Allowed
-Thread-safe			❌ Not synchronized (wrap with Collections.synchronizedMap() if needed)
+Null keys			Not allowed (throws NullPointerException)
+Null values			Allowed
+Thread-safe			Not synchronized (wrap with Collections.synchronizedMap() if needed)
 
 
 
@@ -1300,12 +1295,12 @@ Concurrent Collection
     		CopyOnWriteArraySet
 ConcurrentSkipListMap is a concurrent, sorted, and navigable implementation of the Map interface. It is part of the java.util.concurrent package and is implemented using a skip list data structure.
 
-✅ Key Characteristics
+Key Characteristics
 Feature   			Description
 Thread-safe			Yes – supports concurrent access without locking the entire map
 Sorted (Natural Order)		Yes – maintains keys in ascending order
 Implements			ConcurrentNavigableMap<K,V>
-Allows nulls			❌ No – neither null keys nor null values
+Allows nulls			 No – neither null keys nor null values
 Performance			Fast non-blocking reads and writes with expected log(n) time for most operations
 Use Case			When you need a concurrent sorted map, e.g., priority queues, caches, or time-based data structures
   
@@ -1313,12 +1308,12 @@ we only use wrapper classes in collection framework as it can only hold objects 
 
 An LRU (Least Recently Used) Cache is a data structure that removes the least recently used item when it reaches its capacity limit — it's commonly used in memory/caching systems.
 
-✅ Goals of an LRU Cache
+Goals of an LRU Cache
 Fast get(key) and put(key, value) operations.
 Automatically evicts the least recently used entry when full.
 Maintains order based on access, not insertion.
 
-🚀 Easiest Way in Java: Use LinkedHashMap
+Easiest Way in Java: Use LinkedHashMap
 Java’s LinkedHashMap supports access-order iteration and can be customized to behave like an LRU cache.
 import java.util.*;
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
@@ -1361,7 +1356,7 @@ get() → O(1)
 put() → O(1)
 Because LinkedHashMap is backed by a hash table + doubly linked list.
 
-🔁 If You Want Manual LRU (Without LinkedHashMap)
+If You Want Manual LRU (Without LinkedHashMap)
 You can also implement LRU using a combination of:
 
 HashMap for O(1) access
@@ -1894,43 +1889,29 @@ Thread t2 = new Thread( ()->{
     }
 } , "thread2");
 
-Basic Level Questions with Answers 
+
 
 What is multithreading? How is it different from multiprocessing? 
-
 Multithreading: Allows multiple threads to run within a single process. Threads share the same memory and resources. 
-
 Multiprocessing: Involves multiple processes running independently, each with its own memory space. 
-
 Difference: Threads are lighter and share memory, while processes are heavier and independent. 
 
 What are the benefits of multithreading? 
-
 Efficient CPU utilization. 
-
 Faster execution by performing tasks concurrently. 
-
 Simplifies modeling real-world problems like producer-consumer scenarios. 
-
 Allows an application to remain responsive (e.g., GUI applications). 
 
 How do you create a thread in Java? 
-
 Using Thread class: 
 
- 
-
 class MyThread extends Thread { 
-
  
 public void run() { 
       System.out.println("Thread is running..."); 
 
- 
 } 
- 
-
-} 
+ } 
 
  
 MyThread t = new MyThread(); 
@@ -1938,43 +1919,27 @@ MyThread t = new MyThread();
  
 t.start(); 
  
-
 Using Runnable interface: 
 
 class MyRunnable implements Runnable { 
- 
-
   public void run() { 
- 
-
          System.out.println("Thread is running..."); 
  
-
   } 
-
- 
 } 
  
-
 Thread t = new Thread(new MyRunnable()); 
-
  
 t.start(); 
  
 
 What is the difference between the start() and run() methods in Java threads? 
-
 start(): Starts a new thread and executes the run() method on that thread. 
-
 run(): Called directly, it runs on the current thread, not a new one. 
 
 What are daemon threads, and how do they work? 
-
 Daemon threads: Background threads that provide support for user threads. They automatically terminate when all user threads are finished. 
-
 Thread t = new Thread(); 
-
- 
 t.setDaemon(true); // Setting thread as daemon 
  
 Feature			synchronized				Lock (e.g., ReentrantLock)
@@ -1988,86 +1953,47 @@ Use case complexity	Simple					zxcvbhl./Advanced/flexible
  
 
  
-
-Intermediate Level Questions with Answers 
-
 What is synchronization? Why is it important in multithreading? 
-
 Synchronization: A mechanism to control access to shared resources to prevent thread interference. 
-
 Importance: Prevents data inconsistency and race conditions when multiple threads access shared resources. 
-
 Explain the difference between synchronized methods and synchronized blocks. 
-
 Synchronized method: Locks the entire object. 
-
 Synchronized block: Allows more granular locking on a specific part of the code or a specific object. 
 
 What is a race condition, and how can you avoid it? 
-
 Race Condition: Occurs when multiple threads access shared data simultaneously and at least one thread modifies it. 
-
 Solution: Use synchronization, locks, or atomic variables. 
 
 What are wait(), notify(), and notifyAll() methods? 
-
 wait(): Makes a thread wait until another thread invokes notify() or notifyAll(). 
-
 notify(): Wakes up a single thread waiting on the object's monitor. 
-
 notifyAll(): Wakes up all threads waiting on the object's monitor. 
-
 These methods must be called within a synchronized block. 
 
 What is a thread pool? Why is it used? 
-
 Thread Pool: A pool of pre-created threads that can be reused for executing tasks. 
-
 Advantages: 
-
 Reduces overhead of thread creation. 
-
 Improves performance in a multithreaded environment. 
-
 Example: 
-
 ExecutorService executor = Executors.newFixedThreadPool(5); 
-
- 
 executor.execute(() -> System.out.println("Task executed")); 
-
- 
 executor.shutdown(); 
  
 
- 
-
- 
-
-Advanced Level Questions with Answers 
-
 What is the difference between synchronized and Lock interface? 
-
 Synchronized: Implicit locking and simpler to use but less flexible. 
-
 Lock interface: Explicit locking, supports try-locking, and provides more control. 
-
 Example using Lock: 
-
 Lock lock = new ReentrantLock(); 
 
- 
 lock.lock(); 
- 
-
 try { 
 // Critical section 
 }  
 
 finally { 
 lock.unlock(); 
-
- 
 } 
  
 
@@ -2079,85 +2005,47 @@ hold and wait - a thread holding at least one resource is waiting to acquire add
 NO Preemption - resources can not be forcibly taken from thrad holding them
 circular wait - a set of thread wait for each other in a circular chain
 Prevention: 
-
 Avoid nested locks. 
-
 Use try-lock with timeouts. 
-
 Acquire locks in a consistent order. 
 
 What is a volatile keyword? When should you use it? 
-
 volatile: Ensures that changes made by one thread to a variable are visible to other threads. 
-
 Use it for variables that are accessed and modified by multiple threads but not involved in compound actions (e.g., increment). 
 
 Explain the ForkJoinPool framework. 
-
 ForkJoinPool: Designed for divide-and-conquer tasks where a large task is recursively broken into smaller tasks. 
-
 ForkJoinPool pool = new ForkJoinPool(); 
- 
-
 pool.invoke(new RecursiveTask<Integer>() { 
- 
-
   @Override 
- 
-
   protected Integer compute() { 
-
- 
 return 1 + 1; // Example computation 
 } 
-
- 
 }); 
  
 
 How does the ConcurrentHashMap provide thread safety? 
-
 It uses a technique called bucket-level locking (or segment-level locking). Multiple threads can read and write concurrently as long as they operate on different buckets. 
 
 What is a thread, and how is it different from a process? 
-
 A thread is a lightweight subunit of a process. 
-
 Threads share the process's memory and resources, while processes are independent and isolated. 
 
 Explain the lifecycle of a thread in Java. 
-
 New: Created but not started (new Thread()). 
-
 Runnable: Ready to run but waiting for CPU (start() called). 
-
 Running: Actively executing. 
-
 Blocked/Waiting: Paused, waiting for resources or notifications. 
-
 Terminated: Completed execution. 
 
 What is the purpose of the join() method in threads? 
-
 join(): Makes the current thread wait until the specified thread completes execution. 
-
 Thread t = new Thread(() -> System.out.println("Child thread running")); 
- 
-
 t.start(); 
-
- 
 t.join(); // Main thread waits for t to finish 
- 
-
 System.out.println("Main thread resumes"); 
 
- 
-
-      
-
-            Synchronized Methods: Locks the entire method. Only one thread can access it at a time. 
-
+Synchronized Methods: Locks the entire method. Only one thread can access it at a time. 
 Synchronized Blocks: Locks only a portion of the method, providing finer control and better performance. 
 
  
@@ -2184,15 +2072,8 @@ Starvation: A thread is perpetually denied access to resources.
 
  
 
- 
-
- 
-
 Design Pattern 
-
 -- 
-
- 
 
 What are design patterns? Why are they important? 
 Design Patterns are reusable solutions to common problems in software design. 
@@ -2218,7 +2099,6 @@ if (instance == null) {
     } 
 } 
  
-
 What is the Factory Pattern? 
 Provides an interface for creating objects without exposing their instantiation logic. 
 public interface Shape { void draw(); } 
@@ -2238,8 +2118,6 @@ Abstract Factory: Creates objects of related families.
 
 Example: An Abstract Factory could create different types of UI components like Buttons and TextFields for multiple platforms (Windows, Mac). 
 
- 
-Intermediate Level Questions 
 What is the Builder Pattern? 
 Separates the construction of a complex object from its representation. 
 public class Car { 
@@ -2275,7 +2153,7 @@ public class Subject {
     public void attach(Observer o) { observers.add(o); } 
     public void notifyObservers() { observers.forEach(Observer::update); } 
 } 
- 
+
 
 What is the Strategy Pattern? 
 Defines a family of algorithms, encapsulates each one, and makes them interchangeable. 
@@ -2305,7 +2183,6 @@ public class SportsCarDecorator implements Car {
     } 
 } 
 
-Advanced Level Questions 
 What is the Prototype Pattern? 
 Creates new objects by copying an existing object (a prototype). 
 public class Prototype implements Cloneable { 
